@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import { isEmpty, cloneDeep } from "lodash";
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
 
 const NATIONALITY_KEYS = ["ethiopian", "other"];
 const REGION_KEYS = [
@@ -39,9 +39,9 @@ const OCCUPATION_KEYS = [
   "other",
 ];
 const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
-const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
+const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({});
-
+  console.log(langCode);
   const [open, setOpen] = useState(false);
 
   const handleFieldChange = (field) => (value) => {
@@ -189,6 +189,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
       type: "date",
       label: lang.t("callDate"),
       property: "callDate",
+      langCode: langCode,
       onChange: handleFieldChange("callDate"),
     },
     {

@@ -12,6 +12,16 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { isEmpty, cloneDeep } from "lodash";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+
+import moment from "moment";
+import MomentUtils from "@date-io/moment";
+
+moment.defineLocale("am", {
+  parentLocale: "en",
+  months: "ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ_መስከረም_ጥቅምት_ህዳር_ታህሳስ".split("_"),
+  weekdays: "እሑድ_ሰኞ_ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ".split("_"),
+});
 
 const StatefulTextField = ({ field }) => {
   // fullWidth
@@ -96,7 +106,7 @@ const StatefulDateField = ({ field }) => {
     validationErrorMsg,
     focus,
   } = field;
-
+  var locale = field.langCode;
   const [value, setValue] = useState(field.value || "");
   const [isValid, setIsValid] = useState(true);
 
@@ -143,18 +153,19 @@ const StatefulDateField = ({ field }) => {
   return (
     <Box>
       <Typography>{label}</Typography>
-      <TextField
-        id={`${property}-outlined`}
-        value={value}
-        onChange={handleChange}
-        disabled={!!disabled}
-        fullWidth={true}
-        autoComplete="false"
-        size="small"
-        type="date"
-        variant="outlined"
-        {...props}
-      />
+      <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
+        <DatePicker
+          id={`${property}-outlined`}
+          inputVariant="outlined"
+          value={value}
+          onChange={handleChange}
+          disabled={!!disabled}
+          fullWidth={true}
+          autoComplete="false"
+          size="small"
+          {...props}
+        />
+      </MuiPickersUtilsProvider>
     </Box>
   );
 };
@@ -163,6 +174,7 @@ export const renderTextField = (field) => {
 };
 
 export const renderDateField = (field) => {
+  moment.locale(field.langCode);
   return <StatefulDateField field={field} />;
 };
 
