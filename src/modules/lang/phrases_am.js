@@ -78,4 +78,13 @@ export default {
   yes: "አዎ",
   no: "አይ",
   formStatus: "",
+  "hotel": {
+   "label": "ሆቴል",
+   "skylight": "ስካይላይት ሆቴል",
+   "ghion": "ጊዮን ሆቴል",
+   "azzeman": "አዜማን ሆቴል",
+   "sapphire": "ሳፋየር ሆቴል",
+   "other": "ሌላ",
+   "addDependent": "Add Dependent(s)"
+ }
 };

@@ -7,6 +7,7 @@ import Footer from "../components/layout/Footer";
 import Community from "../containers/Community";
 import MedicalCenters from "../containers/MedicalCenters";
 import { Box, Loading } from "@material-ui/core";
+import PortOfEntry from '../containers/PortOfEntry';
 
 // import Api from '../api';
 
@@ -43,12 +44,20 @@ class App extends Component {
         />
         <Route
           exact
-          path="/"
+          path="/medical-form"
           component={observer((props) => (
             <MedicalCenters {...props} />
           ))}
         />
-        <Footer />
+         <Route
+          exact
+          path="/port-of-entry"
+          component={observer((props) =>
+            <PortOfEntry
+              {...props}
+            />)}
+        />
+        <Footer/>
       </Box>
     );
   }
