@@ -32,32 +32,41 @@ class App extends Component {
   // }
 
   render() {
+    const { languageStore } = this.props;
+    const { lang, langCode } = languageStore;
+
+    const onLanguageSelect = (code) => {
+      languageStore.setLanguage(code);
+    }
+
     return (
       <Box>
-        <Header />
-        <Route
-          exact
-          path="/"
-          component={observer((props) => (
-            <Community {...props} />
-          ))}
-        />
-        <Route
-          exact
-          path="/medical-form"
-          component={observer((props) => (
-            <MedicalCenters {...props} />
-          ))}
-        />
-         <Route
-          exact
-          path="/port-of-entry"
-          component={observer((props) =>
-            <PortOfEntry
-              {...props}
-            />)}
-        />
-        <Footer/>
+        <Header lang={lang} langCode={langCode} onLanguageSelect={onLanguageSelect} />
+        <Box mx="auto" p={5}>
+          <Route
+            exact
+            path="/"
+            component={observer((props) => (
+              <Community {...props} />
+            ))}
+          />
+          <Route
+            exact
+            path="/medical-form"
+            component={observer((props) => (
+              <MedicalCenters {...props} />
+            ))}
+          />
+           <Route
+            exact
+            path="/port-of-entry"
+            component={observer((props) =>
+              <PortOfEntry
+                {...props}
+              />)}
+          />
+        </Box>
+        <Footer lang={lang}/>
       </Box>
     );
   }

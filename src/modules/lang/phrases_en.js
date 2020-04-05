@@ -6,6 +6,7 @@ export default {
   email: "Email",
   language: {
     label: "Language",
+    english: "English",
     amharic: "Amharic",
     oromo: "Afan Oromo",
   },
@@ -62,5 +63,7 @@ export default {
   "transitFrom": "Transit (if any)",
   "flightNumber": "Flight Number",
   "seatNumber": "Seat Number",
-  "addDependent": "Add Dependent(s)"
+  "addDependent": "Add Dependent(s)",
+  "officalWebsite": "An offical website of the Ethiopian Government",
+  "footerText": "COVID-19 Ethiopia Response"
 };

@@ -9,7 +9,7 @@ class Community extends Component {
     const { lang } = languageStore;
 
     return (
-      <Box p={3}>
+      <Box>
         <CommunityForm lang={lang} />
       </Box>
     );
