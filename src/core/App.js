@@ -6,7 +6,8 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Community from "../containers/Community";
 import MedicalCenters from "../containers/MedicalCenters";
-import { Box, Loading } from "@material-ui/core";
+import { Box, Loading, Typography } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 import PortOfEntry from '../containers/PortOfEntry';
 
 // import Api from '../api';
@@ -43,9 +44,22 @@ class App extends Component {
       <Box>
         <Header lang={lang} langCode={langCode} onLanguageSelect={onLanguageSelect} />
         <Box mx="auto" p={5}>
+          <Box display="flex">
+            <Typography variant="body2">Forms:</Typography>&nbsp;&nbsp;
+            <Link to={'/community-form'}><Typography variant="body2">{lang.t('form.community')}</Typography></Link>&nbsp;&nbsp;
+            <Link to={'/medical-form'}><Typography variant="body2">{lang.t('form.medicalCenters')}</Typography></Link>&nbsp;&nbsp;
+            <Link to={'/port-of-entry-form'}><Typography variant="body2">{lang.t('form.portOfEntry')}</Typography></Link>
+          </Box>
           <Route
             exact
             path="/"
+            component={observer((props) => (
+              <Community {...props} />
+            ))}
+          />
+          <Route
+            exact
+            path="/community-form"
             component={observer((props) => (
               <Community {...props} />
             ))}
@@ -59,7 +73,7 @@ class App extends Component {
           />
            <Route
             exact
-            path="/port-of-entry"
+            path="/port-of-entry-form"
             component={observer((props) =>
               <PortOfEntry
                 {...props}
