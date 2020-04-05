@@ -65,6 +65,6 @@ export default {
   addDependent: "Add Dependent(s)",
   formErrors: {
     empty: "This field can not be empty",
-    numberExpected: "This field is for number only",
+    numberOnly: "This field is for number only",
   },
 };
