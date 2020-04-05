@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { isEmpty, cloneDeep } from "lodash";
 
-const StatefulTextField = ({ field }) => {
+const StatefulTextField = ({ field, clear }) => {
   // fullWidth
   const {
     label,
@@ -36,6 +36,15 @@ const StatefulTextField = ({ field }) => {
     }
     handleValidation();
   }, [value]);
+
+  useEffect(() => {
+    if (clear === 0) {
+      return;
+    }
+    firstUpdate.current = true;
+    setValue(field.value || "");
+  }, [clear]);
+
 
   const handleChange = (event) => {
     const newValue = event.target.value;
@@ -158,8 +167,8 @@ const StatefulDateField = ({ field }) => {
     </Box>
   );
 };
-export const renderTextField = (field) => {
-  return <StatefulTextField field={field} />;
+export const renderTextField = (field, clear) => {
+  return <StatefulTextField field={field} clear={clear} />;
 };
 
 export const renderDateField = (field) => {
@@ -213,7 +222,6 @@ export const renderSelectField = (field) => {
 
 const StatefulSwitch = ({ field }) => {
   const { label, onChange } = field;
-  console.log(label);
   const [value, setValue] = useState(field.value || false);
 
   const handleChange = () => {
@@ -275,10 +283,10 @@ export const renderCheckbox = (field) => {
   return <StatefulCheckbox field={field} />;
 };
 
-export const renderField = (field) => {
+export const renderField = (field, clear) => {
   switch (field.type) {
     case "text":
-      return renderTextField(field);
+      return renderTextField(field, clear);
     case "select":
       return renderSelectField(field);
     case "date":

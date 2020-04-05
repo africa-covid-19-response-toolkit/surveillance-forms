@@ -8,8 +8,9 @@ import am from '../../modules/lang/phrases_am';
 const langEn = new Ployglot({ locale: 'en', phrases: en });
 const langAm = new Ployglot({ locale: 'am', phrases: am });
 
-const onSubmit = (formValues) => {
+const onSubmit = async (formValues) => {
   console.log('onSubmit', formValues);
+  return Promise.resolve(1);
 }
 
 storiesOf('Community Form', module)
