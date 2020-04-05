@@ -1,22 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Paper,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
-  Button,
-  Switch,
-  Dialog,
-} from "@material-ui/core";
+import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import { isEmpty, cloneDeep } from "lodash";
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 
+const NATIONALITY_KEYS = ["ethiopian", "other"];
 const REGION_KEYS = [
   "addisAbaba",
   "afar",
@@ -45,12 +33,12 @@ const SUBCITY_KEYS = [
 
 const OCCUPATION_KEYS = [
   "hcp",
-  "merchant(Animal)",
+  "merchantAnimal",
   "airport",
   "student",
   "other",
 ];
-
+const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
 const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({});
 
@@ -78,9 +66,20 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
+      label: lang.t("middleName"),
+      property: "middleName",
+      focus: true,
+      onChange: handleFieldChange("middleName"),
+      onValidate: (val) => {
+        return !isEmpty(val) && val.length >= 3;
+      },
+    },
+    {
+      type: "text",
       label: lang.t("lastName"),
       property: "lastName",
       onChange: handleFieldChange("lastName"),
+      validationErrorMsg: "Enter name (min 3 chars)",
     },
     {
       type: "text",
@@ -105,6 +104,22 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
       onChange: handleFieldChange("phoneNumber"),
     },
     {
+      type: "text",
+      label: lang.t("email"),
+      property: "email",
+      onChange: handleFieldChange("email"),
+    },
+    {
+      type: "select",
+      label: lang.t("nationality.label"),
+      property: "nationality",
+      onChange: handleFieldChange("nationality"),
+      choices: NATIONALITY_KEYS.map((r) => ({
+        label: lang.t(`nationality.${r}`),
+        value: r,
+      })),
+    },
+    {
       type: "select",
       label: lang.t("region.label"),
       property: "region",
@@ -113,6 +128,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
         label: lang.t(`region.${r}`),
         value: r,
       })),
+    },
+    {
+      type: "text",
+      label: lang.t("zone"),
+      property: "zone",
+      onChange: handleFieldChange("zone"),
     },
     {
       type: "select",
@@ -138,6 +159,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
       onChange: handleFieldChange("woreda"),
     },
     {
+      type: "text",
+      label: lang.t("houseNumber"),
+      property: "houseNumber",
+      onChange: handleFieldChange("houseNumber"),
+    },
+    {
       type: "select",
       label: lang.t("occupation.label"),
       property: "occupation",
@@ -147,7 +174,23 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
         value: r,
       })),
     },
+    {
+      type: "select",
+      label: lang.t("callerType.label"),
+      property: "callerType",
+      onChange: handleFieldChange("callerType"),
+      choices: CALLERTYPE_KEYS.map((r) => ({
+        label: lang.t(`callerType.${r}`),
+        value: r,
+      })),
+    },
 
+    {
+      type: "date",
+      label: lang.t("callDate"),
+      property: "callDate",
+      onChange: handleFieldChange("callDate"),
+    },
     {
       type: "check",
       label: lang.t("fever"),
@@ -195,32 +238,32 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
       label: lang.t("travelHx"),
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("haveSex"),
       property: "haveSex",
       onChange: handleFieldChange("haveSex"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("animalMarket"),
       property: "animalMarket",
       onChange: handleFieldChange("animalMarket"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("healthFacility"),
       property: "healthFacility",
       onChange: handleFieldChange("healthFacility"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
   ];
 
@@ -281,6 +324,9 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("middleName")}
+          </Grid>
 
           <Grid item xs={12} md={4}>
             {renderFormField("lastName")}
@@ -295,7 +341,16 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
             {renderFormField("phoneNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
+            {renderFormField("email")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("nationality")}
+          </Grid>
+          <Grid item xs={12} md={4}>
             {renderFormField("region")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("zone")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("subcity")}
@@ -307,11 +362,22 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
             {renderFormField("woreda")}
           </Grid>
           <Grid item xs={12} md={4}>
+            {renderFormField("houseNumber")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("callerType")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            {renderFormField("callDate")}
           </Grid>
         </Grid>
 
-        {renderSubsectionheader("Symptoms")}
+        {renderSectionHeader("Symptoms")}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("fever")}
@@ -320,7 +386,19 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
             {renderFormField("cough")}
           </Grid>
           <Grid item xs={12} md={3}>
+            {renderFormField("headache")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("bodyPain")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("runnyNose")}
+          </Grid>
+          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("feelingUnwell")}
           </Grid>
         </Grid>
 
