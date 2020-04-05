@@ -32,6 +32,7 @@ export default {
     "azzeman": "Azzeman Hotel",
     "sapphire": "Sapphire Hotel",
     "other": "Other",
+    "otherHotel": "Hotel Name"
   },
   "subcityOrZone": "Subcity Or Zone",
   "sefer": "Sefer",

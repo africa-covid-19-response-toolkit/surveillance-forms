@@ -134,7 +134,13 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       type: 'text',
       label: lang.t('seatNumber'),
       property: 'seatNumber',
-      onChange: handleFieldChange('phoseatNumberneNo')
+      onChange: handleFieldChange('seatNumber')
+    },
+    {
+      type: 'text',
+      label: lang.t('hotel.otherHotel'),
+      property: 'otherHotel',
+      onChange: handleFieldChange('otherHotel')
     },
     {
       type: 'text',
@@ -232,6 +238,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item  xs={12} md={3} >{renderFormField('flightNumber')}</Grid>
           <Grid item  xs={12} md={3} >{renderFormField('seatNumber')}</Grid>
           <Grid item  xs={12} md={3} >{renderFormField('hotel')}</Grid>
+          <Grid item  xs={12} md={3} >{renderFormField('otherHotel')}</Grid> {/* @todo: render only on "other" */}
         </Grid>
 
         {renderSubsectionheader('Symptoms')}
