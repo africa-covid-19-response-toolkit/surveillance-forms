@@ -28,7 +28,6 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [open, setOpen] = useState(false);
 
   const handleFieldChange = field => (value) => {
-    console.log(field, ': ', value);
     setFormValues({
       ...formValues,
       [field]: value
@@ -252,7 +251,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             <Paper>
               {/* @todo: Componentize modal */}
               <h1>Dependents</h1>
-            </Paper> 
+            </Paper>
           </Dialog>
           <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submit')}</Button>
         </Box>

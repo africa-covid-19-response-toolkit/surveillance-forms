@@ -45,7 +45,6 @@ const MedicalCentersEntryForm = ({ onSubmit, lang }) => {
   const [open, setOpen] = useState(false);
 
   const handleFieldChange = (field) => (value) => {
-    console.log(field, ": ", value);
     setFormValues({
       ...formValues,
       [field]: value,

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "local": "REACT_APP_BUILD_ENV=local yarn start",
+    "local": "REACT_APP_BUILD_ENV=local PORT=3001 yarn start",
     "dev": "REACT_APP_BUILD_ENV=dev yarn start",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint --max-warnings=0 src/**",
