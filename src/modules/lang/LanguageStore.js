@@ -13,9 +13,11 @@ const getPolygotInstance = (languageCode) => {
 };
 
 class LanguageStore {
-  lang = getPolygotInstance('en');
+  langCode = 'en';
+  lang = getPolygotInstance(this.langCode);
 
   async setLanguage(languageCode) {
+    this.landCode = languageCode;
     this.lang = getPolygotInstance(languageCode);
   }
 }

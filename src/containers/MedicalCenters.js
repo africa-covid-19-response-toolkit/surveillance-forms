@@ -6,11 +6,11 @@ import MedicalCentersForm from "../components/medicalcenters/MedicalCentersForm"
 class MedicalCenters extends Component {
   render() {
     const { languageStore } = this.props;
-    const { lang } = languageStore;
+    const { lang, langCode } = languageStore;
 
     return (
       <Box p={3}>
-        <MedicalCentersForm lang={lang} />
+        <MedicalCentersForm lang={lang} langCode={langCode} />
       </Box>
     );
   }
