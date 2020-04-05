@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 const Footer = ({ classes }) => {
   return (
     <div className={classes.container}>
-      <Typography>Copyright 2019</Typography>
+      <Typography>Ethiopia COVID19 Taskforce</Typography>
     </div>
   );
 };

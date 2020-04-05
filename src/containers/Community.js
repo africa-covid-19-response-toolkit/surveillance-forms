@@ -10,7 +10,7 @@ class Community extends Component {
 
 
     return (
-      <Box p={5}>
+      <Box p={3}>
         <CommunityForm lang={lang} />
       </Box>
     )
