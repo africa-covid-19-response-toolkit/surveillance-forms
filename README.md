@@ -20,6 +20,15 @@ We use storybook to develop components:
 $ yarn storybook
 ```
 
+### How to add a form
+- Create the form component under `src/components`.
+ - See `src/components/commuinity/CommunityForm.js` as reference.
+ - See `src/components/community/CommunityForm.story.js` for the storybook file.
+ - This uses common form utilities found in `src/form/form-util.js`.
+ - See samples of how to use form storybook in storybook file `Form.story.js`.
+- Create a page under `src/containers` (see `src/containers/Community.js` as reference)
+- Map your page to a route in `src/core/App.js`
+
 ### API
 
 * API files should live in `src/api` module.
