@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# build
+build/
+
+# misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+README.md.orig.*
+README.md.toc.*
+
+coverage/
+coverage-report/

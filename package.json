@@ -1,0 +1,66 @@
+{
+  "name": "frontend-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "local": "REACT_APP_BUILD_ENV=local yarn start",
+    "dev": "REACT_APP_BUILD_ENV=dev yarn start",
+    "test": "react-scripts test --env=jsdom",
+    "lint": "eslint --max-warnings=0 src/**",
+    "lint:fix": "yarn lint --fix",
+    "codecheck": "yarn lint && yarn test",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build": "react-scripts build",
+    "build-dev": "CI=false REACT_APP_BUILD_ENV=dev react-scripts build",
+    "build-prod": "CI=false REACT_APP_BUILD_ENV=prod react-scripts build"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.7.0",
+    "@material-ui/core": "4.9.6",
+    "@material-ui/icons": "4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.46",
+    "airtable": "^0.8.1",
+    "axios": "0.19.0",
+    "axios-mock-adapter": "1.17.0",
+    "mobx": "5.15.0",
+    "mobx-react": "6.1.4",
+    "moment": "2.24.0",
+    "node-polyglot": "2.4.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-html-parser": "^2.0.2",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.4.0",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.4",
+    "@babel/node": "7.7.7",
+    "@storybook/addon-actions": "5.2.8",
+    "@storybook/addon-console": "1.2.1",
+    "@storybook/addon-storyshots": "5.2.8",
+    "@storybook/react": "5.2.5",
+    "babel-core": "6.26.3",
+    "babel-loader": "8.0.6",
+    "babel-node": "^0.0.1-security",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.15.1",
+    "eslint": "6.7.2",
+    "react-test-renderer": "16.12.0",
+    "require-context.macro": "1.2.2",
+    "storybook": "5.1.11"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
