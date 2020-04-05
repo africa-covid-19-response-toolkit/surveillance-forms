@@ -9,7 +9,7 @@ class MedicalCenters extends Component {
     const { lang, langCode } = languageStore;
 
     return (
-      <Box p={3}>
+      <Box>
         <MedicalCentersForm lang={lang} langCode={langCode} />
       </Box>
     );
