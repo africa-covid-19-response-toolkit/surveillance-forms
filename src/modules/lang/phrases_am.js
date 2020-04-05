@@ -60,7 +60,7 @@ export default {
   callerType: {
     label: "የደዋይ ዓይነት",
     callerType1: "callerType1",
-    callerType1: "callerType1",
+    callerType2: "callerType2",
   },
   fever: "ትኩሳት",
   cough: "ሳል",
@@ -78,13 +78,17 @@ export default {
   yes: "አዎ",
   no: "አይ",
   formStatus: "",
-  "hotel": {
-   "label": "ሆቴል",
-   "skylight": "ስካይላይት ሆቴል",
-   "ghion": "ጊዮን ሆቴል",
-   "azzeman": "አዜማን ሆቴል",
-   "sapphire": "ሳፋየር ሆቴል",
-   "other": "ሌላ",
-   "addDependent": "Add Dependent(s)"
- }
+  hotel: {
+    label: "ሆቴል",
+    skylight: "ስካይላይት ሆቴል",
+    ghion: "ጊዮን ሆቴል",
+    azzeman: "አዜማን ሆቴል",
+    sapphire: "ሳፋየር ሆቴል",
+    other: "ሌላ",
+    addDependent: "Add Dependent(s)",
+  },
+  formErrors: {
+    empty: "ይህ ቦታ ባዶ መሆን አይችልም",
+    numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
+  },
 };

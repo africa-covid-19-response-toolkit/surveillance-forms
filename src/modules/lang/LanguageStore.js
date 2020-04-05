@@ -1,19 +1,19 @@
-import { decorate, observable, action } from 'mobx';
-import Ployglot from 'node-polyglot';
-import getLangaugeByCode from './lang-util'
+import { decorate, observable, action } from "mobx";
+import Ployglot from "node-polyglot";
+import getLangaugeByCode from "./lang-util";
 
 const getPolygotInstance = (languageCode) => {
   const languagePack = getLangaugeByCode(languageCode);
   const polyglot = new Ployglot({
     locale: languageCode,
-    phrases: languagePack
+    phrases: languagePack,
   });
 
   return polyglot;
 };
 
 class LanguageStore {
-  langCode = 'en';
+  langCode = "en";
   lang = getPolygotInstance(this.langCode);
 
   async setLanguage(languageCode) {
@@ -24,7 +24,7 @@ class LanguageStore {
 
 decorate(LanguageStore, {
   lang: observable,
-  setLanguage: action
+  setLanguage: action,
 });
 
 export default new LanguageStore();
