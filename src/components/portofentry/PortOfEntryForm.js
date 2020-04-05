@@ -197,6 +197,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       })),
     },
     {
+<<<<<<< HEAD
       type: "text",
       label: lang.t("seatNumber"),
       property: "seatNumber",
@@ -214,6 +215,18 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       label: lang.t("chronicLungDisease"),
       property: "chronicLungDisease",
       onChange: handleFieldChange("chronicLungDisease"),
+=======
+      type: 'text',
+      label: lang.t('seatNumber'),
+      property: 'seatNumber',
+      onChange: handleFieldChange('seatNumber')
+    },
+    {
+      type: 'text',
+      label: lang.t('hotel.otherHotel'),
+      property: 'otherHotel',
+      onChange: handleFieldChange('otherHotel')
+>>>>>>> custom hotel name field added
     },
     {
       type: "check",
