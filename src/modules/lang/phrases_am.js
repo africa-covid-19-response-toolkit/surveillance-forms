@@ -3,6 +3,7 @@ export default {
    "middleName": "የአባት ስም",
    "lastName": "የአያት ስም",
    "nationality": "ዜግነት",
+   "passportNo": "",
    "email": "ኢሜል",
    "sex": {
       "label": "ጾታ",
@@ -24,6 +25,14 @@ export default {
     "southern": "የደቡብ ብሔር ብሔረሰቦችና ህዝቦች ክልል",
     "tigray": "ትግራይ"
   },
+  "hotel": {
+   "label": "ሆቴል",
+   "skylight": "ስካይላይት ሆቴል",
+   "ghion": "ጊዮን ሆቴል",
+   "azzeman": "አዜማን ሆቴል",
+   "sapphire": "ሳፋየር ሆቴል",
+   "other": "ሌላ",
+ },
    "subcity": "ክፍለ ከተማ",
    "zone": "ዞን",
    "woreda": "ወረዳ",
@@ -46,5 +55,7 @@ export default {
    "healthFacility": "የጤና ተቋም ይሰራሉ/ጎብኝተዋል",
    "receiverName": "የተሞላው በ...",
    "source": "ምንጭ",
-   "formStatus": ""
+   "formStatus": "",
+   "addDependent": "Add Dependent(s)"
+
 }

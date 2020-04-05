@@ -1,6 +1,10 @@
 export default {
   "firstName": "First Name",
+  "middleName": "Middle Name",
   "lastName": "Last Name",
+  "nationality": "Nationality",
+  "passportNo": "Passport Number",
+  "email": "Email",
   "age": "Age",
   "language": {
     "label": "Language",
@@ -20,6 +24,14 @@ export default {
     "somali": "Somali",
     "southern": "Southern Nations, Nationalities, and Peoples",
     "tigray": "Tigray"
+  },
+  "hotel": {
+    "label": "Hotel",
+    "skylight": "Skylight Hotel",
+    "ghion": "Ghion Hotel",
+    "azzeman": "Azzeman Hotel",
+    "sapphire": "Sapphire Hotel",
+    "other": "Other",
   },
   "subcityOrZone": "Subcity Or Zone",
   "sefer": "Sefer",
@@ -43,5 +55,10 @@ export default {
     "male": "Male",
     "female": "Female"
   },
+  "travelFrom": "Travel From",
+  "transitFrom": "Transit (if any)",
+  "flightNumber": "Flight Number",
+  "seatNumber": "Seat Number",
+  "addDependent": "Add Dependent(s)",
   "submit": "Submit"
 };

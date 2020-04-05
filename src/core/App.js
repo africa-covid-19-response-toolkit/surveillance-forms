@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import Community from '../containers/Community';
+import PortOfEntry from '../containers/PortOfEntry';
 import {
   Box,
   Loading
@@ -41,6 +42,14 @@ class App extends Component {
           path="/"
           component={observer((props) =>
             <Community
+              {...props}
+            />)}
+        />
+         <Route
+          exact
+          path="/port-of-entry"
+          component={observer((props) =>
+            <PortOfEntry
               {...props}
             />)}
         />
