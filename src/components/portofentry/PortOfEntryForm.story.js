@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import CommunityForm from './CommunityForm';
+import PortOfEntryForm from './PortOfEntryForm';
 import Ployglot from 'node-polyglot';
 import en from '../../modules/lang/phrases_en';
 import am from '../../modules/lang/phrases_am';
@@ -12,14 +12,14 @@ const onSubmit = (formValues) => {
   console.log('onSubmit', formValues);
 }
 
-storiesOf('Community Form', module)
+storiesOf('Port of Entry Form', module)
   .add('the form - english', () => {
     return (
-      <CommunityForm onSubmit={onSubmit} lang={langEn} />
+      <PortOfEntryForm onSubmit={onSubmit} lang={langEn} />
     )
   })
   .add('the form - amharic', () => {
     return (
-      <CommunityForm onSubmit={onSubmit} lang={langAm} />
+      <PortOfEntryForm onSubmit={onSubmit} lang={langAm} />
     )
   })

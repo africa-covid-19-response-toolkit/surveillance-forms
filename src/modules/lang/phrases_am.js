@@ -25,6 +25,14 @@ export default {
     "southern": "የደቡብ ብሔር ብሔረሰቦችና ህዝቦች ክልል",
     "tigray": "ትግራይ"
   },
+  "hotel": {
+   "label": "ሆቴል",
+   "skylight": "ስካይላይት ሆቴል",
+   "ghion": "ጊዮን ሆቴል",
+   "azzeman": "አዜማን ሆቴል",
+   "sapphire": "ሳፋየር ሆቴል",
+   "other": "ሌላ",
+ },
    "subcity": "ክፍለ ከተማ",
    "zone": "ዞን",
    "woreda": "ወረዳ",
