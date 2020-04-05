@@ -11,7 +11,7 @@ import {
   MenuItem,
   Button,
   Switch,
-  Modal
+  Dialog
 } from '@material-ui/core';
 import {
   renderField
@@ -19,7 +19,7 @@ import {
 import { isEmpty, cloneDeep } from 'lodash';
 import { green, red, grey, teal, amber } from '@material-ui/core/colors';
 
-const REGION_KEYS = ['addisAbaba', 'afar', 'amhara', 'benishangul', 'direDawa', 'gambella', 'harari', 'oromia', 'somali', 'southern', 'tigray'];
+const HOTEL_KEYS = ['skylight', 'ghion', 'azzeman', 'sapphire', 'other'];
 
 const PortOfEntryForm = ({ onSubmit, lang }) => {
 
@@ -124,6 +124,13 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       ]
     },
     {
+      type: 'select',
+      label: lang.t('hotel.label'),
+      property: 'hotel',
+      onChange: handleFieldChange('hotel'),
+      choices: HOTEL_KEYS.map(r => ({ label: lang.t(`hotel.${r}`), value: r })),
+    },
+    {
       type: 'text',
       label: lang.t('seatNumber'),
       property: 'seatNumber',
@@ -204,7 +211,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader('Port of Entry')}
+        {renderSectionHeader('Passenger Registration Form')}
         {renderSubsectionheader('Basic Information')}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4} >{renderFormField('firstName')}</Grid>
@@ -216,8 +223,6 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item  xs={12} md={4} >{renderFormField('phoneNo')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('age')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('email')}</Grid>
-          <Grid item  xs={12} md={4} >{renderFormField('language')}</Grid>
-          <Grid item  xs={12} md={4} >{renderFormField('occupation')}</Grid>
         </Grid>
 
         {renderSubsectionheader('Travel Info')}
@@ -226,6 +231,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item  xs={12} md={3} >{renderFormField('transitFrom')}</Grid>
           <Grid item  xs={12} md={3} >{renderFormField('flightNumber')}</Grid>
           <Grid item  xs={12} md={3} >{renderFormField('seatNumber')}</Grid>
+          <Grid item  xs={12} md={3} >{renderFormField('hotel')}</Grid>
         </Grid>
 
         {renderSubsectionheader('Symptoms')}
@@ -237,14 +243,17 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
         <Box mt={4} textAlign="right">
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
-          <Modal
+          <Dialog
             open={open}
             onClose={handleClose}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
           >
-            <Paper><h1>Dependents</h1></Paper>
-          </Modal>
+            <Paper>
+              {/* @todo: Componentize modal */}
+              <h1>Dependents</h1>
+            </Paper> 
+          </Dialog>
           <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submit')}</Button>
         </Box>
       </form>

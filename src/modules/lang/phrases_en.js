@@ -25,6 +25,14 @@ export default {
     "southern": "Southern Nations, Nationalities, and Peoples",
     "tigray": "Tigray"
   },
+  "hotel": {
+    "label": "Hotel",
+    "skylight": "Skylight Hotel",
+    "ghion": "Ghion Hotel",
+    "azzeman": "Azzeman Hotel",
+    "sapphire": "Sapphire Hotel",
+    "other": "Other",
+  },
   "subcityOrZone": "Subcity Or Zone",
   "sefer": "Sefer",
   "woreda": "Woreda",
