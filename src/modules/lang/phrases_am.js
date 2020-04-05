@@ -3,6 +3,7 @@ export default {
    "middleName": "የአባት ስም",
    "lastName": "የአያት ስም",
    "nationality": "ዜግነት",
+   "passportNo": "",
    "email": "ኢሜል",
    "sex": {
       "label": "ጾታ",
@@ -46,5 +47,7 @@ export default {
    "healthFacility": "የጤና ተቋም ይሰራሉ/ጎብኝተዋል",
    "receiverName": "የተሞላው በ...",
    "source": "ምንጭ",
-   "formStatus": ""
+   "formStatus": "",
+   "addDependent": "Add Dependent(s)"
+
 }
