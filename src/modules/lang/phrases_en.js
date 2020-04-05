@@ -59,11 +59,16 @@ export default {
   yes: "Yes",
   no: "No",
   submit: "Submit",
-  "travelFrom": "Travel From",
-  "transitFrom": "Transit (if any)",
-  "flightNumber": "Flight Number",
-  "seatNumber": "Seat Number",
-  "addDependent": "Add Dependent(s)",
-  "officalWebsite": "An offical website of the Ethiopian Government",
-  "footerText": "COVID-19 Ethiopia Response"
+  travelFrom: "Travel From",
+  transitFrom: "Transit (if any)",
+  flightNumber: "Flight Number",
+  seatNumber: "Seat Number",
+  addDependent: "Add Dependent(s)",
+  officalWebsite: "An offical website of the Ethiopian Government",
+  footerText: "COVID-19 Ethiopia Response",
+  form: {
+    community: "Community",
+    medicalCenters: "Medical Centers",
+    portOfEntry: "Port Of Entry"
+  }
 };
