@@ -60,7 +60,7 @@ export default {
   callerType: {
     label: "የደዋይ ዓይነት",
     callerType1: "callerType1",
-    callerType1: "callerType1",
+    callerType2: "callerType2",
   },
   fever: "ትኩሳት",
   cough: "ሳል",
@@ -87,7 +87,10 @@ export default {
     other: "ሌላ",
     addDependent: "Add Dependent(s)",
   },
-
+  formErrors: {
+    empty: "ይህ ቦታ ባዶ መሆን አይችልም",
+    numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
+  },
   note: {
     lable: "ማስታወሻ",
     note1: "የ COVID ምልክቶች - 19 ትኩሳት ፣ ደረቅ ሳል እና የትንፋሽ እጥረት ናቸው",

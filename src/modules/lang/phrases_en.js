@@ -59,7 +59,7 @@ export default {
   callerType: {
     label: "Caller Type",
     callerType1: "callerType1",
-    callerType1: "callerType1",
+    callerType2: "callerType2",
   },
   hotel: {
     label: "Hotel",
@@ -102,4 +102,8 @@ export default {
     note4:
       "Keep your distance (minimum 1 Meter) from anyone who has the symptoms",
   },
+  formErrors: {
+    empty: "This field can not be empty",
+    numberOnly: "This field is for number only",
+  }
 };

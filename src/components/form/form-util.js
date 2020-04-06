@@ -85,6 +85,7 @@ const StatefulTextField = ({ field }) => {
         id={`${property}-outlined`}
         value={value}
         onChange={handleChange}
+        onBlur={handleValidation}
         disabled={!!disabled}
         fullWidth={true}
         autoComplete="false"
