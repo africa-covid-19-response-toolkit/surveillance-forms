@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import { nameValidator, ageValidator } from "../../validation/form/community";
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
 
 const REGION_KEYS = [
   "addisAbaba",

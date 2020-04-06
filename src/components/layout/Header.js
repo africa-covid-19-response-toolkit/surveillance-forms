@@ -31,10 +31,10 @@ const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
   return (
     <Box py={1} pl={4} pr={7} style={{ color: 'white', backgroundColor: '#0944B4' }}>
       <Grid container>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Typography>{lang.t('officalWebsite')}</Typography>
         </Grid>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box textAlign="right">
             {renderLanguageSelector()}
           </Box>

@@ -49,7 +49,7 @@ class App extends Component {
           onLanguageSelect={onLanguageSelect}
         />
         <Box mx="auto" p={5}>
-          <Box display="flex">
+          <Box mb={2} display="flex">
             <Typography variant="body2">Forms:</Typography>&nbsp;&nbsp;
             <Link to={"/community-form"}>
               <Typography variant="body2">
@@ -69,7 +69,7 @@ class App extends Component {
               </Typography>
             </Link>
           </Box>
-          <Grid container>
+          <Grid container spacing={5}>
             <Grid item xs={12} md={9}>
               <Route
                 exact
@@ -100,7 +100,7 @@ class App extends Component {
                 ))}
               />
             </Grid>
-            <Grid item xs md={3}>
+            <Grid item xs={12} md={3}>
               <SideBarCard
                 lang={lang}
                 langCode={langCode}
