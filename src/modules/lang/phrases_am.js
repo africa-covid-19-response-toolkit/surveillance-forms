@@ -7,6 +7,13 @@ export default {
     ethiopian: "ኢትዮጵያዊ",
     other: "ሌላ",
   },
+  language: {
+    label: "ቋንቋ",
+    english: "እንግሊዘኛ",
+    amharic: "አማርኛ",
+    oromo: "ኦሮምኛ",
+  },
+  passportNumber: "የፓስፖርት ቁጥር",
   email: "ኢሜል",
   sex: {
     label: "ጾታ",
@@ -41,6 +48,7 @@ export default {
     nifasSilkLafto: "ንፋስ ስልክ ላፍቶ",
     yeka: "የካ",
   },
+  sefer: "ሰፈር",
   zone: "ዞን",
   woreda: "ወረዳ",
   kebele: "ቀበሌ",
@@ -69,7 +77,7 @@ export default {
   feelingUnwell: "ጤንነት መታወክ/ህመም መሰማት",
   shortnessOfBreath: "የመተንፈስ ችግር",
   bodyPain: "የሰውነት ህመም",
-  travelHx: "የጉዞ ታሪክ",
+  travelHistory: "የጉዞ ታሪክ",
   haveSex: "የወሲባዊ ግንኙነት",
   animalMarket: "የእንስሳት ገበያ ይሰራሉ/ጎብኝተዋል",
   healthFacility: "የጤና ተቋም ይሰራሉ/ጎብኝተዋል",
@@ -90,6 +98,7 @@ export default {
   formErrors: {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
+    email: "እባክዎ ትክክል ኢሜይል ያስገቡ",
   },
   note: {
     lable: "ማስታወሻ",
@@ -99,4 +108,8 @@ export default {
     note3: "እነዚህ ምልክቶች ያሉት ሰው ከተጠራጠሩ ወደ 8335 ለመደወል አያመንቱ",
     note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ",
   },
+  travelFrom: "መነሻ",
+  flightNumber: "የበረራ ቁጥር",
+  seatNumber: "መቀመጫ ቁጥር",
+  transitFrom: "ትራንዚት (ካለ)",
 };
