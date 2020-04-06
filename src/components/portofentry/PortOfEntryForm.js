@@ -26,6 +26,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({});
 
   const [open, setOpen] = useState(false);
+  const [clear, setClear] = useState(0);
 
   const handleFieldChange = field => (value) => {
     setFormValues({
@@ -166,7 +167,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     if (!field) {
       return null;
     }
-    return renderField(field);
+    return renderField(field, clear);
   };
 
   const renderSectionHeader = (label) => {
@@ -186,7 +187,12 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   }
 
   const handleSubmit = () => {
-    onSubmit(formValues);
+    onSubmit(formValues)
+      .then(() => {
+        // clear form values
+        setFormValues({})
+        setClear(clear + 1);
+      })
   }
 
   const handleModal = () => {

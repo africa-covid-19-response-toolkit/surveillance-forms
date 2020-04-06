@@ -43,6 +43,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({});
   console.log(langCode);
   const [open, setOpen] = useState(false);
+  const [clear, setClear] = useState(0);
 
   const handleFieldChange = (field) => (value) => {
     setFormValues({
@@ -272,7 +273,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     if (!field) {
       return null;
     }
-    return renderField(field);
+    return renderField(field, clear);
   };
 
   const renderSectionHeader = (label) => {
@@ -292,7 +293,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   };
 
   const handleSubmit = () => {
-    onSubmit(formValues);
+    onSubmit(formValues)
+      .then(() => {
+        // clear form values
+        setFormValues({})
+        setClear(clear + 1);
+      })
   };
 
   const handleModal = () => {
