@@ -3,7 +3,10 @@ import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import { isEmpty, cloneDeep } from "lodash";
 import { green } from "@material-ui/core/colors";
+import ReCAPTCHA from "react-google-recaptcha";
 
+const TEST_SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY;
+const DELAY = 1500;
 const NATIONALITY_KEYS = ["ethiopian", "other"];
 const REGION_KEYS = [
   "addisAbaba",
@@ -30,7 +33,6 @@ const SUBCITY_KEYS = [
   "nifasSilkLafto",
   "yeka",
 ];
-
 const OCCUPATION_KEYS = [
   "hcp",
   "merchantAnimal",
@@ -43,6 +45,28 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({});
   console.log(langCode);
   const [open, setOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [captchaText, setCaptchaText] = useState("");
+  const [isCaptchaExpired, setIsCaptchaExpired] = useState("false");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, DELAY);
+  });
+
+  const handleChange = value => {
+    console.log("Captcha value:", value);
+    this.setState({ value });
+    setCaptchaText(value);
+    // if value is null recaptcha expired
+    if (value === null)
+    setIsCaptchaExpired("true");
+  };
+
+  const asyncScriptOnLoad = () => {
+    console.log("scriptLoad - reCaptcha Ref-", React.createRef());
+  };
 
   const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
@@ -306,11 +330,15 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    fields.forEach((f) => {
-      if (f.onValidate) {
-        isValid = isValid && f.onValidate(formValues[f.property]);
-      }
-    });
+    if(captchaText !== "" || captchaText !== null) {
+      fields.forEach((f) => {
+        if (f.onValidate) {
+          isValid = isValid && f.onValidate(formValues[f.property]);
+        }
+      });
+    } else {
+      isValid = false;
+    }
     return isValid;
   };
 
@@ -418,6 +446,15 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
+        {isLoaded && (
+          <ReCAPTCHA
+            style={{ paddingTop: 20 }}
+            ref={React.createRef()}
+            sitekey={TEST_SITE_KEY}
+            onChange={handleChange}
+            asyncScriptOnLoad={asyncScriptOnLoad}
+          />
+        )}
         <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}

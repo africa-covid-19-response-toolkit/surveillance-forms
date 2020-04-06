@@ -19,19 +19,12 @@ import {
 } from '../form/form-util';
 import { isEmpty, cloneDeep } from 'lodash';
 import { green, red, grey, teal, amber } from '@material-ui/core/colors';
+import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from '../dependents/DependentsForm';
 
 const HOTEL_KEYS = ['skylight', 'ghion', 'azzeman', 'sapphire', 'other'];
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
-}));
+const TEST_SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY;
+const DELAY = 1500;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -42,6 +35,28 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({});
 
   const [open, setOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [captchaText, setCaptchaText] = useState("");
+  const [isCaptchaExpired, setIsCaptchaExpired] = useState("false");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, DELAY);
+  });
+
+  const handleChange = value => {
+    console.log("Captcha value:", value);
+    this.setState({ value });
+    setCaptchaText(value);
+    // if value is null recaptcha expired
+    if (value === null)
+    setIsCaptchaExpired("true");
+  };
+
+  const asyncScriptOnLoad = () => {
+    console.log("scriptLoad - reCaptcha Ref-", React.createRef());
+  };
 
   const handleFieldChange = field => (value) => {
     console.log(field, ': ', value);
@@ -49,7 +64,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       ...formValues,
       [field]: value
     })
-  }
+  };
 
   const fields = [
     {
@@ -216,13 +231,17 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    fields.forEach(f => {
-      if (f.onValidate) {
-        isValid = isValid && f.onValidate(formValues[f.property]);
-      }
-    });
+    if(captchaText !== "" || captchaText !== null) {
+      fields.forEach((f) => {
+        if (f.onValidate) {
+          isValid = isValid && f.onValidate(formValues[f.property]);
+        }
+      });
+    } else {
+      isValid = false;
+    }
     return isValid;
-  }
+  };
 
   const renderForm = () => {
     return (
@@ -274,6 +293,15 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             </Paper>
           </Dialog>
         </Box>
+        {isLoaded && (
+          <ReCAPTCHA
+            style={{ paddingTop: 20 }}
+            ref={React.createRef()}
+            sitekey={TEST_SITE_KEY}
+            onChange={handleChange}
+            asyncScriptOnLoad={asyncScriptOnLoad}
+          />
+        )}
         <Box mt={4} textAlign="right">
           <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submit')}</Button>
         </Box>

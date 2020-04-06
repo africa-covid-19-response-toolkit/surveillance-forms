@@ -17,7 +17,10 @@ import {
   ageValidator,
 } from "../../validation/form/community";
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import ReCAPTCHA from "react-google-recaptcha";
 
+const TEST_SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY;
+const DELAY = 1500;
 const REGION_KEYS = [
   "addisAbaba",
   "afar",
@@ -34,6 +37,28 @@ const REGION_KEYS = [
 
 const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [captchaText, setCaptchaText] = useState("");
+  const [isCaptchaExpired, setIsCaptchaExpired] = useState("false");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, DELAY);
+  });
+
+  const handleChange = value => {
+    console.log("Captcha value:", value);
+    setCaptchaText(value);
+    // if value is null recaptcha expired
+    if (value === null)
+    setIsCaptchaExpired("true");
+  };
+
+  const asyncScriptOnLoad = () => {
+    console.log("scriptLoad - reCaptcha Ref-", React.createRef());
+  };
+
 
   const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
@@ -221,11 +246,15 @@ const CommunityForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    fields.forEach((f) => {
-      if (f.onValidate) {
-        isValid = isValid && f.onValidate(formValues[f.property]);
-      }
-    });
+    if(captchaText !== "" || captchaText !== null) {
+      fields.forEach((f) => {
+        if (f.onValidate) {
+          isValid = isValid && f.onValidate(formValues[f.property]);
+        }
+      });
+    } else {
+      isValid = false;
+    }
     return isValid;
   };
 
@@ -307,6 +336,16 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
+
+        {isLoaded && (
+          <ReCAPTCHA
+            style={{ paddingTop: 20 }}
+            ref={React.createRef()}
+            sitekey={TEST_SITE_KEY}
+            onChange={handleChange}
+            asyncScriptOnLoad={asyncScriptOnLoad}
+          />
+        )}
 
         <Box mt={4} textAlign="right">
           <Button
