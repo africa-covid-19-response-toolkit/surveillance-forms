@@ -8,6 +8,7 @@ export default {
     other: "ሌላ",
   },
   email: "ኢሜል",
+  dateOfBirth: "የትውልድ ቀን",
   sex: {
     label: "ጾታ",
     male: "ወንድ",

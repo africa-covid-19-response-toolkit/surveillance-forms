@@ -4,22 +4,38 @@ import {
   Grid,
   Typography,
   Paper,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
+  AppBar,
+  Toolbar,
+  IconButton,
   Button,
+  Slide,
   Switch,
-  Dialog
+  Dialog,
+  makeStyles
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import {
   renderField
 } from '../form/form-util';
 import { isEmpty, cloneDeep } from 'lodash';
 import { green, red, grey, teal, amber } from '@material-ui/core/colors';
+import DependantsForm from '../dependents/DependentsForm';
 
 const HOTEL_KEYS = ['skylight', 'ghion', 'azzeman', 'sapphire', 'other'];
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    position: 'relative',
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
+}));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const PortOfEntryForm = ({ onSubmit, lang }) => {
 
@@ -45,7 +61,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       onValidate: (val) => {
         return !isEmpty(val) && val.length >= 3;
       },
-      validationErrorMsg : 'Enter name (min 3 chars)'
+      validationErrorMsg: 'Enter name (min 3 chars)'
     },
     {
       type: 'text',
@@ -217,32 +233,32 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4} >{renderFormField('firstName')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('middleName')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('lastName')}</Grid>
-          <Grid item  xs={12} md={4} >{renderFormField('sex')}</Grid>
-          <Grid item  xs={12} md={4} >{renderFormField('nationality')}</Grid>
+          <Grid item xs={12} md={4} >{renderFormField('sex')}</Grid>
+          <Grid item xs={12} md={4} >{renderFormField('nationality')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('passportNo')}</Grid>
-          <Grid item  xs={12} md={4} >{renderFormField('phoneNo')}</Grid>
+          <Grid item xs={12} md={4} >{renderFormField('phoneNo')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('age')}</Grid>
           <Grid item xs={12} md={4} >{renderFormField('email')}</Grid>
         </Grid>
 
         {renderSubsectionheader('Travel Info')}
         <Grid container spacing={4}>
-          <Grid item  xs={12} md={3} >{renderFormField('travelFrom')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('transitFrom')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('flightNumber')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('seatNumber')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('hotel')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('travelFrom')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('transitFrom')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('flightNumber')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('seatNumber')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('hotel')}</Grid>
         </Grid>
 
         {renderSubsectionheader('Symptoms')}
         <Grid container spacing={4}>
-          <Grid item  xs={12} md={3} >{renderFormField('fever')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('cough')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('shortnessOfBreath')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('fever')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('cough')}</Grid>
+          <Grid item xs={12} md={3} >{renderFormField('shortnessOfBreath')}</Grid>
         </Grid>
-
-        <Box mt={4} textAlign="right">
+        <Box mt={4} textAlign="left">
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
+<<<<<<< HEAD
           <Dialog
             open={open}
             onClose={handleClose}
@@ -252,8 +268,26 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             <Paper>
               {/* @todo: Componentize modal */}
               <h1>Dependents</h1>
+=======
+          <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+            <AppBar  style={{ background: 'blue' }}>
+              <Toolbar>
+                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                  <CloseIcon />
+                </IconButton>
+                <Typography>
+                Passenger Dependants Registration Form
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Paper style={{margin:30, padding:30}}>
+              {/* Implemented contact .dotjose */}
+              <DependantsForm lang={lang} />
+>>>>>>> dependents form UI/UX fix
             </Paper>
           </Dialog>
+        </Box>
+        <Box mt={4} textAlign="right">
           <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submit')}</Button>
         </Box>
       </form>

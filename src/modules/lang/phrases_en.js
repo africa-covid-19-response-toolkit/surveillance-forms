@@ -4,6 +4,7 @@ export default {
   lastName: "Last Name",
   age: "Age",
   email: "Email",
+  dateOfBirth: "Date of Birth",
   language: {
     label: "Language",
     english: "English",
