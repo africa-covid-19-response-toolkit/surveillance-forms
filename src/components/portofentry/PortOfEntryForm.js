@@ -11,6 +11,9 @@ import {
   Slide,
   Switch,
   Dialog,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
   makeStyles
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -224,6 +227,16 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     return isValid;
   }
 
+  const handleDependentsAdd = (dependent) => {
+    setOpen(false);
+    const dependents = formValues.dependents || [];
+    dependents.push(dependent);
+    setFormValues({
+      ...formValues,
+      dependents
+    })
+  }
+
   const renderForm = () => {
     return (
       <form autoComplete="off">
@@ -256,8 +269,35 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={3} >{renderFormField('cough')}</Grid>
           <Grid item xs={12} md={3} >{renderFormField('shortnessOfBreath')}</Grid>
         </Grid>
+
         <Box mt={4} textAlign="left">
+          {renderSubsectionheader('Dependents')}
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
+          {!isEmpty(formValues.dependents) && (
+            <Grid container item xs={12} md={4}>
+              <List style={{ width: '100%' }}>
+                {formValues.dependents.map((d, index) => {
+                  const onRemoveDependent = () => {
+                    const dependents = formValues.dependents.filter((d, i) => i !== index);
+                    setFormValues({
+                      ...formValues,
+                      dependents
+                    })
+                  }
+
+                  return (
+                    <ListItem>
+                      <Typography>{`${index + 1}. ${d.firstName} ${d.lastName}`}</Typography>
+                      <ListItemSecondaryAction>
+                        <Button onClick={onRemoveDependent}>Remove</Button>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  )
+                })}
+              </List>
+            </Grid>
+          )}
+
           <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
             <AppBar style={{ background: 'blue' }}>
               <Toolbar>
@@ -265,12 +305,12 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
                   <CloseIcon />
                 </IconButton>
                 <Typography>
-                  Passenger Dependants Registration Form
+                  Passenger Dependents Registration Form
                 </Typography>
               </Toolbar>
             </AppBar>
             <Paper style={{ margin: 30, padding: 30 }}>
-              <DependantsForm lang={lang} />
+              <DependantsForm onSubmit={handleDependentsAdd} lang={lang} />
             </Paper>
           </Dialog>
         </Box>
