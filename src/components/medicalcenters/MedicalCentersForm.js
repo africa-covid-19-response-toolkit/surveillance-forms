@@ -206,6 +206,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     },
     {
       type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+    {
+      type: "check",
       label: lang.t("headache"),
       property: "headache",
       onChange: handleFieldChange("headache"),
@@ -400,6 +406,9 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           </Grid>
           <Grid item xs={12} md={3}>
             {renderFormField("feelingUnwell")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("fatigue")}
           </Grid>
         </Grid>
 

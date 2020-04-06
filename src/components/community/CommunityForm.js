@@ -158,6 +158,12 @@ const CommunityForm = ({ onSubmit, lang }) => {
       onChange: handleFieldChange("shortnessOfBreath"),
     },
     {
+      type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+    {
       type: "switch",
       label: lang.t("travelHx"),
       property: "travelHx",
@@ -290,6 +296,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
           </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("fatigue")}
+          </Grid>
         </Grid>
 
         {renderSectionHeader("General Information")}
@@ -323,6 +332,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   return (
+    
     <Box>
       {renderForm()}      
     </Box>

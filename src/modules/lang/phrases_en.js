@@ -88,6 +88,7 @@ export default {
   fever: "Fever",
   cough: "Cough",
   headache: "Headache",
+  fatigue: "fatigue/tiredness",
   runnyNose: "Runny Nose",
   feelingUnwell: "Feeling Unwell",
   shortnessOfBreath: "Shortness Of Breath",

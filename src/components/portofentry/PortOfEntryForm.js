@@ -150,6 +150,12 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     },
     {
       type: 'check',
+      label: lang.t('fatigue'),
+      property: 'fatigue',
+      onChange: handleFieldChange('fatigue')
+    },
+    {
+      type: 'check',
       label: lang.t('cough'),
       property: 'cough',
       onChange: handleFieldChange('cough')
@@ -239,6 +245,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item  xs={12} md={3} >{renderFormField('fever')}</Grid>
           <Grid item  xs={12} md={3} >{renderFormField('cough')}</Grid>
           <Grid item  xs={12} md={3} >{renderFormField('shortnessOfBreath')}</Grid>
+          <Grid item  xs={12} md={3} >{renderFormField('fatigue')}</Grid>
         </Grid>
 
         <Box mt={4} textAlign="right">

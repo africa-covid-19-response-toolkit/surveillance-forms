@@ -64,6 +64,7 @@ export default {
   },
   fever: "ትኩሳት",
   cough: "ሳል",
+  fatigue: "የድካም ስሜት",
   headache: "ራስ ምታት",
   runnyNose: "የአፍንጫ ፍሳሽ(መዝረክረክ)/ንፍጥ",
   feelingUnwell: "ጤንነት መታወክ/ህመም መሰማት",
