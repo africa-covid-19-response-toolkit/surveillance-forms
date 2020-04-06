@@ -65,3 +65,9 @@ To validate forms
 3. If you want reusable validators (like: checking number, emptiness), reuse from `/validation/util` folder. Or add one
 4. If you add a new errorType (in languages), please add them to `/validation/util/errorTypes.js` and use for **validationErrorMsg**. 
 5. In your form components, import the validator object and use **validate** and **validationErrorMsg**. 
+
+## Google Recaptcha
+To validate the form is filled by human or not we use Google Recaptcha.
+1. create .env file
+2. Genereate a recaptcha key here http://www.google.com/recaptcha/admin
+3. create environment variable by name REACT_APP_CAPTCHA_KEY under root directory and set it's value by the generated SITE KEY which can be found from step 2.
