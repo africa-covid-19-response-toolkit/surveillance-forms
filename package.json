@@ -11,8 +11,8 @@
     "lint:fix": "yarn lint --fix",
     "codecheck": "yarn lint && yarn test",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build": "react-scripts build",
-    "build-dev": "CI=false REACT_APP_BUILD_ENV=dev react-scripts build",
+    "build-local": "react-scripts build",
+    "build": "CI=false REACT_APP_BUILD_ENV=dev react-scripts build",
     "build-prod": "CI=false REACT_APP_BUILD_ENV=prod react-scripts build"
   },
   "dependencies": {
