@@ -136,8 +136,8 @@ const CommunityForm = ({ onSubmit, lang }) => {
     {
       type: "text",
       label: lang.t("houseNumber"),
-      property: "houseNo",
-      onChange: handleFieldChange("houseNo"),
+      property: "houseNumber",
+      onChange: handleFieldChange("houseNumber"),
     },
     {
       type: "check",

@@ -71,8 +71,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     {
       type: "select",
       label: lang.t("sex.label"),
-      property: "sex",
-      onChange: handleFieldChange("sex"),
+      property: "gender",
+      onChange: handleFieldChange("gender"),
       choices: [
         { label: lang.t("sex.female"), value: "F" },
         { label: lang.t("sex.male"), value: "M" },
@@ -97,8 +97,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     {
       type: "text",
       label: lang.t("phoneNumber"),
-      property: "phoneNo",
-      onChange: handleFieldChange("phoneNo"),
+      property: "phoneNumber",
+      onChange: handleFieldChange("phoneNumber"),
     },
     {
       type: "select",
@@ -123,8 +123,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     {
       type: "select",
       label: lang.t("hotel.label"),
-      property: "hotel",
-      onChange: handleFieldChange("hotel"),
+      property: "hotelName",
+      onChange: handleFieldChange("hotelName"),
       choices: HOTEL_KEYS.map((r) => ({
         label: lang.t(`hotel.${r}`),
         value: r,
@@ -134,7 +134,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       type: "text",
       label: lang.t("seatNumber"),
       property: "seatNumber",
-      onChange: handleFieldChange("phoseatNumberneNo"),
+      onChange: handleFieldChange("seatNumber"),
     },
     {
       type: "text",
