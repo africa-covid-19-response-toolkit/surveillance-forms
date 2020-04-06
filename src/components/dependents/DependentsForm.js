@@ -163,7 +163,7 @@ const DependentsForm = ({ onSubmit, lang, props }) => {
 
     const handleSubmit = () => {
         onSubmit(formValues);
-        props.handleClose();
+        //props.handleClose();
     }
 
     const isFormValid = () => {
