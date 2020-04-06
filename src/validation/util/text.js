@@ -10,3 +10,11 @@ export const lengthAtLeastX = (text, x) => {
 export const isEmpty = (text) => {
   return isEmptyLodash(text);
 };
+
+export const nameValidator = (name) => {
+  return !isEmpty(name) && name.length < 100;
+};
+
+export const emailIsValid = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};

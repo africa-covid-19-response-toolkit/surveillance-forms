@@ -14,13 +14,25 @@ import {
   Dialog,
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import { isEmpty, cloneDeep } from "lodash";
+import {
+  nameValidator,
+  ageValidator,
+  emailValidator,
+} from "../../validation/form/portOfEntry";
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 
 const HOTEL_KEYS = ["skylight", "ghion", "azzeman", "sapphire", "other"];
 
+const SEX_VALUE = {
+  property: "gender",
+  female: "F",
+  male: "M",
+};
+
 const PortOfEntryForm = ({ onSubmit, lang }) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    [SEX_VALUE.property]: SEX_VALUE.female,
+  });
 
   const [open, setOpen] = useState(false);
 
@@ -39,43 +51,49 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
-      onValidate: (val) => {
-        return !isEmpty(val) && val.length >= 3;
-      },
-      validationErrorMsg: "Enter name (min 3 chars)",
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("middleName"),
       property: "middleName",
       onChange: handleFieldChange("middleName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("lastName"),
       property: "lastName",
       onChange: handleFieldChange("lastName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("email"),
       property: "email",
       onChange: handleFieldChange("email"),
+      onValidate: emailValidator.validate,
+      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("age"),
       property: "age",
       onChange: handleFieldChange("age"),
+      onValidate: ageValidator.validate,
+      validationErrorMsg: lang.t(ageValidator.validationErrorMsg),
     },
     {
       type: "select",
       label: lang.t("sex.label"),
-      property: "gender",
-      onChange: handleFieldChange("gender"),
+      property: SEX_VALUE.property,
+      onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
-        { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" },
+        { label: lang.t("sex.female"), value: SEX_VALUE.female },
+        { label: lang.t("sex.male"), value: SEX_VALUE.male },
       ],
     },
     {

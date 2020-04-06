@@ -98,6 +98,7 @@ export default {
   formErrors: {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
+    email: "እባክዎ ትክክል ኢሜይል ያስገቡ",
   },
   note: {
     lable: "ማስታወሻ",

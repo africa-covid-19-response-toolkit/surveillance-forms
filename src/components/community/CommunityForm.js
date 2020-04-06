@@ -12,10 +12,7 @@ import {
   Switch,
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import {
-  firstNameValidator,
-  ageValidator,
-} from "../../validation/form/community";
+import { nameValidator, ageValidator } from "../../validation/form/community";
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 
 const REGION_KEYS = [
@@ -32,8 +29,16 @@ const REGION_KEYS = [
   "tigray",
 ];
 
+const SEX_VALUE = {
+  property: "sex",
+  female: "F",
+  male: "M",
+};
+
 const CommunityForm = ({ onSubmit, lang }) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    [SEX_VALUE.property]: SEX_VALUE.female,
+  });
 
   const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
@@ -50,14 +55,16 @@ const CommunityForm = ({ onSubmit, lang }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
-      onValidate: firstNameValidator.validate,
-      validationErrorMsg: lang.t(firstNameValidator.validationErrorMsg),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("lastName"),
       property: "lastName",
       onChange: handleFieldChange("lastName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
@@ -70,11 +77,11 @@ const CommunityForm = ({ onSubmit, lang }) => {
     {
       type: "select",
       label: lang.t("sex.label"),
-      property: "sex",
-      onChange: handleFieldChange("sex"),
+      property: SEX_VALUE.property,
+      onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
-        { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" },
+        { label: lang.t("sex.female"), value: SEX_VALUE.female },
+        { label: lang.t("sex.male"), value: SEX_VALUE.male },
       ],
     },
     {
@@ -216,6 +223,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   const hadleSubmit = () => {
+    console.log("FORM VALUES", formValues);
     onSubmit(formValues);
   };
 

@@ -115,5 +115,6 @@ export default {
   formErrors: {
     empty: "This field can not be empty",
     numberOnly: "This field is for number only",
+    email: "Email address must be valid",
   },
 };
