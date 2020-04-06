@@ -5,6 +5,7 @@ import dev from './dev';
 // Map to environment name
 const envToConfig = {
   'local': local,
+  'dev': dev
 };
 
 const env = process.env.REACT_APP_BUILD_ENV; // eslint-disable-line no-undef
