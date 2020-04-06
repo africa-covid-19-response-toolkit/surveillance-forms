@@ -15,6 +15,7 @@ export default {
   },
   passportNumber: "የፓስፖርት ቁጥር",
   email: "ኢሜል",
+  dateOfBirth: "የትውልድ ቀን",
   sex: {
     label: "ጾታ",
     male: "ወንድ",

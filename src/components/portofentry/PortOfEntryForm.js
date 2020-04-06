@@ -4,24 +4,44 @@ import {
   Grid,
   Typography,
   Paper,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
+  AppBar,
+  Toolbar,
+  IconButton,
   Button,
+  Slide,
   Switch,
   Dialog,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  makeStyles
 } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { isEmpty, cloneDeep } from "lodash";
+import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import DependantsForm from '../dependents/DependentsForm';
 import { renderField } from "../form/form-util";
 import {
   nameValidator,
   ageValidator,
   emailValidator,
 } from "../../validation/form/portOfEntry";
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 
 const HOTEL_KEYS = ["skylight", "ghion", "azzeman", "sapphire", "other"];
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    position: 'relative',
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
+}));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const SEX_VALUE = {
   property: "gender",
@@ -226,6 +246,16 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     return isValid;
   };
 
+  const handleDependentsAdd = (dependent) => {
+    setOpen(false);
+    const dependents = formValues.dependents || [];
+    dependents.push(dependent);
+    setFormValues({
+      ...formValues,
+      dependents
+    })
+  }
+
   const renderForm = () => {
     return (
       <form autoComplete="off">
@@ -293,21 +323,53 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
 
-        <Box mt={4} textAlign="right">
-          <Button onClick={handleModal} variant="outlined" size="large">
-            {lang.t("addDependent")}
-          </Button>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <Paper>
-              {/* @todo: Componentize modal */}
-              <h1>Dependents</h1>
+        <Box mt={4} textAlign="left">
+          {renderSubsectionheader('Dependents')}
+          <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
+          {!isEmpty(formValues.dependents) && (
+            <Grid container item xs={12} md={4}>
+              <List style={{ width: '100%' }}>
+                {formValues.dependents.map((d, index) => {
+                  const onRemoveDependent = () => {
+                    const dependents = formValues.dependents.filter((d, i) => i !== index);
+                    setFormValues({
+                      ...formValues,
+                      dependents
+                    })
+                  }
+
+                  return (
+                    <ListItem>
+                      <Typography>{`${index + 1}. ${d.firstName} ${d.lastName}`}</Typography>
+                      <ListItemSecondaryAction>
+                        <Button onClick={onRemoveDependent}>Remove</Button>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  )
+                })}
+              </List>
+            </Grid>
+          )}
+
+          <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+            <AppBar style={{ background: 'blue' }}>
+              <Toolbar>
+                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                  <CloseIcon />
+                </IconButton>
+                <Typography>
+                  Passenger Dependents Registration Form
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Paper style={{ margin: 30, padding: 30 }}>
+              <DependantsForm onSubmit={handleDependentsAdd} lang={lang} />
             </Paper>
           </Dialog>
+        </Box>
+
+
+        <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}
             variant="contained"
