@@ -39,9 +39,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
     [SEX_VALUE.property]: SEX_VALUE.female,
   });
+  const [clear, setClear] = useState(0);
 
   const handleFieldChange = (field) => (value) => {
-    console.log(field, ": ", value);
     setFormValues({
       ...formValues,
       [field]: value,
@@ -203,7 +203,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     if (!field) {
       return null;
     }
-    return renderField(field);
+    return renderField(field, clear);
   };
 
   const renderSectionHeader = (label) => {
@@ -223,8 +223,12 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   const hadleSubmit = () => {
-    console.log("FORM VALUES", formValues);
-    onSubmit(formValues);
+    onSubmit(formValues)
+      .then(() => {
+        // clear form values
+        setFormValues({})
+        setClear(clear + 1);
+      })
   };
 
   const isFormValid = () => {

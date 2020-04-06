@@ -6,7 +6,6 @@ import {
 
 const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
   const handleLanguageChange = (e) => {
-    console.log('handleLanguageChange', e.target.value);
     onLanguageSelect(e.target.value);
   }
 
