@@ -38,11 +38,17 @@ export default {
     nifasSilkLafto: "Nifas Silk Lafto",
     yeka: "Yeka",
   },
+  sefer: "Sefer",
+  woreda: "woreda",
+  kebele: "Kebele",
+  zone: "Zone",
+  houseNumber: "House Number",
   nationality: {
     label: "Nationality",
     ethiopian: "Ethiopian",
     other: "Other",
   },
+  passportNumber: "Passport Number",
   phoneNumber: "Phone Number",
   occupation: {
     label: "Occupation",
@@ -75,6 +81,10 @@ export default {
   no: "No",
   submit: "Submit",
   travelFrom: "Travel From",
+  travelHistory: "Travel History",
+  haveSex: "Had Sex",
+  animalMarket: "Animal Market",
+  healthFacility: "Health Facility",
   transitFrom: "Transit (if any)",
   flightNumber: "Flight Number",
   seatNumber: "Seat Number",
@@ -106,5 +116,6 @@ export default {
   formErrors: {
     empty: "This field can not be empty",
     numberOnly: "This field is for number only",
-  }
+    email: "Email address must be valid",
+  },
 };
