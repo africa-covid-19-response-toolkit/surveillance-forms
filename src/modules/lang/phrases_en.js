@@ -24,11 +24,25 @@ export default {
     southern: "Southern Nations, Nationalities, and Peoples",
     tigray: "Tigray",
   },
+  subcity: {
+    label: "Sub City",
+    addisKetema: "Addis Ketema",
+    akakiKality: "Akaki Kality",
+    arada: "Arada",
+    bole: "Bole",
+    gulele: "Gulele",
+    kirkos: "Kirkos",
+    kolfe: "Kolfe",
+    lideta: "Lideta",
+    nifasSilkLafto: "Nifas Silk Lafto",
+    yeka: "Yeka",
+  },
   nationality: {
     label: "Nationality",
     ethiopian: "Ethiopian",
     other: "Other",
   },
+  phoneNumber: "Phone Number",
   occupation: {
     label: "Occupation",
     hcp: "HCP",
@@ -45,15 +59,15 @@ export default {
   callerType: {
     label: "Caller Type",
     callerType1: "callerType1",
-    callerType1: "callerType1",
+    callerType2: "callerType2",
   },
-  "hotel": {
-    "label": "Hotel",
-    "skylight": "Skylight Hotel",
-    "ghion": "Ghion Hotel",
-    "azzeman": "Azzeman Hotel",
-    "sapphire": "Sapphire Hotel",
-    "other": "Other",
+  hotel: {
+    label: "Hotel",
+    skylight: "Skylight Hotel",
+    ghion: "Ghion Hotel",
+    azzeman: "Azzeman Hotel",
+    sapphire: "Sapphire Hotel",
+    other: "Other",
   },
   callDate: "Call Date",
   yes: "Yes",
@@ -69,6 +83,27 @@ export default {
   form: {
     community: "Community",
     medicalCenters: "Medical Centers",
-    portOfEntry: "Port Of Entry"
+    portOfEntry: "Port Of Entry",
+  },
+  fever: "Fever",
+  cough: "Cough",
+  headache: "Headache",
+  runnyNose: "Runny Nose",
+  feelingUnwell: "Feeling Unwell",
+  shortnessOfBreath: "Shortness Of Breath",
+  bodyPain: "Body Pain",
+  note: {
+    lable: "Note",
+    note1: "Symptoms of COVID - 19 is Fever, Dry cough and Shortness of breath",
+    note2:
+      "If you experience one or more than one of the above symptoms Isolate your self and call 8335",
+    note3:
+      "If you suspect someone with those symptoms don't hesitate to call to 8335",
+    note4:
+      "Keep your distance (minimum 1 Meter) from anyone who has the symptoms",
+  },
+  formErrors: {
+    empty: "This field can not be empty",
+    numberOnly: "This field is for number only",
   }
 };

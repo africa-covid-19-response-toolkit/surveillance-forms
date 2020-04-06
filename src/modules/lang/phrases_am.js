@@ -60,7 +60,7 @@ export default {
   callerType: {
     label: "የደዋይ ዓይነት",
     callerType1: "callerType1",
-    callerType1: "callerType1",
+    callerType2: "callerType2",
   },
   fever: "ትኩሳት",
   cough: "ሳል",
@@ -78,13 +78,25 @@ export default {
   yes: "አዎ",
   no: "አይ",
   formStatus: "",
-  "hotel": {
-   "label": "ሆቴል",
-   "skylight": "ስካይላይት ሆቴል",
-   "ghion": "ጊዮን ሆቴል",
-   "azzeman": "አዜማን ሆቴል",
-   "sapphire": "ሳፋየር ሆቴል",
-   "other": "ሌላ",
-   "addDependent": "Add Dependent(s)"
- }
+  hotel: {
+    label: "ሆቴል",
+    skylight: "ስካይላይት ሆቴል",
+    ghion: "ጊዮን ሆቴል",
+    azzeman: "አዜማን ሆቴል",
+    sapphire: "ሳፋየር ሆቴል",
+    other: "ሌላ",
+    addDependent: "Add Dependent(s)",
+  },
+  formErrors: {
+    empty: "ይህ ቦታ ባዶ መሆን አይችልም",
+    numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
+  },
+  note: {
+    lable: "ማስታወሻ",
+    note1: "የ COVID ምልክቶች - 19 ትኩሳት ፣ ደረቅ ሳል እና የትንፋሽ እጥረት ናቸው",
+    note2:
+      "ከላይ ከተዘረዘሩት ምልክቶች መካከል ከአንድ ወይም ከዚያ በላይ ከሆኑ ካጋጠሙዎት እራስዎን ችላ ብለው ለ 8335 ይደውሉ",
+    note3: "እነዚህ ምልክቶች ያሉት ሰው ከተጠራጠሩ ወደ 8335 ለመደወል አያመንቱ",
+    note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ",
+  },
 };
