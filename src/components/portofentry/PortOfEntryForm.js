@@ -258,32 +258,19 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
         </Grid>
         <Box mt={4} textAlign="left">
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
-<<<<<<< HEAD
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <Paper>
-              {/* @todo: Componentize modal */}
-              <h1>Dependents</h1>
-=======
           <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-            <AppBar  style={{ background: 'blue' }}>
+            <AppBar style={{ background: 'blue' }}>
               <Toolbar>
                 <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
                   <CloseIcon />
                 </IconButton>
                 <Typography>
-                Passenger Dependants Registration Form
+                  Passenger Dependants Registration Form
                 </Typography>
               </Toolbar>
             </AppBar>
-            <Paper style={{margin:30, padding:30}}>
-              {/* Implemented contact .dotjose */}
+            <Paper style={{ margin: 30, padding: 30 }}>
               <DependantsForm lang={lang} />
->>>>>>> dependents form UI/UX fix
             </Paper>
           </Dialog>
         </Box>

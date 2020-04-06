@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Grid,
@@ -8,8 +8,7 @@ import {
 import {
     renderField
 } from '../form/form-util';
-import { isEmpty, cloneDeep } from 'lodash';
-import { green, red, grey, teal, amber } from '@material-ui/core/colors';
+import { isEmpty } from 'lodash';
 
 
 const DependentsForm = ({ onSubmit, lang, props }) => {
@@ -153,14 +152,6 @@ const DependentsForm = ({ onSubmit, lang, props }) => {
         }
         return renderField(field);
     };
-
-    const renderSectionHeader = (label) => {
-        return (
-            <Box p={3} my={3} style={{ backgroundColor: green[700] }}>
-                <Typography variant="h4">{label}</Typography>
-            </Box>
-        )
-    }
 
     const renderSubsectionheader = (label) => {
         return (
