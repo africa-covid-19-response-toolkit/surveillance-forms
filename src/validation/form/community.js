@@ -1,18 +1,13 @@
-import { isEmpty } from "../util/text";
-import { isIntegerNumber } from "../util/number";
+import { nameValidator as nameValidatorUtil } from "../util/text";
+import { ageValidator as ageValidatorUtil } from "../util/number";
 import errorTypes from "../util/errorTypes";
 
-export const firstNameValidator = {
-  validate: (value) => {
-    return !isEmpty(value);
-  },
+export const nameValidator = {
+  validate: (value) => nameValidatorUtil(value),
   validationErrorMsg: errorTypes.empty,
 };
 
 export const ageValidator = {
-  validate: (value) => {
-    const intVal = parseInt(value);
-    return isIntegerNumber(value) && intVal > 0 && intVal < 120;
-  },
+  validate: (value) => ageValidatorUtil(value),
   validationErrorMsg: errorTypes.numberOnly,
 };
