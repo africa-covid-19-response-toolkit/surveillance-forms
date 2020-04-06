@@ -236,7 +236,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     },
     {
       type: "switch",
-      label: lang.t("travelHx"),
+      label: lang.t("travelHistory"),
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
       onLabel: lang.t("yes"),
@@ -432,11 +432,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-  return (
-    <Box>
-      {renderForm()}
-    </Box>
-  );
+  return <Box>{renderForm()}</Box>;
 };
 
 export default MedicalCentersEntryForm;

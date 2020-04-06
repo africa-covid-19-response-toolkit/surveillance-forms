@@ -79,9 +79,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("phoneNo"),
-      property: "phoneNo",
-      onChange: handleFieldChange("phoneNo"),
+      label: lang.t("phoneNumber"),
+      property: "phoneNumber",
+      onChange: handleFieldChange("phoneNumber"),
     },
     {
       type: "select",
@@ -95,7 +95,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("occupation"),
+      label: lang.t("occupation.label"),
       property: "occupation",
       onChange: handleFieldChange("occupation"),
     },
@@ -111,7 +111,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("subcityOrZone"),
+      label: lang.t("subcity.label"),
       property: "subcityOrZone",
       onChange: handleFieldChange("subcityOrZone"),
     },
@@ -135,7 +135,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("houseNo"),
+      label: lang.t("houseNumber"),
       property: "houseNo",
       onChange: handleFieldChange("houseNo"),
     },
@@ -159,35 +159,35 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "switch",
-      label: lang.t("travelHx"),
+      label: lang.t("travelHistory"),
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("haveSex"),
       property: "haveSex",
       onChange: handleFieldChange("haveSex"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("animalMarket"),
       property: "animalMarket",
       onChange: handleFieldChange("animalMarket"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("healthFacility"),
       property: "healthFacility",
       onChange: handleFieldChange("healthFacility"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
   ];
 
@@ -250,7 +250,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("language")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNo")}
+            {renderFormField("phoneNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
@@ -322,11 +322,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  return (
-    <Box>
-      {renderForm()}      
-    </Box>
-  );
+  return <Box>{renderForm()}</Box>;
 };
 
 export default CommunityForm;
