@@ -16,15 +16,16 @@ class LanguageStore {
   langCode = "en";
   lang = getPolygotInstance(this.langCode);
 
-  async setLanguage(languageCode) {
-    this.landCode = languageCode;
+  setLanguage(languageCode) {
+    this.langCode = languageCode;
     this.lang = getPolygotInstance(languageCode);
   }
 }
 
 decorate(LanguageStore, {
   lang: observable,
-  setLanguage: action,
+  langCode: observable,
+  setLanguage: action
 });
 
 export default new LanguageStore();

@@ -10,7 +10,7 @@ class PortOfEntry extends Component {
 
 
     return (
-      <Box p={3}>
+      <Box>
         <PortOfEntryForm lang={lang} />
       </Box>
     )
