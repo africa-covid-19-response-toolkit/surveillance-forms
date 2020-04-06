@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Typography,
@@ -9,15 +9,115 @@ import {
   MenuItem,
   Button,
   Switch,
-  Checkbox
-} from '@material-ui/core';
-import { isEmpty, cloneDeep } from 'lodash';
+  Checkbox,
+} from "@material-ui/core";
+import { isEmpty, cloneDeep } from "lodash";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-const StatefulTextField = ({ field }) => {
+import moment from "moment";
+import MomentUtils from "@date-io/moment";
+
+moment.defineLocale("am", {
+  parentLocale: "en",
+  months: "ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ_መስከረም_ጥቅምት_ህዳር_ታህሳስ".split("_"),
+  weekdays: "እሑድ_ሰኞ_ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ".split("_"),
+});
+
+const StatefulTextField = ({ field, clear }) => {
   // fullWidth
-  const { label, property, onChange, disabled, onValidate, validationErrorMsg, focus } = field;
+  const {
+    label,
+    property,
+    onChange,
+    disabled,
+    onValidate,
+    validationErrorMsg,
+    focus,
+  } = field;
 
-  const [value, setValue] = useState(field.value || '');
+  const [value, setValue] = useState(field.value || "");
+  const [isValid, setIsValid] = useState(true);
+
+  const firstUpdate = useRef(true); // dont run on mount
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    handleValidation();
+  }, [value]);
+
+  useEffect(() => {
+    if (clear === 0) {
+      return;
+    }
+    firstUpdate.current = true;
+    setValue(field.value || "");
+  }, [clear]);
+
+
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    setValue(newValue);
+
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
+
+  const handleValidation = () => {
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  };
+
+  const props = {};
+  if (!isValid) {
+    props["error"] = true;
+    props["helperText"] = !isEmpty(validationErrorMsg)
+      ? validationErrorMsg
+      : "Incorrect Input";
+  } else {
+    props["error"] = undefined;
+    props["helperText"] = undefined;
+  }
+
+  if (focus) {
+    props["autoFocus"] = true;
+  }
+
+  return (
+    <Box>
+      <Typography>{label}</Typography>
+      <TextField
+        id={`${property}-outlined`}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleValidation}
+        disabled={!!disabled}
+        fullWidth={true}
+        autoComplete="false"
+        size="small"
+        variant="outlined"
+        {...props}
+      />
+    </Box>
+  );
+};
+const StatefulDateField = ({ field }) => {
+  // fullWidth
+  const {
+    label,
+    property,
+    onChange,
+    disabled,
+    onValidate,
+    validationErrorMsg,
+    focus,
+  } = field;
+  var locale = field.langCode;
+  const [value, setValue] = useState(field.value || "");
   const [isValid, setIsValid] = useState(true);
 
   const firstUpdate = useRef(true); // dont run on mount
@@ -36,51 +136,57 @@ const StatefulTextField = ({ field }) => {
     if (onChange) {
       onChange(newValue);
     }
-  }
+  };
 
   const handleValidation = () => {
     if (onValidate) {
       const result = onValidate(value);
       setIsValid(result);
     }
-  }
+  };
 
   const props = {};
   if (!isValid) {
-    props['error'] = true;
-    props['helperText'] = !isEmpty(validationErrorMsg) ? validationErrorMsg : 'Incorrect Input';
-  }
-  else {
-    props['error'] = undefined;
-    props['helperText'] = undefined;
+    props["error"] = true;
+    props["helperText"] = !isEmpty(validationErrorMsg)
+      ? validationErrorMsg
+      : "Incorrect Input";
+  } else {
+    props["error"] = undefined;
+    props["helperText"] = undefined;
   }
 
   if (focus) {
-    props['autoFocus'] = true;
+    props["autoFocus"] = true;
   }
 
   return (
     <Box>
       <Typography>{label}</Typography>
-      <TextField
-        id={`${property}-outlined`}
-        value={value}
-        onChange={handleChange}
-        disabled={!!disabled}
-        fullWidth={true}
-        autoComplete="false"
-        size="small"
-        variant="outlined"
-        {...props}
-      />
+      <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
+        <DatePicker
+          id={`${property}-outlined`}
+          inputVariant="outlined"
+          value={value}
+          onChange={handleChange}
+          disabled={!!disabled}
+          fullWidth={true}
+          autoComplete="false"
+          size="small"
+          {...props}
+        />
+      </MuiPickersUtilsProvider>
     </Box>
   );
+};
+export const renderTextField = (field, clear) => {
+  return <StatefulTextField field={field} clear={clear} />;
+};
 
-}
-
-export const renderTextField = field => {
-  return <StatefulTextField field={field} />
-}
+export const renderDateField = (field) => {
+  moment.locale(field.langCode);
+  return <StatefulDateField field={field} />;
+};
 
 const StatefulSelectField = ({ field }) => {
   const { label, property, onChange, choices } = field;
@@ -94,14 +200,14 @@ const StatefulSelectField = ({ field }) => {
     if (onChange) {
       onChange(newValue);
     }
-  }
+  };
 
   return (
     <Box>
       <Typography>{label}</Typography>
       <FormControl
         style={{
-          width: "100%"
+          width: "100%",
         }}
         variant="outlined"
         size="small"
@@ -113,21 +219,22 @@ const StatefulSelectField = ({ field }) => {
           onChange={handleChange}
         >
           {choices.map((c, index) => (
-            <MenuItem key={index} value={c.value}>{c.label}</MenuItem>
+            <MenuItem key={index} value={c.value}>
+              {c.label}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
     </Box>
-  )
-}
+  );
+};
 
-export const renderSelectField = field => {
-  return <StatefulSelectField field={field} />
-}
+export const renderSelectField = (field) => {
+  return <StatefulSelectField field={field} />;
+};
 
 const StatefulSwitch = ({ field }) => {
   const { label, onChange } = field;
-
   const [value, setValue] = useState(field.value || false);
 
   const handleChange = () => {
@@ -137,7 +244,7 @@ const StatefulSwitch = ({ field }) => {
     if (onChange) {
       onChange(newValue);
     }
-  }
+  };
 
   const switchLabel = value ? field.onLabel : field.offLabel;
 
@@ -148,19 +255,18 @@ const StatefulSwitch = ({ field }) => {
         checked={value}
         onChange={handleChange}
         name="checkedA"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
+        inputProps={{ "aria-label": "secondary checkbox" }}
       />
       <Typography variant="caption">{switchLabel}</Typography>
     </Box>
-  )
-}
+  );
+};
 
-export const renderSwitch = field => {
-  return <StatefulSwitch field={field} />
-}
+export const renderSwitch = (field) => {
+  return <StatefulSwitch field={field} />;
+};
 
 const StatefulCheckbox = ({ field }) => {
-
   const { label, onChange } = field;
 
   const [value, setValue] = useState(field.value || false);
@@ -172,34 +278,36 @@ const StatefulCheckbox = ({ field }) => {
     if (onChange) {
       onChange(newValue);
     }
-  }
+  };
 
   return (
     <Box display="flex" alignItems="center">
       <Checkbox
         checked={value}
         onChange={handleChange}
-        inputProps={{ 'aria-label': 'primary checkbox' }}
+        inputProps={{ "aria-label": "primary checkbox" }}
       />
       <Typography>{label}</Typography>
     </Box>
-  )
-}
+  );
+};
 
 export const renderCheckbox = (field) => {
-  return <StatefulCheckbox field={field} />
-}
+  return <StatefulCheckbox field={field} />;
+};
 
-export const renderField = field => {
+export const renderField = (field, clear) => {
   switch (field.type) {
-    case 'text':
-      return renderTextField(field)
-    case 'select':
-      return renderSelectField(field)
-    case 'check':
-      return renderCheckbox(field)
-    case 'switch':
-      return renderSwitch(field)
+    case "text":
+      return renderTextField(field, clear);
+    case "select":
+      return renderSelectField(field);
+    case "date":
+      return renderDateField(field);
+    case "check":
+      return renderCheckbox(field);
+    case "switch":
+      return renderSwitch(field);
     default:
       return null;
   }

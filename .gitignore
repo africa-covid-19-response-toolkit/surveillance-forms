@@ -14,3 +14,25 @@ README.md.toc.*
 
 coverage/
 coverage-report/
+babel-plugin-transform-object-rest-spread
+babel-register
+babel-runtime
+core-js@2.6.11
+css
+jest
+jest-cli
+jest-config
+jest-environment-jsdom
+jest-environment-jsdom-fourteen
+jsdom
+popper.js@1.16.1
+request@2.88.2
+request@2.88.0
+resolve-url@0.2.1
+resolve-url-loader
+rework
+source-map-resolve
+strip-comments
+urix@0.1.0
+workbox-build
+workbox-webpack-plugin

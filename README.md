@@ -29,12 +29,11 @@ $ yarn storybook
 - Create a page under `src/containers` (see `src/containers/Community.js` as reference)
 - Map your page to a route in `src/core/App.js`
 
-### API
+### API Integration
 
-* API files should live in `src/api` module.
-* Use util functions in `src/api/index.js`
-* Turn on mockApi by setting `useMockApi` to `true` in `src/config/local.js`
-* Add to the mockApi in `src/api/mockApi.js`
+* API calls live at the bottom of `src/api/index.js`
+* Clone https://github.com/Ethiopia-COVID19/api-gateway and follow directions to start API locally
+
 
 ### State Management
 
@@ -56,3 +55,12 @@ Overview:
 * We use [ployglot](http://airbnb.io/polyglot.js/polyglot.html) library for keyword replacement.
 * See `src/modules/lang` for functionality
 * See usage in containers in `src/containers/Community.js`
+
+
+### Form Validation
+To validate forms
+1. create/find `<formName>.js` file under `/validation/form` folder.
+2. locate/write and export `<fieldname>Validator` object with **validate** and **validationErrorMsg** properties.
+3. If you want reusable validators (like: checking number, emptiness), reuse from `/validation/util` folder. Or add one
+4. If you add a new errorType (in languages), please add them to `/validation/util/errorTypes.js` and use for **validationErrorMsg**.
+5. In your form components, import the validator object and use **validate** and **validationErrorMsg**.

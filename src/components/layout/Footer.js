@@ -1,21 +1,13 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import {Box, Grid, Link, Typography} from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
 
-const Footer = ({ classes }) => {
+const Footer = ({user, lang, classes}) => {
   return (
-    <div className={classes.container}>
-      <Typography>Ethiopia COVID19 Taskforce</Typography>
-    </div>
+    <Box p={1} textAlign="center" style={{ color: 'white', backgroundColor: '#0944B4' }}>
+      <Typography>{lang.t('footerText')}</Typography>
+    </Box>
   );
 };
 
-const styles = {
-  container: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 50,
-  },
-};
-
-export default withStyles(styles)(Footer);
+export default Footer;

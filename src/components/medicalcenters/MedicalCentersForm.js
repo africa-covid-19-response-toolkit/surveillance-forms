@@ -1,20 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
-  Button,
-  Switch,
-} from "@material-ui/core";
+import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import { nameValidator, ageValidator } from "../../validation/form/community";
+import {
+  nameValidator,
+  ageValidator,
+  emailValidator,
+} from "../../validation/form/medical";
 import { green } from "@material-ui/core/colors";
 
+const NATIONALITY_KEYS = ["ethiopian", "other"];
 const REGION_KEYS = [
   "addisAbaba",
   "afar",
@@ -28,6 +22,26 @@ const REGION_KEYS = [
   "southern",
   "tigray",
 ];
+const SUBCITY_KEYS = [
+  "addisKetema",
+  "akakiKality",
+  "arada",
+  "bole",
+  "gulele",
+  "kirkos",
+  "kolfe",
+  "lideta",
+  "nifasSilkLafto",
+  "yeka",
+];
+
+const OCCUPATION_KEYS = [
+  "hcp",
+  "merchantAnimal",
+  "airport",
+  "student",
+  "other",
+];
 
 const SEX_VALUE = {
   property: "sex",
@@ -35,10 +49,13 @@ const SEX_VALUE = {
   male: "M",
 };
 
-const CommunityForm = ({ onSubmit, lang }) => {
+const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
+const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
     [SEX_VALUE.property]: SEX_VALUE.female,
   });
+  console.log(langCode);
+  const [open, setOpen] = useState(false);
   const [clear, setClear] = useState(0);
 
   const handleFieldChange = (field) => (value) => {
@@ -55,6 +72,15 @@ const CommunityForm = ({ onSubmit, lang }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+    },
+    {
+      type: "text",
+      label: lang.t("middleName"),
+      property: "middleName",
+      focus: true,
+      onChange: handleFieldChange("middleName"),
       onValidate: nameValidator.validate,
       validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
@@ -91,43 +117,56 @@ const CommunityForm = ({ onSubmit, lang }) => {
       onChange: handleFieldChange("phoneNumber"),
     },
     {
-      type: "select",
-      label: lang.t("language.label"),
-      property: "language",
-      onChange: handleFieldChange("language"),
-      choices: [
-        { label: lang.t("language.amharic"), value: "am" },
-        { label: lang.t("language.oromo"), value: "or" },
-      ],
+      type: "text",
+      label: lang.t("email"),
+      property: "email",
+      onChange: handleFieldChange("email"),
+      onValidate: emailValidator.validate,
+      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
     },
     {
-      type: "text",
-      label: lang.t("occupation.label"),
-      property: "occupation",
-      onChange: handleFieldChange("occupation"),
+      type: "select",
+      label: lang.t("nationality.label"),
+      property: "nationality",
+      onChange: handleFieldChange("nationality"),
+      choices: NATIONALITY_KEYS.map((r) => ({
+        label: lang.t(`nationality.${r}`),
+        value: r,
+      })),
     },
     {
       type: "select",
       label: lang.t("region.label"),
       property: "region",
+      onChange: handleFieldChange("region"),
       choices: REGION_KEYS.map((r) => ({
         label: lang.t(`region.${r}`),
         value: r,
       })),
-      onChange: handleFieldChange("region"),
     },
     {
       type: "text",
+      label: lang.t("zone"),
+      property: "zone",
+      onChange: handleFieldChange("zone"),
+    },
+    {
+      type: "select",
       label: lang.t("subcity.label"),
-      property: "subcityOrZone",
-      onChange: handleFieldChange("subcityOrZone"),
+      property: "subcity",
+      onChange: handleFieldChange("subcity"),
+      choices: SUBCITY_KEYS.map((r) => ({
+        label: lang.t(`subcity.${r}`),
+        value: r,
+      })),
     },
     {
       type: "text",
-      label: lang.t("sefer"),
-      property: "sefer",
-      onChange: handleFieldChange("sefer"),
+      label: lang.t("kebele"),
+      property: "kebele",
+      onChange: handleFieldChange("kebele"),
     },
+
     {
       type: "text",
       label: lang.t("woreda"),
@@ -136,15 +175,37 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("kebele"),
-      property: "kebele",
-      onChange: handleFieldChange("kebele"),
-    },
-    {
-      type: "text",
       label: lang.t("houseNumber"),
       property: "houseNumber",
       onChange: handleFieldChange("houseNumber"),
+    },
+    {
+      type: "select",
+      label: lang.t("occupation.label"),
+      property: "occupation",
+      onChange: handleFieldChange("occupation"),
+      choices: OCCUPATION_KEYS.map((r) => ({
+        label: lang.t(`occupation.${r}`),
+        value: r,
+      })),
+    },
+    {
+      type: "select",
+      label: lang.t("callerType.label"),
+      property: "callerType",
+      onChange: handleFieldChange("callerType"),
+      choices: CALLERTYPE_KEYS.map((r) => ({
+        label: lang.t(`callerType.${r}`),
+        value: r,
+      })),
+    },
+
+    {
+      type: "date",
+      label: lang.t("callDate"),
+      property: "callDate",
+      langCode: langCode,
+      onChange: handleFieldChange("callDate"),
     },
     {
       type: "check",
@@ -160,9 +221,33 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "check",
+      label: lang.t("headache"),
+      property: "headache",
+      onChange: handleFieldChange("headache"),
+    },
+    {
+      type: "check",
+      label: lang.t("bodyPain"),
+      property: "bodyPain",
+      onChange: handleFieldChange("bodyPain"),
+    },
+    {
+      type: "check",
+      label: lang.t("runnyNose"),
+      property: "runnyNose",
+      onChange: handleFieldChange("runnyNose"),
+    },
+    {
+      type: "check",
       label: lang.t("shortnessOfBreath"),
       property: "shortnessOfBreath",
       onChange: handleFieldChange("shortnessOfBreath"),
+    },
+    {
+      type: "check",
+      label: lang.t("feelingUnwell"),
+      property: "feelingUnwell",
+      onChange: handleFieldChange("feelingUnwell"),
     },
     {
       type: "switch",
@@ -222,13 +307,21 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  const hadleSubmit = () => {
+  const handleSubmit = () => {
     onSubmit(formValues)
       .then(() => {
         // clear form values
         setFormValues({})
         setClear(clear + 1);
       })
+  };
+
+  const handleModal = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const isFormValid = () => {
@@ -244,54 +337,68 @@ const CommunityForm = ({ onSubmit, lang }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader("Online Suspect Form")}
+        {renderSectionHeader("Health Facilities Application Form")}
+        {renderSubsectionheader(
+          "Health Facilities Reporting Form For COVID-19"
+        )}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("middleName")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
             {renderFormField("lastName")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("age")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("sex")}
-          </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("language")}
+            {renderFormField("sex")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("phoneNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("occupation")}
+            {renderFormField("email")}
           </Grid>
-        </Grid>
-
-        {renderSubsectionheader("Address")}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("nationality")}
+          </Grid>
+          <Grid item xs={12} md={4}>
             {renderFormField("region")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("subcityOrZone")}
+          <Grid item xs={12} md={4}>
+            {renderFormField("zone")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("sefer")}
+          <Grid item xs={12} md={4}>
+            {renderFormField("subcity")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("woreda")}
-          </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("kebele")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("houseNo")}
+          <Grid item xs={12} md={4}>
+            {renderFormField("woreda")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("houseNumber")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("callerType")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            {renderFormField("callDate")}
           </Grid>
         </Grid>
 
-        {renderSubsectionheader("Symptoms")}
+        {renderSectionHeader("Symptoms")}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("fever")}
@@ -300,7 +407,19 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("cough")}
           </Grid>
           <Grid item xs={12} md={3}>
+            {renderFormField("headache")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("bodyPain")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("runnyNose")}
+          </Grid>
+          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("feelingUnwell")}
           </Grid>
         </Grid>
 
@@ -319,10 +438,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
-
         <Box mt={4} textAlign="right">
           <Button
-            onClick={hadleSubmit}
+            onClick={handleSubmit}
             variant="contained"
             size="large"
             disabled={!isFormValid()}
@@ -337,4 +455,4 @@ const CommunityForm = ({ onSubmit, lang }) => {
   return <Box>{renderForm()}</Box>;
 };
 
-export default CommunityForm;
+export default MedicalCentersEntryForm;
