@@ -272,7 +272,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             {renderFormField("lastName")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("sex")}
+            {renderFormField("gender")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("nationality")}
@@ -281,7 +281,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             {renderFormField("passportNo")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNo")}
+            {renderFormField("phoneNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("age")}
@@ -306,7 +306,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             {renderFormField("seatNumber")}
           </Grid>
           <Grid item xs={12} md={3}>
-            {renderFormField("hotel")}
+            {renderFormField("hotelName")}
           </Grid>
         </Grid>
 
