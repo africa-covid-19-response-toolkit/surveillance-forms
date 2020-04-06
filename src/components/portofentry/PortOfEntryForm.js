@@ -252,7 +252,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             <Paper>
               {/* @todo: Componentize modal */}
               <h1>Dependents</h1>
-            </Paper> 
+            </Paper>
           </Dialog>
           <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submit')}</Button>
         </Box>
@@ -262,14 +262,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   return (
     <Box>
-      <Grid container>
-        <Grid item xs={12} md={9}>
-          {renderForm()}
-        </Grid>
-        <Grid item xs={12} md={3}>
-
-        </Grid>
-      </Grid>
+      {renderForm()}
     </Box>
   )
 }
