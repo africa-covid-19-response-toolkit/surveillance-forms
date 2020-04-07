@@ -10,7 +10,10 @@ form .MuiInputBase-input {
   background: #ffffff;
 }
 
-h5 {
+h5.subsectionheader {
+  margin: 20px 0 0;
+  padding: 20px 0;
+  border-top: 1px solid #ccc;
   text-transform: uppercase;
 }
 
