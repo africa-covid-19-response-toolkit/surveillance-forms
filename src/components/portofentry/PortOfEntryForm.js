@@ -421,7 +421,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
         <Grid container spacing={3}>
 
           <Grid item  xs={12} md={6} >
-            {renderFormField('fatigue')}
+          {renderSubsectionheader("Symptoms")}
             {renderFormField('fever')}
             {renderFormField('cough')}
             {renderFormField('shortnessOfBreath')}
