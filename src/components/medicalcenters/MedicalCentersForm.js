@@ -395,13 +395,13 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Typography variant="h2">{label}</Typography>
+      <Typography className="sectionheader" variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-        <Typography variant="h5" style={{ marginTop: 20, paddingTop: 19, marginBottom: 20, borderTop: '1px solid #ccc'}}>{label}</Typography>
+        <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
@@ -552,7 +552,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
-        
+
         <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}

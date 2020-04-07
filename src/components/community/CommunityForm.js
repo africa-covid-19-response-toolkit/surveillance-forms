@@ -315,14 +315,14 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   const renderSectionHeader = (label) => {
-  return (
-        <Typography variant="h2">{label}</Typography>
+    return (
+      <Typography className="sectionheader" variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-        <Typography variant="h5" style={{ marginTop: 20, paddingTop: 19, marginBottom: 20, borderTop: '1px solid #ccc'}}>{label}</Typography>
+        <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
