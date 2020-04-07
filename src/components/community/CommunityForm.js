@@ -397,55 +397,27 @@ const CommunityForm = ({ onSubmit, lang }) => {
         </Grid>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             {renderSubsectionheader("Symptoms")}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("fatigue")}
           </Grid>
-        </Grid>
-        
-
-        {renderSubsectionheader(lang.t("underlyingConditions"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={4}>
+            {renderSubsectionheader(lang.t("underlyingConditions"))}
             {renderFormField("chronicLungDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("heartDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("liverDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("renalDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("autoimmuneDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cancer")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("diabetes")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("hiv")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("pregnancy")}
           </Grid>
-
-
-          
-        </Grid>
-
-        {renderSectionHeader("General Information")}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader("General Information")}
             {renderFormField("travelHx")}
             {renderFormField("animalMarket")}
             {renderFormField("haveSex")}
