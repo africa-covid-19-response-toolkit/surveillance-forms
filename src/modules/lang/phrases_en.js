@@ -80,6 +80,7 @@ export default {
   yes: "Yes",
   no: "No",
   submit: "Submit",
+  submitDependent: "Submit Dependent",
   travelFrom: "Travel From",
   travelHistory: "Travel History",
   haveSex: "Had Sex",
@@ -99,7 +100,7 @@ export default {
   fever: "Fever",
   cough: "Cough",
   headache: "Headache",
-  fatigue: "fatigue/tiredness",
+  fatigue: "Fatigue/tiredness",
   runnyNose: "Runny Nose",
   feelingUnwell: "Feeling Unwell",
   shortnessOfBreath: "Shortness Of Breath",
@@ -116,13 +117,13 @@ export default {
   pregnancy: "Pregnancy",
   note: {
     lable: "Note",
-    note1: "Symptoms of COVID - 19 is Fever, Dry cough and Shortness of breath",
+    note1: "Symptoms of COVID - 19 are fever, dry cough and shortness of breath.",
     note2:
-      "If you experience one or more than one of the above symptoms Isolate your self and call 8335",
+      "If you experience one or more of the above symptoms, isolate yourself and call 8335.",
     note3:
-      "If you suspect someone with those symptoms don't hesitate to call to 8335",
+      "If you suspect someone else has these symptoms, don't hesitate to call to 8335.",
     note4:
-      "Keep your distance (minimum 1 Meter) from anyone who has the symptoms",
+      "Keep your distance (minimum 1 Meter) from anyone who has symptoms.",
   },
   formErrors: {
     empty: "This field can not be empty",

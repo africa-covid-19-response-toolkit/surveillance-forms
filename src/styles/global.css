@@ -1,5 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,400;0,600;0,700;0,800;0,900;1,100&family=Barlow:wght@100;300;400;500;600;700;800;900&display=swap');
+
 body {
   margin: 0;
+  background: #f9f9f9;
+  font-family: 'Barlow', 'Roboto', sans-serif;
+}
+
+form .MuiInputBase-input {
+  background: #ffffff;
+}
+
+h5.subsectionheader {
+  margin: 20px 0 0;
+  padding: 20px 0;
+  border-top: 1px solid #ccc;
+  text-transform: uppercase;
+}
+
+.sidebarText, .sidebarText .MuiTypography-body1 {
+  font-size: 14px;
+  line-height: 17px;
+  color: #666666;
 }
 
 a {

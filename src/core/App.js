@@ -6,7 +6,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Community from "../containers/Community";
 import MedicalCenters from "../containers/MedicalCenters";
-import { Box, Loading, Typography, Grid } from "@material-ui/core";
+import { Box, Container, Loading, Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PortOfEntry from "../containers/PortOfEntry";
 import SideBarCard from "../components/layout/SideBar";
@@ -48,68 +48,71 @@ class App extends Component {
           langCode={langCode}
           onLanguageSelect={onLanguageSelect}
         />
-        <Box mx="auto" p={5}>
-          <Box mb={2} display="flex">
-            <Typography variant="body2">Forms:</Typography>&nbsp;&nbsp;
+        <Box mx="auto" pb={5}>
+          <Container>
+            <Box my={3}>
+            <Typography style={{display: 'inline'}} variant="body2">Forms:</Typography>&nbsp;&nbsp;
             <Link to={"/community-form"}>
-              <Typography variant="body2">
+              <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.community")}
               </Typography>
             </Link>
             &nbsp;&nbsp;
             <Link to={"/medical-form"}>
-              <Typography variant="body2">
+              <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.medicalCenters")}
               </Typography>
             </Link>
             &nbsp;&nbsp;
             <Link to={"/port-of-entry-form"}>
-              <Typography variant="body2">
+              <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.portOfEntry")}
               </Typography>
             </Link>
-          </Box>
-          <Grid container spacing={5}>
-            <Grid item xs={12} md={9}>
-              <Route
-                exact
-                path="/"
-                component={observer((props) => (
-                  <Community {...props} />
-                ))}
-              />
-              <Route
-                exact
-                path="/community-form"
-                component={observer((props) => (
-                  <Community {...props} />
-                ))}
-              />
-              <Route
-                exact
-                path="/medical-form"
-                component={observer((props) => (
-                  <MedicalCenters {...props} />
-                ))}
-              />
-              <Route
-                exact
-                path="/port-of-entry-form"
-                component={observer((props) => (
-                  <PortOfEntry {...props} />
-                ))}
-              />
+            </Box>
+          </Container>
+          <Container>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={9}>
+                <Route
+                  exact
+                  path="/"
+                  component={observer((props) => (
+                    <Community {...props} />
+                  ))}
+                />
+                <Route
+                  exact
+                  path="/community-form"
+                  component={observer((props) => (
+                    <Community {...props} />
+                  ))}
+                />
+                <Route
+                  exact
+                  path="/medical-form"
+                  component={observer((props) => (
+                    <MedicalCenters {...props} />
+                  ))}
+                />
+                <Route
+                  exact
+                  path="/port-of-entry-form"
+                  component={observer((props) => (
+                    <PortOfEntry {...props} />
+                  ))}
+                />
+              </Grid>
+              <Grid item xs={12} md={3}>
+                <SideBarCard
+                  lang={lang}
+                  langCode={langCode}
+                  onLanguageSelect={onLanguageSelect}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={3}>
-              <SideBarCard
-                lang={lang}
-                langCode={langCode}
-                onLanguageSelect={onLanguageSelect}
-              />
-            </Grid>
-          </Grid>
+          </Container>
         </Box>
-
         <Footer lang={lang} />
       </Box>
     );

@@ -98,8 +98,9 @@ const StatefulTextField = ({ field, clear }) => {
 
   return (
     <Box>
-      <Typography>{label}</Typography>
+      <InputLabel shrink>{label}</InputLabel>
       <TextField
+        color="#ffffff"
         id={`${property}-outlined`}
         value={value}
         onChange={handleChange}
@@ -179,8 +180,7 @@ const StatefulDateField = ({ field }) => {
 
   return (
     <Box>
-      <Typography>{label}</Typography>
-
+      <InputLabel shrink>{label}</InputLabel>
       <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
         <DatePicker
           id={`${property}-outlined`}
@@ -223,7 +223,7 @@ const StatefulSelectField = ({ field }) => {
 
   return (
     <Box>
-      <Typography>{label}</Typography>
+      <InputLabel shrink>{label}</InputLabel>
       <FormControl
         style={{
           width: "100%",
@@ -269,14 +269,17 @@ const StatefulSwitch = ({ field }) => {
 
   return (
     <Box display="flex" alignItems="center">
+      <Box style={{ borderRadius: '50px', border: '1px solid #ccc', margin: '5px 10px 5px 0' }}>
+        <Switch
+          checked={value}
+          onChange={handleChange}
+          name="checkedA"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+          
+        />
+        <Typography variant="caption" style={{ opacity: 0.5, marginRight: 10}}>{switchLabel}</Typography>
+        </Box>
       <Typography>{label}</Typography>
-      <Switch
-        checked={value}
-        onChange={handleChange}
-        name="checkedA"
-        inputProps={{ "aria-label": "secondary checkbox" }}
-      />
-      <Typography variant="caption">{switchLabel}</Typography>
     </Box>
   );
 };

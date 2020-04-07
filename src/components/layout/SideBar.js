@@ -1,23 +1,23 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
-import { Box, ListItem, ListItemText, ListItemIcon } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
+import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ListItemIcon } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     width: '100%',
-    backgroundColor: green[700],
+    backgroundColor: '#f0f0f0',
+    boxShadow: 'none',
+    border: '1px solid #ccc',
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
-    transform: "scale(0.8)",
+    verticalAlign: "top",
+    fontSize: "10px"
   },
 }));
 const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
@@ -36,24 +36,28 @@ const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
   console.log(fields);
 
   return (
-    <Box mt={3}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            {fields.label}
-          </Typography>
+    <Card className={classes.card}>
+      <CardContent>
+        <Typography variant="h6" component="h2">
+          {fields.label}
+        </Typography>
+        <List>
           {fields.notes.map((el, index) => {
             console.log(el);
             return (
-              <ListItem key={index}>
-                <CheckIcon />
-                <ListItemText>{el}</ListItemText>
+              <ListItem key={index} disableGutters>
+                <ListItemAvatar style={{ flexShrink: 1 }}>
+                  <Avatar style={{ background: '#fff', margin: 0 }}>
+                    <CheckIcon style={{ fill: 'green', width: 20 }}/>
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText className="sidebarText">{el}</ListItemText>
               </ListItem>
             );
           })}
-        </CardContent>
-      </Card>
-    </Box>
+        </List>
+      </CardContent>
+    </Card>
   );
 };
 export default SideBarCard;

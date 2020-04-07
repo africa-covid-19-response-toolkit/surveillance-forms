@@ -73,12 +73,12 @@ const DependentsForm = ({ onSubmit, lang, props }) => {
         },
         {
             type: 'select',
-            label: lang.t('nationality'),
+            label: lang.t('nationality.label'),
             property: 'nationality',
             onChange: handleFieldChange('nationality'),
             choices: [
-                { label: "country 1", value: '1' }, //placeholder
-                { label: "country 2", value: '2' }
+                { label: lang.t('nationality.ethiopian'), value: 'ET' }, //placeholder
+                { label: lang.t('nationality.other'), value: 'other' }
             ]
         },
         {
@@ -179,7 +179,7 @@ const DependentsForm = ({ onSubmit, lang, props }) => {
     const renderForm = () => {
         return (
             <form autoComplete="off">
-                {renderSubsectionheader('Basic Information')}
+                {renderSubsectionheader('Dependent\'s Basic Information')}
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={4} >{renderFormField('firstName')}</Grid>
                     <Grid item xs={12} md={4} >{renderFormField('middleName')}</Grid>
@@ -209,7 +209,7 @@ const DependentsForm = ({ onSubmit, lang, props }) => {
                     <Grid item xs={12} md={3} >{renderFormField('shortnessOfBreath')}</Grid>
                 </Grid>
                 <Box mt={4} textAlign="right">
-                    <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submit')}</Button>
+                    <Button onClick={handleSubmit} variant="contained" size="large" disabled={!isFormValid()}>{lang.t('submitDependent')}</Button>
                 </Box>
             </form>
         )

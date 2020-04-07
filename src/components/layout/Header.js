@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid, Typography, Select, MenuItem } from '@material-ui/core';
+import {Box, Grid, Typography, FormControl, InputLabel, Select, MenuItem, AppBar, Toolbar } from '@material-ui/core';
 import {
   renderSelectField
 } from '../form/form-util';
@@ -15,33 +15,40 @@ const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
       { label: lang.t('language.amharic'), value: 'am' },
     ]
     return (
-      <Select
-        value={langCode}
-        onChange={handleLanguageChange}
-      >
-        {choices.map((c, index) => (
-          <MenuItem key={index} value={c.value} style={{ backgroundColor: '#0944B4', color: 'white' }}>
-            <Typography style={{ color: 'white' }}>{c.label}</Typography>
-          </MenuItem>
-        ))}
-      </Select>
+      <div>
+        <InputLabel shrink>Language:</InputLabel>
+        <FormControl
+          style={{
+            width: "100%",
+          }}
+          size="small"
+        >
+          <Select
+            value={langCode}
+            onChange={handleLanguageChange}
+          >
+            {choices.map((c, index) => (
+              <MenuItem key={index} value={c.value} >
+                <Typography>{c.label}</Typography>
+              </MenuItem>
+            ))}
+          </Select>
+      </FormControl>
+      </div>
     )
   }
 
   return (
-    <Box py={1} pl={4} pr={7} style={{ color: 'white', backgroundColor: '#0944B4' }}>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography>{lang.t('officalWebsite')}</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Box textAlign="right">
-            {renderLanguageSelector()}
-          </Box>
-        </Grid>
-      </Grid>
-
-    </Box>
+    <AppBar position="static" style={{ color: 'white', backgroundColor: '#0040B7', justifyContent: 'middle' }}>
+      <Toolbar variant="dense">
+        <img src="/Flag.png" style={{ verticalAlign: 'middle', marginRight: 10 }} />
+        <Typography variant="h6" style={{ flexGrow: 1 }}>{lang.t('officalWebsite')}</Typography>
+        {renderLanguageSelector()}
+      </Toolbar>
+    </AppBar>
+    // <Box py={1} pl={4} pr={7} style={{ color: 'white', backgroundColor: '#0944B4' }}>
+     
+    // </Box>
   );
 };
 

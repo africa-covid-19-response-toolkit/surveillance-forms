@@ -395,17 +395,13 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Box p={3} my={3} style={{ backgroundColor: green[700] }}>
-        <Typography variant="h4">{label}</Typography>
-      </Box>
+      <Typography className="sectionheader" variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-      <Box mt={3} mb={1}>
-        <Typography variant="h5">{label}</Typography>
-      </Box>
+        <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
@@ -499,82 +495,35 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("callDate")}
           </Grid>
         </Grid>
-
-        {renderSectionHeader("Symptoms")}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={4}>
+            {renderSubsectionheader("Symptoms")}
             {renderFormField("fever")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cough")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("headache")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("bodyPain")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("runnyNose")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("feelingUnwell")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("fatigue")}
           </Grid>
-        </Grid>
-
-        {renderSubsectionheader(lang.t("underlyingConditions"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={4}>
+            {renderSubsectionheader(lang.t("underlyingConditions"))}
             {renderFormField("chronicLungDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("heartDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("liverDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("renalDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("autoimmuneDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cancer")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("diabetes")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("hiv")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("pregnancy")}
           </Grid>
-        </Grid>
-        
-
-        {renderSectionHeader("General Information")}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader("General Information")}
             {renderFormField("travelHx")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("animalMarket")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("haveSex")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
+
         <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}

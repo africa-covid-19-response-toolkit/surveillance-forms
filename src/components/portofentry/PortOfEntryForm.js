@@ -150,8 +150,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       property: "nationality",
       onChange: handleFieldChange("nationality"),
       choices: [
-        { label: "country 1", value: "1" }, //placeholder
-        { label: "country 2", value: "2" },
+        { label: lang.t("nationality.ethiopian"), value: "ET" }, //placeholder
+        { label: lang.t("nationality.other"), value: "other" },
       ],
     },
     {
@@ -317,17 +317,13 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Box p={3} my={3} style={{ backgroundColor: green[700] }}>
-        <Typography variant="h4">{label}</Typography>
-      </Box>
+      <Typography className="sectionheader" variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-      <Box mt={3} mb={1}>
-        <Typography variant="h5">{label}</Typography>
-      </Box>
+        <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
@@ -422,55 +418,27 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
 
-        {renderSubsectionheader("Symptoms")}
         <Grid container spacing={4}>
-
-          <Grid item  xs={12} md={3} >{renderFormField('fever')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('cough')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('shortnessOfBreath')}</Grid>
-          <Grid item  xs={12} md={3} >{renderFormField('fatigue')}</Grid>
-        </Grid>
-
-        {renderSubsectionheader(lang.t("underlyingConditions"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6}>
+            {renderSubsectionheader("Symptoms")}
+            {renderFormField("fever")}
+            {renderFormField("cough")}
+            {renderFormField("shortnessOfBreath")}
+            {renderFormField("fatigue")}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            {renderSubsectionheader(lang.t("underlyingConditions"))}
             {renderFormField("chronicLungDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("heartDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("liverDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("renalDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("autoimmuneDisease")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cancer")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("diabetes")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("hiv")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("pregnancy")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("fever")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("cough")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("shortnessOfBreath")}
-          </Grid>
         </Grid>
-
         <Box mt={4} textAlign="left">
           {renderSubsectionheader('Dependents')}
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
