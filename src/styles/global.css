@@ -17,6 +17,12 @@ h5.subsectionheader {
   text-transform: uppercase;
 }
 
+.sidebarText, .sidebarText .MuiTypography-body1 {
+  font-size: 14px;
+  line-height: 17px;
+  color: #666666;
+}
+
 a {
   cursor: pointer;
 }
