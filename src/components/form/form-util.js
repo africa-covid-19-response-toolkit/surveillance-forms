@@ -98,8 +98,9 @@ const StatefulTextField = ({ field, clear }) => {
 
   return (
     <Box>
-      <Typography>{label}</Typography>
+      <InputLabel shrink>{label}</InputLabel>
       <TextField
+        color="#ffffff"
         id={`${property}-outlined`}
         value={value}
         onChange={handleChange}
@@ -223,7 +224,7 @@ const StatefulSelectField = ({ field }) => {
 
   return (
     <Box>
-      <Typography>{label}</Typography>
+      <InputLabel shrink>{label}</InputLabel>
       <FormControl
         style={{
           width: "100%",

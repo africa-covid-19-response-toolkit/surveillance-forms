@@ -12,12 +12,17 @@ import { green } from "@material-ui/core/colors";
 const useStyles = makeStyles((theme) => ({
   card: {
     width: '100%',
-    backgroundColor: green[700],
+    backgroundColor: '#f0f0f0',
+    boxShadow: 'none',
+    border: '1px solid #ccc',
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
     transform: "scale(0.8)",
+    verticalAlign: "top",
+    fontSize: 12,
+    lineHeight: 14
   },
 }));
 const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
@@ -36,24 +41,22 @@ const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
   console.log(fields);
 
   return (
-    <Box mt={3}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            {fields.label}
-          </Typography>
-          {fields.notes.map((el, index) => {
-            console.log(el);
-            return (
-              <ListItem key={index}>
-                <CheckIcon />
-                <ListItemText>{el}</ListItemText>
-              </ListItem>
-            );
-          })}
-        </CardContent>
-      </Card>
-    </Box>
+    <Card className={classes.card}>
+      <CardContent>
+        <Typography variant="h6" component="h2">
+          {fields.label}
+        </Typography>
+        {fields.notes.map((el, index) => {
+          console.log(el);
+          return (
+            <ListItem key={index} disableGutters>
+              <CheckIcon style={{ fill: 'green', background: '#ffffff', borderRadius: '50%', padding: 5, border: '1px solid #ccc' }} />
+              <ListItemText className={classes.bullet}>{el}</ListItemText>
+            </ListItem>
+          );
+        })}
+      </CardContent>
+    </Card>
   );
 };
 export default SideBarCard;

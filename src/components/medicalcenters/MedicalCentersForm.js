@@ -395,17 +395,13 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Box p={3} my={3} style={{ backgroundColor: green[700] }}>
-        <Typography variant="h4">{label}</Typography>
-      </Box>
+      <Typography variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-      <Box mt={3} mb={1}>
-        <Typography variant="h5">{label}</Typography>
-      </Box>
+        <Typography variant="h5" style={{ marginTop: 20, paddingTop: 19, marginBottom: 20, borderTop: '1px solid #ccc'}}>{label}</Typography>
     );
   };
 
@@ -499,28 +495,15 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("callDate")}
           </Grid>
         </Grid>
-
-        {renderSectionHeader("Symptoms")}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6}>
+            {renderSubsectionheader("Symptoms")}
             {renderFormField("fever")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cough")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("headache")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("bodyPain")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("runnyNose")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("feelingUnwell")}
           </Grid>
           <Grid item xs={12} md={3}>
@@ -564,17 +547,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             {renderFormField("travelHx")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("animalMarket")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("haveSex")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
+        
         <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}
