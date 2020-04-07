@@ -269,14 +269,17 @@ const StatefulSwitch = ({ field }) => {
 
   return (
     <Box display="flex" alignItems="center">
+      <Box style={{ borderRadius: '50px', border: '1px solid #ccc', margin: '5px 10px 5px 0' }}>
+        <Switch
+          checked={value}
+          onChange={handleChange}
+          name="checkedA"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+          
+        />
+        <Typography variant="caption" style={{ opacity: 0.5, marginRight: 10}}>{switchLabel}</Typography>
+        </Box>
       <Typography>{label}</Typography>
-      <Switch
-        checked={value}
-        onChange={handleChange}
-        name="checkedA"
-        inputProps={{ "aria-label": "secondary checkbox" }}
-      />
-      <Typography variant="caption">{switchLabel}</Typography>
     </Box>
   );
 };
