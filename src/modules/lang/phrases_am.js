@@ -99,6 +99,7 @@ export default {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
     email: "እባክዎ ትክክል ኢሜይል ያስገቡ",
+    lengthAtMost100: "እባክዎ 100 ቃላት ብቻ ያስገቡ",
   },
   note: {
     lable: "ማስታወሻ",
