@@ -80,6 +80,7 @@ export default {
   yes: "Yes",
   no: "No",
   submit: "Submit",
+  submitDependent: "Submit Dependent",
   travelFrom: "Travel From",
   travelHistory: "Travel History",
   haveSex: "Had Sex",

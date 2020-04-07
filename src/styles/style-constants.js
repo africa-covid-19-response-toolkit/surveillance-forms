@@ -18,7 +18,7 @@ export const remBase = 16;
 export const theme = createMuiTheme({
   typography: {
     // fontFamily: ['Open Sans', 'Arial'], // default is Roboto
-    fontFamily: ['proxima-nova', 'Arial']
+    fontFamily: ['Barlow','Roboto', 'proxima-nova', 'Arial']
   },
   palette: {
     primary: {

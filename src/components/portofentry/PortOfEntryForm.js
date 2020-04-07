@@ -122,8 +122,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       property: "nationality",
       onChange: handleFieldChange("nationality"),
       choices: [
-        { label: "country 1", value: "1" }, //placeholder
-        { label: "country 2", value: "2" },
+        { label: lang.t("nationality.ethiopian"), value: "ET" }, //placeholder
+        { label: lang.t("nationality.other"), value: "other" },
       ],
     },
     {
@@ -210,17 +210,13 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Box p={3} my={3} style={{ backgroundColor: green[700] }}>
-        <Typography variant="h4">{label}</Typography>
-      </Box>
+      <Typography variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-      <Box mt={3} mb={1}>
-        <Typography variant="h5">{label}</Typography>
-      </Box>
+        <Typography variant="h5" style={{ marginTop: 20, paddingTop: 19, marginBottom: 20, borderTop: '1px solid #ccc'}}>{label}</Typography>
     );
   };
 
