@@ -17,6 +17,7 @@ import * as moment from "moment";
 
 import MomentUtils from "@date-io/moment";
 import { now as NowEt } from "zemen-qotari";
+import { toEthiopian as ToEthiopian } from "ethio-qalendar";
 
 moment.defineLocale("am", {
   parentLocale: "en",
@@ -116,15 +117,22 @@ const StatefulDateField = ({ field }) => {
     validationErrorMsg,
     focus,
   } = field;
+
   var locale = field.langCode;
-  var currentDate = new Date();
-  const etdate = NowEt()._year + "-" + NowEt()._month + "-" + NowEt()._day;
+  var dates = new Date();
+  console.log(dates);
 
   if (locale === "am") {
-    currentDate = moment(etdate).format("YYYY-MM-DD");
+    const c = dates.getMonth();
+    const basicDate = ToEthiopian(
+      dates.getDate(),
+      dates.getMonth() + 1,
+      dates.getFullYear()
+    );
+    const etdate = basicDate.year + "-" + basicDate.month + "-" + basicDate.day;
+    dates = moment(etdate).format();
   }
-
-  const [value, setValue] = useState(field.value || "");
+  const [value, setValue] = useState(field.value || dates);
 
   const [isValid, setIsValid] = useState(true);
 
@@ -138,7 +146,7 @@ const StatefulDateField = ({ field }) => {
   }, [value]);
 
   const handleDateChange = (date) => {
-    const newValue = date;
+    const newValue = date.format();
     setValue(newValue);
 
     if (onChange) {
@@ -176,11 +184,11 @@ const StatefulDateField = ({ field }) => {
         <DatePicker
           id={`${property}-outlined`}
           inputVariant="outlined"
-          value={currentDate}
-          onChange={handleDateChange}
+          value={value}
+          onChange={(date) => handleDateChange(date)}
           disabled={!!disabled}
+          format="LL"
           fullWidth={true}
-          disableFuture
           autoComplete="false"
           size="small"
           {...props}
