@@ -459,7 +459,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
           <Grid item xs={12} md={3}>
             {renderFormField("pregnancy")}
-
+          </Grid>
           <Grid item xs={12} md={3}>
             {renderFormField("fever")}
           </Grid>
@@ -468,7 +468,6 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
           <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
-
           </Grid>
         </Grid>
 
