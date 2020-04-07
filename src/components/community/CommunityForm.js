@@ -29,6 +29,19 @@ const REGION_KEYS = [
   "tigray",
 ];
 
+
+const underlying = [
+  "chronicLungDisease",
+  "heartDisease",
+  "liverDisease",
+  "renalDisease",
+  "autoimmuneDisease",
+  "cancer",
+  "diabetes",
+  "hiv",
+  "pregnancy",
+]
+
 const SEX_VALUE = {
   property: "sex",
   female: "F",
@@ -41,11 +54,27 @@ const CommunityForm = ({ onSubmit, lang }) => {
   });
   const [clear, setClear] = useState(0);
 
+
   const handleFieldChange = (field) => (value) => {
-    setFormValues({
-      ...formValues,
-      [field]: value,
-    });
+
+    console.log(field, ": ", value);
+
+    if (underlying.includes(field)) {
+      setFormValues({
+        ...formValues,
+        underlyingConditions: {
+           ...formValues.underlyingConditions,
+           [field] : value
+        },
+      });
+
+    } else {
+      setFormValues({
+        ...formValues,
+       [field]: value,
+      });
+    }
+
   };
 
   const fields = [
@@ -164,6 +193,85 @@ const CommunityForm = ({ onSubmit, lang }) => {
       property: "shortnessOfBreath",
       onChange: handleFieldChange("shortnessOfBreath"),
     },
+    {
+      type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("chronicLungDisease"),
+      property: "chronicLungDisease",
+      onChange: handleFieldChange("chronicLungDisease"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("liverDisease"),
+      property: "liverDisease",
+      onChange: handleFieldChange("liverDisease"),
+    },
+    {
+      type: "check",
+      label: lang.t("renalDisease"),
+      property: "renalDisease",
+      onChange: handleFieldChange("renalDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("autoimmuneDisease"),
+      property: "autoimmuneDisease",
+      onChange: handleFieldChange("autoimmuneDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("cancer"),
+      property: "cancer",
+      onChange: handleFieldChange("cancer"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("diabetes"),
+      property: "diabetes",
+      onChange: handleFieldChange("diabetes"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("hiv"),
+      property: "hiv",
+      onChange: handleFieldChange("hiv"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("pregnancy"),
+      property: "pregnancy",
+      onChange: handleFieldChange("pregnancy"),
+    },
+
     {
       type: "switch",
       label: lang.t("travelHistory"),
@@ -319,6 +427,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   return <Box>{renderForm()}</Box>;
+
 };
 
 export default CommunityForm;

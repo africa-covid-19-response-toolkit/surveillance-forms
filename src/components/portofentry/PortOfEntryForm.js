@@ -29,6 +29,20 @@ import {
 
 const HOTEL_KEYS = ["skylight", "ghion", "azzeman", "sapphire", "other"];
 
+
+const underlying = [
+  "chronicLungDisease",
+  "heartDisease",
+  "liverDisease",
+  "renalDisease",
+  "autoimmuneDisease",
+  "cancer",
+  "diabetes",
+  "hiv",
+  "pregnancy",
+]
+
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -42,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
 
 const SEX_VALUE = {
   property: "gender",
@@ -58,10 +73,23 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [clear, setClear] = useState(0);
 
   const handleFieldChange = (field) => (value) => {
-    setFormValues({
-      ...formValues,
-      [field]: value,
-    });
+
+    console.log(field, ": ", value);
+    if (underlying.includes(field)) {
+      setFormValues({
+        ...formValues,
+        underlyingConditions: {
+           ...formValues.underlyingConditions,
+           [field] : value
+        },
+      });
+
+    } else {
+      setFormValues({
+        ...formValues,
+       [field]: value,
+      });
+    }
   };
 
   const fields = [
@@ -180,6 +208,13 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       property: "flightNumber",
       onChange: handleFieldChange("flightNumber"),
     },
+
+    {
+      type: "check",
+      label: lang.t("chronicLungDisease"),
+      property: "chronicLungDisease",
+      onChange: handleFieldChange("chronicLungDisease"),
+    },
     {
       type: "check",
       label: lang.t("fever"),
@@ -187,6 +222,78 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       onChange: handleFieldChange("fever"),
     },
     {
+
+      type: 'check',
+      label: lang.t('fatigue'),
+      property: 'fatigue',
+      onChange: handleFieldChange('fatigue')
+    },
+    {
+      type: 'check',
+      label: lang.t('cough'),
+      property: 'cough',
+      onChange: handleFieldChange('cough')
+    },
+    {
+      type: 'check',
+      label: lang.t('shortnessOfBreath'),
+      property: 'shortnessOfBreath',
+      onChange: handleFieldChange('shortnessOfBreath')
+    },
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("liverDisease"),
+      property: "liverDisease",
+      onChange: handleFieldChange("liverDisease"),
+    },
+    {
+      type: "check",
+      label: lang.t("renalDisease"),
+      property: "renalDisease",
+      onChange: handleFieldChange("renalDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("autoimmuneDisease"),
+      property: "autoimmuneDisease",
+      onChange: handleFieldChange("autoimmuneDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("cancer"),
+      property: "cancer",
+      onChange: handleFieldChange("cancer"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("diabetes"),
+      property: "diabetes",
+      onChange: handleFieldChange("diabetes"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("hiv"),
+      property: "hiv",
+      onChange: handleFieldChange("hiv"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("pregnancy"),
+      property: "pregnancy",
+      onChange: handleFieldChange("pregnancy"),
       type: "check",
       label: lang.t("cough"),
       property: "cough",
@@ -311,19 +418,31 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
 
-        {renderSubsectionheader("Symptoms")}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+        <Grid container spacing={3}>
+
+          <Grid item  xs={12} md={6} >
+            {renderFormField('fatigue')}
+            {renderFormField('fever')}
+            {renderFormField('cough')}
+            {renderFormField('shortnessOfBreath')}
+            {renderFormField('fatigue')}
+          </Grid>
+          <Grid item  xs={12} md={6} >
+            {renderSubsectionheader(lang.t("underlyingConditions"))}
+            {renderFormField("chronicLungDisease")}
+            {renderFormField("heartDisease")}
+            {renderFormField("liverDisease")}
+            {renderFormField("renalDisease")}
+            {renderFormField("autoimmuneDisease")}
+            {renderFormField("cancer")}
+            {renderFormField("diabetes")}
+            {renderFormField("hiv")}
+            {renderFormField("pregnancy")}
             {renderFormField("fever")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cough")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
           </Grid>
         </Grid>
-
         <Box mt={4} textAlign="left">
           {renderSubsectionheader('Dependents')}
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
