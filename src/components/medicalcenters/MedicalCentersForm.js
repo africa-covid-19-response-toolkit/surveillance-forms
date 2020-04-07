@@ -496,6 +496,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           </Grid>
         </Grid>
         <Grid container spacing={4}>
+<<<<<<< HEAD
           <Grid item xs={12} sm={4}>
             {renderSubsectionheader("Symptoms")}
             {renderFormField("fever")}
@@ -516,6 +517,19 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
+=======
+          <Grid item xs={12} sm={6}>
+            {renderSubsectionheader("Symptoms")}
+            {renderFormField("fever")}
+            {renderFormField("cough")}
+            {renderFormField("headache")}
+            {renderFormField("bodyPain")}
+            {renderFormField("runnyNose")}
+            {renderFormField("shortnessOfBreath")}
+            {renderFormField("feelingUnwell")}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+>>>>>>> b7e97c7ff2028fd3f10e6014944d414d2744e73b
             {renderSubsectionheader("General Information")}
             {renderFormField("travelHx")}
             {renderFormField("animalMarket")}

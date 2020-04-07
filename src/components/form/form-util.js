@@ -180,8 +180,7 @@ const StatefulDateField = ({ field }) => {
 
   return (
     <Box>
-      <Typography>{label}</Typography>
-
+      <InputLabel shrink>{label}</InputLabel>
       <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
         <DatePicker
           id={`${property}-outlined`}
