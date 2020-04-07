@@ -13,14 +13,22 @@ import {
 } from "@material-ui/core";
 import { isEmpty, cloneDeep } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import * as moment from "moment";
 
-import moment from "moment";
 import MomentUtils from "@date-io/moment";
+import { now as NowEt } from "zemen-qotari";
 
 moment.defineLocale("am", {
   parentLocale: "en",
-  months: "ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ_መስከረም_ጥቅምት_ህዳር_ታህሳስ".split("_"),
-  weekdays: "እሑድ_ሰኞ_ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ".split("_"),
+  months: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split("_"),
+  monthsShort: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split(
+    "_"
+  ),
+  weekdays: "ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ_እሑድ_ሰኞ".split("_"),
+  weekdaysShort: "ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ_እሑድ_ሰኞ".split("_"),
+  week: {
+    dow: 6,
+  },
 });
 
 const StatefulTextField = ({ field, clear }) => {
@@ -39,6 +47,7 @@ const StatefulTextField = ({ field, clear }) => {
   const [isValid, setIsValid] = useState(true);
 
   const firstUpdate = useRef(true); // dont run on mount
+
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
@@ -117,7 +126,15 @@ const StatefulDateField = ({ field }) => {
     focus,
   } = field;
   var locale = field.langCode;
+  var currentDate = new Date();
+  const etdate = NowEt()._year + "-" + NowEt()._month + "-" + NowEt()._day;
+
+  if (locale === "am") {
+    currentDate = moment(etdate).format("YYYY-MM-DD");
+  }
+
   const [value, setValue] = useState(field.value || "");
+
   const [isValid, setIsValid] = useState(true);
 
   const firstUpdate = useRef(true); // dont run on mount
@@ -129,8 +146,8 @@ const StatefulDateField = ({ field }) => {
     handleValidation();
   }, [value]);
 
-  const handleChange = (event) => {
-    const newValue = event.target.value;
+  const handleDateChange = (date) => {
+    const newValue = date;
     setValue(newValue);
 
     if (onChange) {
@@ -163,14 +180,16 @@ const StatefulDateField = ({ field }) => {
   return (
     <Box>
       <Typography>{label}</Typography>
+
       <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
         <DatePicker
           id={`${property}-outlined`}
           inputVariant="outlined"
-          value={value}
-          onChange={handleChange}
+          value={currentDate}
+          onChange={handleDateChange}
           disabled={!!disabled}
           fullWidth={true}
+          disableFuture
           autoComplete="false"
           size="small"
           {...props}
