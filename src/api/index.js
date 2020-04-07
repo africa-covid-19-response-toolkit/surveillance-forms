@@ -1,6 +1,5 @@
 import axios from 'axios';
 import config from '../config';
-import wrapWithMock from './mockApi';
 
 const POST = 'post';
 const GET = 'get';
@@ -15,9 +14,6 @@ const initApi = (baseURL) => {
 };
 
 const axiosApi = initApi(config.apiUrl);
-if (config.useMockApi) {
-  wrapWithMock(axiosApi);
-}
 
 const getBody = (verb, body) => {
   // https://github.com/axios/axios/issues/897#issuecomment-343715381
@@ -34,14 +30,11 @@ const execute = async (verb, url, body) => {
       url,
       method: verb,
       data: getBody(verb, body),
-      withCredentials: true // include existing cookies as part of request header
+      // withCredentials: true // include existing cookies as part of request header
     };
 
     const response = await axiosApi.request(config);
     const { status, data } = response;
-
-    // reset auth session expiry on successful api return
-    sessionStore.resetExpiryDate();
 
     return {
       status,
@@ -62,8 +55,16 @@ const execute = async (verb, url, body) => {
 };
 
 class Api {
-  async getUser(username) {
-    return execute(GET, `/users/${username}`);
+  async submitCommunity(formValues) {
+    return execute(POST, '/public/communities', formValues);
+  }
+
+  async submitMedical(formValues) {
+    return execute(POST, '/public/medical-facilities', formValues);
+  }
+
+  async submitPortOfEntry(formValues) {
+    return execute(POST, '/public/passengers', formValues);
   }
 }
 

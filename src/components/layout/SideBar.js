@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
 import { Box, ListItem, ListItemText, ListItemIcon } from "@material-ui/core";
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
-    minWidth: 300,
+    width: '100%',
     backgroundColor: green[700],
   },
   bullet: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     margin: "0 2px",
     transform: "scale(0.8)",
   },
-});
+}));
 const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
   console.log(lang);
   const classes = useStyles();
@@ -36,7 +36,7 @@ const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
   console.log(fields);
 
   return (
-    <Box p={3} m={3}>
+    <Box mt={3}>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">

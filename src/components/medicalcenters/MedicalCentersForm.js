@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import { isEmpty, cloneDeep } from "lodash";
+import {
+  nameValidator,
+  ageValidator,
+  emailValidator,
+} from "../../validation/form/medical";
 import { green } from "@material-ui/core/colors";
 
 const NATIONALITY_KEYS = ["ethiopian", "other"];
@@ -49,13 +53,24 @@ const OCCUPATION_KEYS = [
   "student",
   "other",
 ];
+
+const SEX_VALUE = {
+  property: "sex",
+  female: "F",
+  male: "M",
+};
+
 const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
 const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    [SEX_VALUE.property]: SEX_VALUE.female,
+  });
   console.log(langCode);
   const [open, setOpen] = useState(false);
+  const [clear, setClear] = useState(0);
 
   const handleFieldChange = (field) => (value) => {
+
     console.log(field, ": ", value);
     if (underlying.includes(field)) {
       setFormValues({
@@ -72,6 +87,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
        [field]: value,
       });
     }
+
   };
 
   const fields = [
@@ -81,10 +97,8 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
-      onValidate: (val) => {
-        return !isEmpty(val) && val.length >= 3;
-      },
-      validationErrorMsg: "Enter name (min 3 chars)",
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
@@ -92,31 +106,33 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "middleName",
       focus: true,
       onChange: handleFieldChange("middleName"),
-      onValidate: (val) => {
-        return !isEmpty(val) && val.length >= 3;
-      },
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("lastName"),
       property: "lastName",
       onChange: handleFieldChange("lastName"),
-      validationErrorMsg: "Enter name (min 3 chars)",
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("age"),
       property: "age",
       onChange: handleFieldChange("age"),
+      onValidate: ageValidator.validate,
+      validationErrorMsg: lang.t(ageValidator.validationErrorMsg),
     },
     {
       type: "select",
       label: lang.t("sex.label"),
-      property: "sex",
-      onChange: handleFieldChange("sex"),
+      property: SEX_VALUE.property,
+      onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
-        { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" },
+        { label: lang.t("sex.female"), value: SEX_VALUE.female },
+        { label: lang.t("sex.male"), value: SEX_VALUE.male },
       ],
     },
     {
@@ -130,6 +146,8 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       label: lang.t("email"),
       property: "email",
       onChange: handleFieldChange("email"),
+      onValidate: emailValidator.validate,
+      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
     },
     {
       type: "select",
@@ -335,7 +353,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     },
     {
       type: "switch",
-      label: lang.t("travelHx"),
+      label: lang.t("travelHistory"),
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
       onLabel: lang.t("yes"),
@@ -372,7 +390,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     if (!field) {
       return null;
     }
-    return renderField(field);
+    return renderField(field, clear);
   };
 
   const renderSectionHeader = (label) => {
@@ -392,7 +410,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   };
 
   const handleSubmit = () => {
-    onSubmit(formValues);
+    onSubmit(formValues)
+      .then(() => {
+        // clear form values
+        setFormValues({})
+        setClear(clear + 1);
+      })
   };
 
   const handleModal = () => {
@@ -566,6 +589,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
+
   console.log(formValues)
 
   return (
@@ -573,6 +597,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       {renderForm()}
     </Box>
   );
+
 };
 
 export default MedicalCentersEntryForm;

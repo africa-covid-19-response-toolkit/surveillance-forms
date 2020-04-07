@@ -12,11 +12,8 @@ import {
   Switch,
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import {
-  firstNameValidator,
-  ageValidator,
-} from "../../validation/form/community";
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import { nameValidator, ageValidator } from "../../validation/form/community";
+import { green } from "@material-ui/core/colors";
 
 const REGION_KEYS = [
   "addisAbaba",
@@ -32,6 +29,7 @@ const REGION_KEYS = [
   "tigray",
 ];
 
+
 const underlying = [
   "chronicLungDisease",
   "heartDisease",
@@ -44,11 +42,21 @@ const underlying = [
   "pregnancy",
 ]
 
+const SEX_VALUE = {
+  property: "sex",
+  female: "F",
+  male: "M",
+};
+
 const CommunityForm = ({ onSubmit, lang }) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    [SEX_VALUE.property]: SEX_VALUE.female,
+  });
+  const [clear, setClear] = useState(0);
 
 
   const handleFieldChange = (field) => (value) => {
+
     console.log(field, ": ", value);
 
     if (underlying.includes(field)) {
@@ -66,6 +74,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
        [field]: value,
       });
     }
+
   };
 
   const fields = [
@@ -75,14 +84,16 @@ const CommunityForm = ({ onSubmit, lang }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
-      onValidate: firstNameValidator.validate,
-      validationErrorMsg: lang.t(firstNameValidator.validationErrorMsg),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("lastName"),
       property: "lastName",
       onChange: handleFieldChange("lastName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
@@ -95,18 +106,18 @@ const CommunityForm = ({ onSubmit, lang }) => {
     {
       type: "select",
       label: lang.t("sex.label"),
-      property: "sex",
-      onChange: handleFieldChange("sex"),
+      property: SEX_VALUE.property,
+      onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
-        { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" },
+        { label: lang.t("sex.female"), value: SEX_VALUE.female },
+        { label: lang.t("sex.male"), value: SEX_VALUE.male },
       ],
     },
     {
       type: "text",
-      label: lang.t("phoneNo"),
-      property: "phoneNo",
-      onChange: handleFieldChange("phoneNo"),
+      label: lang.t("phoneNumber"),
+      property: "phoneNumber",
+      onChange: handleFieldChange("phoneNumber"),
     },
     {
       type: "select",
@@ -120,7 +131,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("occupation"),
+      label: lang.t("occupation.label"),
       property: "occupation",
       onChange: handleFieldChange("occupation"),
     },
@@ -136,7 +147,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("subcityOrZone"),
+      label: lang.t("subcity.label"),
       property: "subcityOrZone",
       onChange: handleFieldChange("subcityOrZone"),
     },
@@ -160,9 +171,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("houseNo"),
-      property: "houseNo",
-      onChange: handleFieldChange("houseNo"),
+      label: lang.t("houseNumber"),
+      property: "houseNumber",
+      onChange: handleFieldChange("houseNumber"),
     },
     {
       type: "check",
@@ -263,35 +274,35 @@ const CommunityForm = ({ onSubmit, lang }) => {
 
     {
       type: "switch",
-      label: lang.t("travelHx"),
+      label: lang.t("travelHistory"),
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("haveSex"),
       property: "haveSex",
       onChange: handleFieldChange("haveSex"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("animalMarket"),
       property: "animalMarket",
       onChange: handleFieldChange("animalMarket"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("healthFacility"),
       property: "healthFacility",
       onChange: handleFieldChange("healthFacility"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
   ];
 
@@ -300,7 +311,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     if (!field) {
       return null;
     }
-    return renderField(field);
+    return renderField(field, clear);
   };
 
   const renderSectionHeader = (label) => {
@@ -320,7 +331,12 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   const hadleSubmit = () => {
-    onSubmit(formValues);
+    onSubmit(formValues)
+      .then(() => {
+        // clear form values
+        setFormValues({})
+        setClear(clear + 1);
+      })
   };
 
   const isFormValid = () => {
@@ -354,7 +370,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("language")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNo")}
+            {renderFormField("phoneNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
@@ -464,14 +480,8 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  console.log(formValues)
+  return <Box>{renderForm()}</Box>;
 
-  return (
-    
-    <Box>
-      {renderForm()}      
-    </Box>
-  );
 };
 
 export default CommunityForm;
