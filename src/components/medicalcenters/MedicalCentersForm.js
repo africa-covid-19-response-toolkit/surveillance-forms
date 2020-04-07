@@ -34,6 +34,17 @@ const SUBCITY_KEYS = [
   "nifasSilkLafto",
   "yeka",
 ];
+const underlying = [
+  "chronicLungDisease",
+  "heartDisease",
+  "liverDisease",
+  "renalDisease",
+  "autoimmuneDisease",
+  "cancer",
+  "diabetes",
+  "hiv",
+  "pregnancy",
+]
 
 const OCCUPATION_KEYS = [
   "hcp",
@@ -59,10 +70,24 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [clear, setClear] = useState(0);
 
   const handleFieldChange = (field) => (value) => {
-    setFormValues({
-      ...formValues,
-      [field]: value,
-    });
+
+    console.log(field, ": ", value);
+    if (underlying.includes(field)) {
+      setFormValues({
+        ...formValues,
+        underlyingConditions: {
+           ...formValues.underlyingConditions,
+           [field] : value
+        },
+      });
+
+    } else {
+      setFormValues({
+        ...formValues,
+       [field]: value,
+      });
+    }
+
   };
 
   const fields = [
@@ -221,6 +246,12 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     },
     {
       type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+    {
+      type: "check",
       label: lang.t("headache"),
       property: "headache",
       onChange: handleFieldChange("headache"),
@@ -242,6 +273,77 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       label: lang.t("shortnessOfBreath"),
       property: "shortnessOfBreath",
       onChange: handleFieldChange("shortnessOfBreath"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("chronicLungDisease"),
+      property: "chronicLungDisease",
+      onChange: handleFieldChange("chronicLungDisease"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("liverDisease"),
+      property: "liverDisease",
+      onChange: handleFieldChange("liverDisease"),
+    },
+    {
+      type: "check",
+      label: lang.t("renalDisease"),
+      property: "renalDisease",
+      onChange: handleFieldChange("renalDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("autoimmuneDisease"),
+      property: "autoimmuneDisease",
+      onChange: handleFieldChange("autoimmuneDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("cancer"),
+      property: "cancer",
+      onChange: handleFieldChange("cancer"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("diabetes"),
+      property: "diabetes",
+      onChange: handleFieldChange("diabetes"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("hiv"),
+      property: "hiv",
+      onChange: handleFieldChange("hiv"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("pregnancy"),
+      property: "pregnancy",
+      onChange: handleFieldChange("pregnancy"),
     },
     {
       type: "check",
@@ -427,7 +529,15 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-  return <Box>{renderForm()}</Box>;
+
+  console.log(formValues)
+
+  return (
+    <Box>
+      {renderForm()}
+    </Box>
+  );
+
 };
 
 export default MedicalCentersEntryForm;
