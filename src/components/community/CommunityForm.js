@@ -29,6 +29,13 @@ const REGION_KEYS = [
   "tigray",
 ];
 
+const OCCUPATION_KEYS = [
+  "hcp",
+  "merchantAnimal",
+  "airport",
+  "student",
+  "other",
+];
 
 const underlying = [
   "chronicLungDisease",
@@ -130,10 +137,20 @@ const CommunityForm = ({ onSubmit, lang }) => {
       ],
     },
     {
-      type: "text",
+      type: "select",
       label: lang.t("occupation.label"),
       property: "occupation",
       onChange: handleFieldChange("occupation"),
+      choices: OCCUPATION_KEYS.map((r) => ({
+        label: lang.t(`occupation.${r}`),
+        value: r,
+      })),
+    },
+    {
+      type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
     },
     {
       type: "select",
@@ -372,6 +389,13 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
+          {formValues.occupation == "other" ? 
+              <Grid item xs={12} md={4}>
+                        {renderFormField("occupationOther")}
+              </Grid> : ""
+              
+          }
+        
         </Grid>
 
         {renderSubsectionheader("Address")}
@@ -438,6 +462,8 @@ const CommunityForm = ({ onSubmit, lang }) => {
       </form>
     );
   };
+
+  console.log(formValues)
 
   return <Box>{renderForm()}</Box>;
 

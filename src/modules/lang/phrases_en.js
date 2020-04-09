@@ -58,6 +58,7 @@ export default {
     student: "Student",
     other: "Other",
   },
+  occupationOther: "Occupation if other was choosen",
   sex: {
     label: "Sex",
     male: "Male",

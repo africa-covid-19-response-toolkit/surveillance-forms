@@ -64,6 +64,7 @@ export default {
     student: "ተማሪ",
     other: "ሌላ",
   },
+  occupationOther: "የሥራ መደብ ሌላ ከተመረጠ",
   callDate: "የጥሪ ቀን",
   // TODO
   callerType: {
