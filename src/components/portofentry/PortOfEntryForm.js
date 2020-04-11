@@ -28,6 +28,7 @@ import {
   nameValidator,
   ageValidator,
   emailValidator,
+  nameMaxLengthValidator,
 } from "../../validation/form/portOfEntry";
 import config from '../../config';
 
@@ -130,8 +131,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       label: lang.t("middleName"),
       property: "middleName",
       onChange: handleFieldChange("middleName"),
-      onValidate: nameValidator.validate,
-      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+      onValidate: nameMaxLengthValidator.validate,
+      validationErrorMsg: lang.t(nameMaxLengthValidator.validationErrorMsg),
     },
     {
       type: "text",

@@ -130,5 +130,6 @@ export default {
     empty: "This field can not be empty",
     numberOnly: "This field is for number only",
     email: "Email address must be valid",
+    lengthAtMost100: "100 or few characters please",
   },
 };
