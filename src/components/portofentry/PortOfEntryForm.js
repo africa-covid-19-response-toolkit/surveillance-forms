@@ -17,18 +17,21 @@ import {
   makeStyles
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import {
+  renderField
+} from "../form/form-util";
 import { isEmpty, cloneDeep } from "lodash";
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
-import DependantsForm from '../dependents/DependentsForm';
-import { renderField } from "../form/form-util";
+import ReCAPTCHA from "react-google-recaptcha";
+import DependantsForm from "../dependents/DependentsForm";
 import {
   nameValidator,
   ageValidator,
   emailValidator,
 } from "../../validation/form/portOfEntry";
+import config from '../../config';
 
-const HOTEL_KEYS = ["skylight", "ghion", "azzeman", "sapphire", "other"];
-
+const TEST_SITE_KEY = config.captchaKey;
 
 const underlying = [
   "chronicLungDisease",
@@ -52,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
 }));
+const HOTEL_KEYS = ['skylight', 'ghion', 'azzeman', 'sapphire', 'other'];
+const DELAY = 1500;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -70,11 +75,29 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   });
 
   const [open, setOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [captchaText, setCaptchaText] = useState("");
+  const [isCaptchaExpired, setIsCaptchaExpired] = useState(false);
   const [clear, setClear] = useState(0);
 
-  const handleFieldChange = (field) => (value) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, DELAY);
+  });
 
-    console.log(field, ": ", value);
+  const handleChange = value => {
+    setCaptchaText(value);
+    if (value === null) {
+      setIsCaptchaExpired(true);
+    }
+  };
+
+  const asyncScriptOnLoad = () => {
+    console.log("scriptLoad - reCaptcha Ref-", React.createRef());
+  };
+
+  const handleFieldChange = (field) => (value) => {
     if (underlying.includes(field)) {
       setFormValues({
         ...formValues,
@@ -346,11 +369,15 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    fields.forEach((f) => {
-      if (f.onValidate) {
-        isValid = isValid && f.onValidate(formValues[f.property]);
-      }
-    });
+    if(!isEmpty(captchaText) && !isCaptchaExpired) {
+      fields.forEach((f) => {
+        if (f.onValidate) {
+          isValid = isValid && f.onValidate(formValues[f.property]);
+        }
+      });
+    } else {
+      isValid = false;
+    }
     return isValid;
   };
 
@@ -483,8 +510,15 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
             </Paper>
           </Dialog>
         </Box>
-
-
+        {isLoaded && (
+          <ReCAPTCHA
+            style={{ paddingTop: 20 }}
+            ref={React.createRef()}
+            sitekey={TEST_SITE_KEY}
+            onChange={handleChange}
+            asyncScriptOnLoad={asyncScriptOnLoad}
+          />
+        )}
         <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}

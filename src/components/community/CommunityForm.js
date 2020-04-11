@@ -14,7 +14,12 @@ import {
 import { renderField } from "../form/form-util";
 import { nameValidator, ageValidator } from "../../validation/form/community";
 import { green } from "@material-ui/core/colors";
+import ReCAPTCHA from "react-google-recaptcha";
+import { isEmpty } from "lodash";
+import config from '../../config';
 
+const TEST_SITE_KEY = config.captchaKey;
+const DELAY = 1500;
 const REGION_KEYS = [
   "addisAbaba",
   "afar",
@@ -59,6 +64,26 @@ const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
     [SEX_VALUE.property]: SEX_VALUE.female,
   });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [captchaText, setCaptchaText] = useState("");
+  const [isCaptchaExpired, setIsCaptchaExpired] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, DELAY);
+  });
+
+  const handleChange = value => {
+    setCaptchaText(value);
+    if (value === null) {
+      setIsCaptchaExpired(true);
+    }
+  };
+
+  const asyncScriptOnLoad = () => {
+    console.log("scriptLoad - reCaptcha Ref-", React.createRef());
+  };
   const [clear, setClear] = useState(0);
 
 
@@ -354,11 +379,16 @@ const CommunityForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    fields.forEach((f) => {
-      if (f.onValidate) {
-        isValid = isValid && f.onValidate(formValues[f.property]);
-      }
-    });
+    console.log("captchaText", captchaText, isEmpty(captchaText), isCaptchaExpired);
+    if(!isEmpty(captchaText) && !isCaptchaExpired) {
+      fields.forEach((f) => {
+        if (f.onValidate) {
+          isValid = isValid && f.onValidate(formValues[f.property]);
+        }
+      });
+    } else {
+      isValid = false;
+    }
     return isValid;
   };
 
@@ -389,13 +419,13 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation == "other" ? 
+          {formValues.occupation == "other" ?
               <Grid item xs={12} md={4}>
                         {renderFormField("occupationOther")}
               </Grid> : ""
-              
+
           }
-        
+
         </Grid>
 
         {renderSubsectionheader("Address")}
@@ -448,6 +478,16 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
+
+        {isLoaded && (
+          <ReCAPTCHA
+            style={{ paddingTop: 20 }}
+            ref={React.createRef()}
+            sitekey={TEST_SITE_KEY}
+            onChange={handleChange}
+            asyncScriptOnLoad={asyncScriptOnLoad}
+          />
+        )}
 
         <Box mt={4} textAlign="right">
           <Button

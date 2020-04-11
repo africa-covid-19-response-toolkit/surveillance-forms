@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
-  console.log(lang);
   const classes = useStyles();
   //TODO: this could be done better
   const fields = {
@@ -33,7 +32,6 @@ const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
       lang.t("note.note4"),
     ],
   };
-  console.log(fields);
 
   return (
     <Card className={classes.card}>
@@ -43,7 +41,6 @@ const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
         </Typography>
         <List>
           {fields.notes.map((el, index) => {
-            console.log(el);
             return (
               <ListItem key={index} disableGutters>
                 <ListItemAvatar style={{ flexShrink: 1 }}>

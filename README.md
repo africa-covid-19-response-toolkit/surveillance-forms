@@ -64,3 +64,6 @@ To validate forms
 3. If you want reusable validators (like: checking number, emptiness), reuse from `/validation/util` folder. Or add one
 4. If you add a new errorType (in languages), please add them to `/validation/util/errorTypes.js` and use for **validationErrorMsg**.
 5. In your form components, import the validator object and use **validate** and **validationErrorMsg**.
+
+## Google Recaptcha
+TODO: document where the site key settings are stored.
