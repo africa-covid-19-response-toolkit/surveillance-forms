@@ -463,8 +463,6 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  console.log(formValues)
-
   return <Box>{renderForm()}</Box>;
 
 };

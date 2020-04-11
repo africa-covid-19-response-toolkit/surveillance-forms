@@ -56,6 +56,13 @@ const execute = async (verb, url, body) => {
 
 class Api {
   async submitCommunity(formValues) {
+    
+    //clean up formValues
+    if (formValues.occupation == "other") {
+      formValues.occupation = formValues.occupationOther
+      delete formValues.occupationOther
+    }
+
     return execute(POST, '/public/communities', formValues);
   }
 
