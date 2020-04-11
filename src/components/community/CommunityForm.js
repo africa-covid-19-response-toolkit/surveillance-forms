@@ -12,14 +12,13 @@ import {
   Switch,
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import {
-  firstNameValidator,
-  ageValidator,
-} from "../../validation/form/community";
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
+import { nameValidator, ageValidator } from "../../validation/form/community";
+import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
+import { isEmpty } from "lodash";
+import config from '../../config';
 
-const TEST_SITE_KEY = process.env.REACT_APP_CAPTCHA_KEY;
+const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
 const REGION_KEYS = [
   "addisAbaba",
@@ -35,11 +34,39 @@ const REGION_KEYS = [
   "tigray",
 ];
 
+const OCCUPATION_KEYS = [
+  "hcp",
+  "merchantAnimal",
+  "airport",
+  "student",
+  "other",
+];
+
+const underlying = [
+  "chronicLungDisease",
+  "heartDisease",
+  "liverDisease",
+  "renalDisease",
+  "autoimmuneDisease",
+  "cancer",
+  "diabetes",
+  "hiv",
+  "pregnancy",
+]
+
+const SEX_VALUE = {
+  property: "sex",
+  female: "F",
+  male: "M",
+};
+
 const CommunityForm = ({ onSubmit, lang }) => {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    [SEX_VALUE.property]: SEX_VALUE.female,
+  });
   const [isLoaded, setIsLoaded] = useState(false);
   const [captchaText, setCaptchaText] = useState("");
-  const [isCaptchaExpired, setIsCaptchaExpired] = useState("false");
+  const [isCaptchaExpired, setIsCaptchaExpired] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,24 +75,38 @@ const CommunityForm = ({ onSubmit, lang }) => {
   });
 
   const handleChange = value => {
-    console.log("Captcha value:", value);
     setCaptchaText(value);
-    // if value is null recaptcha expired
-    if (value === null)
-    setIsCaptchaExpired("true");
+    if (value === null) {
+      setIsCaptchaExpired(true);
+    }
   };
 
   const asyncScriptOnLoad = () => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
+  const [clear, setClear] = useState(0);
 
 
   const handleFieldChange = (field) => (value) => {
+
     console.log(field, ": ", value);
-    setFormValues({
-      ...formValues,
-      [field]: value,
-    });
+
+    if (underlying.includes(field)) {
+      setFormValues({
+        ...formValues,
+        underlyingConditions: {
+           ...formValues.underlyingConditions,
+           [field] : value
+        },
+      });
+
+    } else {
+      setFormValues({
+        ...formValues,
+       [field]: value,
+      });
+    }
+
   };
 
   const fields = [
@@ -75,14 +116,16 @@ const CommunityForm = ({ onSubmit, lang }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
-      onValidate: firstNameValidator.validate,
-      validationErrorMsg: lang.t(firstNameValidator.validationErrorMsg),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
       label: lang.t("lastName"),
       property: "lastName",
       onChange: handleFieldChange("lastName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
       type: "text",
@@ -95,18 +138,18 @@ const CommunityForm = ({ onSubmit, lang }) => {
     {
       type: "select",
       label: lang.t("sex.label"),
-      property: "sex",
-      onChange: handleFieldChange("sex"),
+      property: SEX_VALUE.property,
+      onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
-        { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" },
+        { label: lang.t("sex.female"), value: SEX_VALUE.female },
+        { label: lang.t("sex.male"), value: SEX_VALUE.male },
       ],
     },
     {
       type: "text",
-      label: lang.t("phoneNo"),
-      property: "phoneNo",
-      onChange: handleFieldChange("phoneNo"),
+      label: lang.t("phoneNumber"),
+      property: "phoneNumber",
+      onChange: handleFieldChange("phoneNumber"),
     },
     {
       type: "select",
@@ -119,10 +162,20 @@ const CommunityForm = ({ onSubmit, lang }) => {
       ],
     },
     {
-      type: "text",
-      label: lang.t("occupation"),
+      type: "select",
+      label: lang.t("occupation.label"),
       property: "occupation",
       onChange: handleFieldChange("occupation"),
+      choices: OCCUPATION_KEYS.map((r) => ({
+        label: lang.t(`occupation.${r}`),
+        value: r,
+      })),
+    },
+    {
+      type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
     },
     {
       type: "select",
@@ -136,7 +189,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("subcityOrZone"),
+      label: lang.t("subcity.label"),
       property: "subcityOrZone",
       onChange: handleFieldChange("subcityOrZone"),
     },
@@ -160,9 +213,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
     },
     {
       type: "text",
-      label: lang.t("houseNo"),
-      property: "houseNo",
-      onChange: handleFieldChange("houseNo"),
+      label: lang.t("houseNumber"),
+      property: "houseNumber",
+      onChange: handleFieldChange("houseNumber"),
     },
     {
       type: "check",
@@ -183,36 +236,115 @@ const CommunityForm = ({ onSubmit, lang }) => {
       onChange: handleFieldChange("shortnessOfBreath"),
     },
     {
+      type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("chronicLungDisease"),
+      property: "chronicLungDisease",
+      onChange: handleFieldChange("chronicLungDisease"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("liverDisease"),
+      property: "liverDisease",
+      onChange: handleFieldChange("liverDisease"),
+    },
+    {
+      type: "check",
+      label: lang.t("renalDisease"),
+      property: "renalDisease",
+      onChange: handleFieldChange("renalDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("autoimmuneDisease"),
+      property: "autoimmuneDisease",
+      onChange: handleFieldChange("autoimmuneDisease"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("cancer"),
+      property: "cancer",
+      onChange: handleFieldChange("cancer"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("diabetes"),
+      property: "diabetes",
+      onChange: handleFieldChange("diabetes"),
+    },
+
+
+    {
+      type: "check",
+      label: lang.t("hiv"),
+      property: "hiv",
+      onChange: handleFieldChange("hiv"),
+    },
+
+    {
+      type: "check",
+      label: lang.t("pregnancy"),
+      property: "pregnancy",
+      onChange: handleFieldChange("pregnancy"),
+    },
+
+    {
       type: "switch",
-      label: lang.t("travelHx"),
+      label: lang.t("travelHistory"),
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("haveSex"),
       property: "haveSex",
       onChange: handleFieldChange("haveSex"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("animalMarket"),
       property: "animalMarket",
       onChange: handleFieldChange("animalMarket"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
     {
       type: "switch",
       label: lang.t("healthFacility"),
       property: "healthFacility",
       onChange: handleFieldChange("healthFacility"),
-      onLabel: "Yes",
-      offLabel: "No",
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
   ];
 
@@ -221,32 +353,34 @@ const CommunityForm = ({ onSubmit, lang }) => {
     if (!field) {
       return null;
     }
-    return renderField(field);
+    return renderField(field, clear);
   };
 
   const renderSectionHeader = (label) => {
     return (
-      <Box p={3} my={3} style={{ backgroundColor: green[700] }}>
-        <Typography variant="h4">{label}</Typography>
-      </Box>
+      <Typography className="sectionheader" variant="h2">{label}</Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-      <Box mt={3} mb={1}>
-        <Typography variant="h5">{label}</Typography>
-      </Box>
+        <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
   const hadleSubmit = () => {
-    onSubmit(formValues);
+    onSubmit(formValues)
+      .then(() => {
+        // clear form values
+        setFormValues({})
+        setClear(clear + 1);
+      })
   };
 
   const isFormValid = () => {
     let isValid = true;
-    if(captchaText !== "" || captchaText !== null) {
+    console.log("captchaText", captchaText, isEmpty(captchaText), isCaptchaExpired);
+    if(!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
@@ -262,6 +396,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     return (
       <form autoComplete="off">
         {renderSectionHeader("Online Suspect Form")}
+        {renderSubsectionheader("Basic Information")}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("firstName")}
@@ -279,11 +414,18 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("language")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNo")}
+            {renderFormField("phoneNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
+          {formValues.occupation == "other" ?
+              <Grid item xs={12} md={4}>
+                        {renderFormField("occupationOther")}
+              </Grid> : ""
+
+          }
+
         </Grid>
 
         {renderSubsectionheader("Address")}
@@ -308,31 +450,31 @@ const CommunityForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
 
-        {renderSubsectionheader("Symptoms")}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={4}>
+            {renderSubsectionheader("Symptoms")}
             {renderFormField("fever")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cough")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
+            {renderFormField("fatigue")}
           </Grid>
-        </Grid>
-
-        {renderSectionHeader("General Information")}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={4}>
+            {renderSubsectionheader(lang.t("underlyingConditions"))}
+            {renderFormField("chronicLungDisease")}
+            {renderFormField("heartDisease")}
+            {renderFormField("liverDisease")}
+            {renderFormField("renalDisease")}
+            {renderFormField("autoimmuneDisease")}
+            {renderFormField("cancer")}
+            {renderFormField("diabetes")}
+            {renderFormField("hiv")}
+            {renderFormField("pregnancy")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader("General Information")}
             {renderFormField("travelHx")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("animalMarket")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("haveSex")}
-          </Grid>
-          <Grid item xs={12} md={6}>
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>
@@ -361,11 +503,8 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  return (
-    <Box>
-      {renderForm()}      
-    </Box>
-  );
+  return <Box>{renderForm()}</Box>;
+
 };
 
 export default CommunityForm;
