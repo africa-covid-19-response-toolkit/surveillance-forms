@@ -101,6 +101,12 @@ import {
     },
     {
       type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
+    },
+    {
+      type: "text",
       label: lang.t("phoneNumber"),
       property: "phoneNumber",
       onChange: handleFieldChange("phoneNumber"),
