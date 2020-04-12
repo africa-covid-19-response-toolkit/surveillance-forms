@@ -123,6 +123,7 @@ const StatefulDateField = ({ field }) => {
       currentDate.getFullYear()
     );
     const etdate = basicDate.year + "-" + basicDate.month + "-" + basicDate.day;
+
     currentDate = momentAm(etdate).format();
   }
   const [value, setValue] = useState(field.value || currentDate);

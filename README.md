@@ -58,7 +58,7 @@ Overview:
 - See `src/modules/lang` for functionality
 - See usage in containers in `src/containers/Community.js`
 - To add support for more lanuages for calandar, we use https://momentjs.com/docs/#/i18n/
-- For lanauges moment.js does not support, one can add support usng moment.defineLocale(). See the example in src/modules/lang/moment-am.js, where Amaharic support was added.
+- For languages [moment.js] does not support, one can add support using [moment.defineLocale()]. See the example in `src/modules/lang/moment-am.js`, where Amharic support was added.
 
 ### Form Validation
 
