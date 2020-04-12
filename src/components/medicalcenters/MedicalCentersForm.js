@@ -53,14 +53,22 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         }
       });
     } else {
-      setFormValues({
-        ...formValues,
-        [field]: value
-      });
+      if (field == "region") {
+        setFormValues({
+          ...formValues,
+          subcity: null,
+          [field]: value
+        });
+      } else {
+        setFormValues({
+          ...formValues,
+          [field]: value
+        });
+      }
     }
   };
 
-  const fields = MEDICAL_FIELDS(lang, handleFieldChange, langCode);
+  const fields = MEDICAL_FIELDS(lang, handleFieldChange, langCode, formValues);
 
   const renderFormField = property => {
     const field = fields.find(f => f.property === property);
