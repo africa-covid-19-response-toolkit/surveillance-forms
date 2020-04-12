@@ -5,12 +5,11 @@ import {
   nameValidator,
   ageValidator,
   emailValidator,
-  nameMaxLengthValidator,
+  nameMaxLengthValidator
 } from "../../validation/form/medical";
-import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
-import config from '../../config';
+import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
@@ -26,7 +25,7 @@ const REGION_KEYS = [
   "oromia",
   "somali",
   "southern",
-  "tigray",
+  "tigray"
 ];
 const SUBCITY_KEYS = [
   "addisKetema",
@@ -38,7 +37,7 @@ const SUBCITY_KEYS = [
   "kolfe",
   "lideta",
   "nifasSilkLafto",
-  "yeka",
+  "yeka"
 ];
 
 const underlying = [
@@ -50,29 +49,29 @@ const underlying = [
   "cancer",
   "diabetes",
   "hiv",
-  "pregnancy",
-]
+  "pregnancy"
+];
 
 const OCCUPATION_KEYS = [
   "hcp",
   "merchantAnimal",
   "airport",
   "student",
-  "other",
+  "other"
 ];
 
 const SEX_VALUE = {
   property: "sex",
   female: "F",
-  male: "M",
+  male: "M"
 };
 
 const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
 const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-    [SEX_VALUE.property]: SEX_VALUE.female,
+    [SEX_VALUE.property]: SEX_VALUE.female
   });
-  console.log(langCode);
+
   const [open, setOpen] = useState(false);
   const [clear, setClear] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -96,25 +95,22 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
 
-  const handleFieldChange = (field) => (value) => {
-
+  const handleFieldChange = field => value => {
     console.log(field, ": ", value);
     if (underlying.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
-           ...formValues.underlyingConditions,
-           [field] : value
-        },
+          ...formValues.underlyingConditions,
+          [field]: value
+        }
       });
-
     } else {
       setFormValues({
         ...formValues,
-       [field]: value,
+        [field]: value
       });
     }
-
   };
 
   const fields = [
@@ -125,7 +121,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       focus: true,
       onChange: handleFieldChange("firstName"),
       onValidate: nameValidator.validate,
-      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg)
     },
     {
       type: "text",
@@ -134,7 +130,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       focus: true,
       onChange: handleFieldChange("middleName"),
       onValidate: nameMaxLengthValidator.validate,
-      validationErrorMsg: lang.t(nameMaxLengthValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(nameMaxLengthValidator.validationErrorMsg)
     },
     {
       type: "text",
@@ -142,7 +138,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "lastName",
       onChange: handleFieldChange("lastName"),
       onValidate: nameValidator.validate,
-      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg)
     },
     {
       type: "text",
@@ -150,7 +146,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "age",
       onChange: handleFieldChange("age"),
       onValidate: ageValidator.validate,
-      validationErrorMsg: lang.t(ageValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(ageValidator.validationErrorMsg)
     },
     {
       type: "select",
@@ -159,14 +155,14 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
         { label: lang.t("sex.female"), value: SEX_VALUE.female },
-        { label: lang.t("sex.male"), value: SEX_VALUE.male },
-      ],
+        { label: lang.t("sex.male"), value: SEX_VALUE.male }
+      ]
     },
     {
       type: "text",
       label: lang.t("phoneNumber"),
       property: "phoneNumber",
-      onChange: handleFieldChange("phoneNumber"),
+      onChange: handleFieldChange("phoneNumber")
     },
     {
       type: "text",
@@ -174,82 +170,83 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "email",
       onChange: handleFieldChange("email"),
       onValidate: emailValidator.validate,
-      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(emailValidator.validationErrorMsg)
     },
     {
       type: "select",
       label: lang.t("nationality.label"),
       property: "nationality",
       onChange: handleFieldChange("nationality"),
-      choices: NATIONALITY_KEYS.map((r) => ({
+      choices: NATIONALITY_KEYS.map(r => ({
         label: lang.t(`nationality.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "select",
       label: lang.t("region.label"),
       property: "region",
       onChange: handleFieldChange("region"),
-      choices: REGION_KEYS.map((r) => ({
+      choices: REGION_KEYS.map(r => ({
         label: lang.t(`region.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "text",
       label: lang.t("zone"),
       property: "zone",
-      onChange: handleFieldChange("zone"),
+      onChange: handleFieldChange("zone")
     },
     {
       type: "select",
       label: lang.t("subcity.label"),
       property: "subcity",
       onChange: handleFieldChange("subcity"),
-      choices: SUBCITY_KEYS.map((r) => ({
+      disabled: formValues.region && formValues.region !== "addisAbaba",
+      choices: SUBCITY_KEYS.map(r => ({
         label: lang.t(`subcity.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "text",
       label: lang.t("kebele"),
       property: "kebele",
-      onChange: handleFieldChange("kebele"),
+      onChange: handleFieldChange("kebele")
     },
 
     {
       type: "text",
       label: lang.t("woreda"),
       property: "woreda",
-      onChange: handleFieldChange("woreda"),
+      onChange: handleFieldChange("woreda")
     },
     {
       type: "text",
       label: lang.t("houseNumber"),
       property: "houseNumber",
-      onChange: handleFieldChange("houseNumber"),
+      onChange: handleFieldChange("houseNumber")
     },
     {
       type: "select",
       label: lang.t("occupation.label"),
       property: "occupation",
       onChange: handleFieldChange("occupation"),
-      choices: OCCUPATION_KEYS.map((r) => ({
+      choices: OCCUPATION_KEYS.map(r => ({
         label: lang.t(`occupation.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "select",
       label: lang.t("callerType.label"),
       property: "callerType",
       onChange: handleFieldChange("callerType"),
-      choices: CALLERTYPE_KEYS.map((r) => ({
+      choices: CALLERTYPE_KEYS.map(r => ({
         label: lang.t(`callerType.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
 
     {
@@ -257,126 +254,124 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       label: lang.t("callDate"),
       property: "callDate",
       langCode: langCode,
-      onChange: handleFieldChange("callDate"),
+      onChange: handleFieldChange("callDate")
     },
     {
       type: "check",
       label: lang.t("fever"),
       property: "fever",
-      onChange: handleFieldChange("fever"),
+      onChange: handleFieldChange("fever")
     },
     {
       type: "check",
       label: lang.t("cough"),
       property: "cough",
-      onChange: handleFieldChange("cough"),
+      onChange: handleFieldChange("cough")
     },
     {
       type: "check",
       label: lang.t("fatigue"),
       property: "fatigue",
-      onChange: handleFieldChange("fatigue"),
+      onChange: handleFieldChange("fatigue")
     },
     {
       type: "check",
       label: lang.t("headache"),
       property: "headache",
-      onChange: handleFieldChange("headache"),
+      onChange: handleFieldChange("headache")
     },
     {
       type: "check",
       label: lang.t("bodyPain"),
       property: "bodyPain",
-      onChange: handleFieldChange("bodyPain"),
+      onChange: handleFieldChange("bodyPain")
     },
     {
       type: "check",
       label: lang.t("runnyNose"),
       property: "runnyNose",
-      onChange: handleFieldChange("runnyNose"),
+      onChange: handleFieldChange("runnyNose")
     },
     {
       type: "check",
       label: lang.t("shortnessOfBreath"),
       property: "shortnessOfBreath",
-      onChange: handleFieldChange("shortnessOfBreath"),
+      onChange: handleFieldChange("shortnessOfBreath")
     },
 
     {
       type: "check",
       label: lang.t("chronicLungDisease"),
       property: "chronicLungDisease",
-      onChange: handleFieldChange("chronicLungDisease"),
-    },
-
-
-    {
-      type: "check",
-      label: lang.t("heartDisease"),
-      property: "heartDisease",
-      onChange: handleFieldChange("heartDisease"),
+      onChange: handleFieldChange("chronicLungDisease")
     },
 
     {
       type: "check",
       label: lang.t("heartDisease"),
       property: "heartDisease",
-      onChange: handleFieldChange("heartDisease"),
+      onChange: handleFieldChange("heartDisease")
+    },
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease")
     },
 
     {
       type: "check",
       label: lang.t("liverDisease"),
       property: "liverDisease",
-      onChange: handleFieldChange("liverDisease"),
+      onChange: handleFieldChange("liverDisease")
     },
     {
       type: "check",
       label: lang.t("renalDisease"),
       property: "renalDisease",
-      onChange: handleFieldChange("renalDisease"),
+      onChange: handleFieldChange("renalDisease")
     },
 
     {
       type: "check",
       label: lang.t("autoimmuneDisease"),
       property: "autoimmuneDisease",
-      onChange: handleFieldChange("autoimmuneDisease"),
+      onChange: handleFieldChange("autoimmuneDisease")
     },
 
     {
       type: "check",
       label: lang.t("cancer"),
       property: "cancer",
-      onChange: handleFieldChange("cancer"),
+      onChange: handleFieldChange("cancer")
     },
 
     {
       type: "check",
       label: lang.t("diabetes"),
       property: "diabetes",
-      onChange: handleFieldChange("diabetes"),
+      onChange: handleFieldChange("diabetes")
     },
-
 
     {
       type: "check",
       label: lang.t("hiv"),
       property: "hiv",
-      onChange: handleFieldChange("hiv"),
+      onChange: handleFieldChange("hiv")
     },
 
     {
       type: "check",
       label: lang.t("pregnancy"),
       property: "pregnancy",
-      onChange: handleFieldChange("pregnancy"),
+      onChange: handleFieldChange("pregnancy")
     },
     {
       type: "check",
       label: lang.t("feelingUnwell"),
       property: "feelingUnwell",
-      onChange: handleFieldChange("feelingUnwell"),
+      onChange: handleFieldChange("feelingUnwell")
     },
     {
       type: "switch",
@@ -384,7 +379,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      offLabel: lang.t("no")
     },
     {
       type: "switch",
@@ -392,7 +387,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "haveSex",
       onChange: handleFieldChange("haveSex"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      offLabel: lang.t("no")
     },
     {
       type: "switch",
@@ -400,7 +395,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "animalMarket",
       onChange: handleFieldChange("animalMarket"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      offLabel: lang.t("no")
     },
     {
       type: "switch",
@@ -408,37 +403,40 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       property: "healthFacility",
       onChange: handleFieldChange("healthFacility"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
-    },
+      offLabel: lang.t("no")
+    }
   ];
 
-  const renderFormField = (property) => {
-    const field = fields.find((f) => f.property === property);
+  const renderFormField = property => {
+    const field = fields.find(f => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = (label) => {
+  const renderSectionHeader = label => {
     return (
-      <Typography className="sectionheader" variant="h2">{label}</Typography>
+      <Typography className="sectionheader" variant="h2">
+        {label}
+      </Typography>
     );
   };
 
-  const renderSubsectionheader = (label) => {
+  const renderSubsectionheader = label => {
     return (
-        <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">
+        {label}
+      </Typography>
     );
   };
 
   const handleSubmit = () => {
-    onSubmit(formValues)
-      .then(() => {
-        // clear form values
-        setFormValues({})
-        setClear(clear + 1);
-      })
+    onSubmit(formValues).then(() => {
+      // clear form values
+      setFormValues({});
+      setClear(clear + 1);
+    });
   };
 
   const handleModal = () => {
@@ -451,8 +449,8 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    if(!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach((f) => {
+    if (!isEmpty(captchaText) && !isCaptchaExpired) {
+      fields.forEach(f => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
         }
@@ -466,10 +464,8 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader("Health Facilities Application Form")}
-        {renderSubsectionheader(
-          "Health Facilities Reporting Form For COVID-19"
-        )}
+        {renderSectionHeader(lang.t("healthFacilitiesApplicationForm"))}
+        {renderSubsectionheader(lang.t("healthFacilitiesApplicationForm"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
@@ -528,7 +524,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         </Grid>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>
-            {renderSubsectionheader("Symptoms")}
+            {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
@@ -547,7 +543,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader("General Information")}
+            {renderSubsectionheader(lang.t("generalInformation"))}
             {renderFormField("travelHx")}
             {renderFormField("animalMarket")}
             {renderFormField("haveSex")}
@@ -577,15 +573,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-
-  console.log(formValues)
-
-  return (
-    <Box>
-      {renderForm()}
-    </Box>
-  );
-
+  return <Box>{renderForm()}</Box>;
 };
 
 export default MedicalCentersEntryForm;
