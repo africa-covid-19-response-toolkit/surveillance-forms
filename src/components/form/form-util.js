@@ -202,7 +202,7 @@ export const renderDateField = field => {
 const StatefulSelectField = ({ field }) => {
   const { label, property, onChange, disabled, choices } = field;
 
-  const [value, setValue] = useState(field.value || choices[0].value);
+  const [value, setValue] = useState("");
 
   const handleChange = event => {
     const newValue = event.target.value;
@@ -309,7 +309,9 @@ const StatefulCheckbox = ({ field }) => {
         onChange={handleChange}
         inputProps={{ "aria-label": "primary checkbox" }}
       />
-      <Typography>{label}</Typography>
+      <div style={{width: 'maxContent', cursor: 'pointer'}} onClick={handleChange}>
+        <Typography>{label}</Typography>
+      </div>  
     </Box>
   );
 };
