@@ -196,6 +196,9 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
         </Grid>
 
         {renderSubsectionheader("Travel Info")}

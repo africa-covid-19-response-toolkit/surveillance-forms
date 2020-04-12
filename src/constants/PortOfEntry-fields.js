@@ -7,7 +7,8 @@ import {
 
 import {
     SEX_VALUE,
-    HOTEL_KEYS
+    HOTEL_KEYS,
+    OCCUPATION_KEYS
 } from "./common"
 
   const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange) => { return [
@@ -87,6 +88,16 @@ import {
       label: lang.t("passportNumber"),
       property: "passportNo",
       onChange: handleFieldChange("passportNo"),
+    },
+    {
+      type: "select",
+      label: lang.t("occupation.label"),
+      property: "occupation",
+      onChange: handleFieldChange("occupation"),
+      choices: OCCUPATION_KEYS.map((r) => ({
+        label: lang.t(`${r}`),
+        value: r,
+      })),
     },
     {
       type: "text",
