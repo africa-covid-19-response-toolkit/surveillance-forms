@@ -6,7 +6,6 @@ import MEDICAL_FIELDS from "../../constants/medicalCenter-fields";
 import { UNDERLYING } from "../../constants/common";
 import MedicalInitialState from "./MedicalCentersInitialState";
 
-import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
 import config from "../../config";
@@ -100,14 +99,6 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
       setFormValues({});
       setClear(clear + 1);
     });
-  };
-
-  const handleModal = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const isFormValid = () => {

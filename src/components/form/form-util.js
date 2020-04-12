@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { isEmpty, cloneDeep } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import momentAm from "../../modules/lang/moment-am";
+import moment from "../../modules/lang/moment-lang";
 
 import MomentUtils from "@date-io/moment";
 import { toEthiopian as ToEthiopian } from "ethio-qalendar";
@@ -124,7 +124,7 @@ const StatefulDateField = ({ field }) => {
     );
     const etdate = basicDate.year + "-" + basicDate.month + "-" + basicDate.day;
 
-    currentDate = momentAm(etdate).format();
+    currentDate = moment(etdate).format();
   }
   const [value, setValue] = useState(field.value || currentDate);
 
@@ -195,7 +195,7 @@ export const renderTextField = (field, clear) => {
 };
 
 export const renderDateField = field => {
-  momentAm.locale(field.langCode);
+  moment.locale(field.langCode);
   return <StatefulDateField field={field} />;
 };
 
@@ -309,9 +309,12 @@ const StatefulCheckbox = ({ field }) => {
         onChange={handleChange}
         inputProps={{ "aria-label": "primary checkbox" }}
       />
-      <div style={{width: 'maxContent', cursor: 'pointer'}} onClick={handleChange}>
+      <div
+        style={{ width: "maxContent", cursor: "pointer" }}
+        onClick={handleChange}
+      >
         <Typography>{label}</Typography>
-      </div>  
+      </div>
     </Box>
   );
 };

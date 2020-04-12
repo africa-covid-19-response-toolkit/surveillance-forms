@@ -57,8 +57,11 @@ Overview:
 - We use [ployglot](http://airbnb.io/polyglot.js/polyglot.html) library for keyword replacement.
 - See `src/modules/lang` for functionality
 - See usage in containers in `src/containers/Community.js`
+
+### How to setup a localized date field
+
 - To add support for more languages for calendar, we use [moment.js](https://momentjs.com/docs/#/i18n/)
-- For languages `moment.js` does not support, one can add support using `moment.defineLocale()`. See the example in `src/modules/lang/moment-am.js`, where Amharic support was added.
+- For languages `moment.js` does not support, one can add support using `moment.defineLocale()`. See the example in `src/modules/lang/moment-lang.js`, where Amharic support was added.
 
 ### Form Validation
 

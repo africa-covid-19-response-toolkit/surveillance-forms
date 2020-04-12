@@ -1,7 +1,4 @@
-import moment from "moment";
-
-moment.defineLocale("am", {
-  parentLocale: "en",
+export default {
   months: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split("_"),
   monthsShort: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split(
     "_"
@@ -45,6 +42,4 @@ moment.defineLocale("am", {
     LLL: "MMMM D, YYYY h:mm A",
     LLLL: "dddd, MMMM D, YYYY h:mm A"
   }
-});
-
-export default moment;
+};
