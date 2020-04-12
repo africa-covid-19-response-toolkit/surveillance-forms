@@ -136,5 +136,13 @@ export default {
   healthFacilitiesReportingFormForCOVID19:
     "Health Facilities Reporting Form For COVID-19",
   generalInformation: "GENERAL INFORMATION",
-  symptoms: "SYMPTOMS"
+  symptoms: "Symptoms",
+  onlineSuspectForm: "Online Suspect Form",
+  basicInformation: "Basic Information",
+  address: "Address",
+  passengerRegistrationForm: "Passenger Registration Form",
+  travelInfo: "Travel Info",
+  dependentBasicInformation: "Dependent's Basic Information",
+  passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
+  dependents: "Dependents"
 };

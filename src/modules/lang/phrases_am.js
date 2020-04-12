@@ -105,9 +105,10 @@ export default {
     ghion: "ጊዮን ሆቴል",
     azzeman: "አዜማን ሆቴል",
     sapphire: "ሳፋየር ሆቴል",
-    other: "ሌላ",
-    addDependent: "Add Dependent(s)"
+    other: "ሌላ"
   },
+
+  addDependent: "ጥገኛ (ኦች) ያክሉ",
   formErrors: {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
@@ -129,5 +130,13 @@ export default {
   healthFacilitiesApplicationForm: "የጤና ተቋማት ማመልከቻ ቅጽ",
   healthFacilitiesReportingFormForCOVID19: "የ COVID-19 ን ቅጽ የሚገልጽ የጤና አቅርቦቶች",
   generalInformation: "አጠቃላይ መረጃ",
-  symptoms: "ምልክቶች"
+  symptoms: "ምልክቶች",
+  onlineSuspectForm: "የድህረ  ገፅ መመዝገቢያ ቅጽ",
+  basicInformation: "መሰረታዊ መረጃ",
+  address: "አድራሻ",
+  passengerRegistrationForm: "የተሳፋሪ ምዝገባ ቅጽ",
+  travelInfo: "የጉዞ መረጃ",
+  dependentBasicInformation: "ጥገኛ መሠረታዊ መረጃ",
+  passengerDependentsRegistrationForm: "የተሳፋሪዎች ጥገኛ ምዝገባዎች ቅጽ",
+  dependents: "ጥገኛዎች"
 };

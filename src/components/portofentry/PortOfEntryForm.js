@@ -17,31 +17,27 @@ import {
   makeStyles
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import {
-  renderField
-} from "../form/form-util";
-import PortOfEntryInitialState from "./PortOfEntryInitialState"
+import { renderField } from "../form/form-util";
+import PortOfEntryInitialState from "./PortOfEntryInitialState";
 import { isEmpty, cloneDeep } from "lodash";
-import {SEX_VALUE, UNDERLYING} from "../../constants/common";
-import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields"
+import { SEX_VALUE, UNDERLYING } from "../../constants/common";
+import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields";
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
 
-
-import config from '../../config';
+import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   appBar: {
-    position: 'relative',
+    position: "relative"
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1,
-  },
+    flex: 1
+  }
 }));
 
 const DELAY = 1500;
@@ -50,12 +46,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
-
-const PortOfEntryForm = ({ onSubmit, lang }) => {
+const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-      ...PortOfEntryInitialState
+    ...PortOfEntryInitialState
   });
 
   const [open, setOpen] = useState(false);
@@ -81,54 +74,55 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
 
-  const handleFieldChange = (field) => (value) => {
+  const handleFieldChange = field => value => {
     if (UNDERLYING.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
-           ...formValues.underlyingConditions,
-           [field] : value
-        },
+          ...formValues.underlyingConditions,
+          [field]: value
+        }
       });
-
     } else {
       setFormValues({
         ...formValues,
-       [field]: value,
+        [field]: value
       });
     }
   };
 
   const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
 
-  
-  const renderFormField = (property) => {
-    const field = fields.find((f) => f.property === property);
+  const renderFormField = property => {
+    const field = fields.find(f => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = (label) => {
+  const renderSectionHeader = label => {
     return (
-      <Typography className="sectionheader" variant="h2">{label}</Typography>
+      <Typography className="sectionheader" variant="h2">
+        {label}
+      </Typography>
     );
   };
 
-  const renderSubsectionheader = (label) => {
+  const renderSubsectionheader = label => {
     return (
-        <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">
+        {label}
+      </Typography>
     );
   };
 
   const handleSubmit = () => {
-    onSubmit(formValues)
-      .then(() => {
-        // clear form values
-        setFormValues({})
-        setClear(clear + 1);
-      })
+    onSubmit(formValues).then(() => {
+      // clear form values
+      setFormValues({});
+      setClear(clear + 1);
+    });
   };
 
   const handleModal = () => {
@@ -141,8 +135,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    if(!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach((f) => {
+    if (!isEmpty(captchaText) && !isCaptchaExpired) {
+      fields.forEach(f => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
         }
@@ -153,21 +147,21 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     return isValid;
   };
 
-  const handleDependentsAdd = (dependent) => {
+  const handleDependentsAdd = dependent => {
     setOpen(false);
     const dependents = formValues.dependents || [];
     dependents.push(dependent);
     setFormValues({
       ...formValues,
       dependents
-    })
-  }
+    });
+  };
 
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader("Passenger Registration Form")}
-        {renderSubsectionheader("Basic Information")}
+        {renderSectionHeader(lang.t("passengerRegistrationForm"))}
+        {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
@@ -198,7 +192,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
 
-        {renderSubsectionheader("Travel Info")}
+        {renderSubsectionheader(lang.t("travelInfo"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("travelFrom")}
@@ -219,7 +213,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
-            {renderSubsectionheader("Symptoms")}
+            {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
@@ -239,46 +233,66 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
         <Box mt={4} textAlign="left">
-          {renderSubsectionheader('Dependents')}
-          <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
+          {renderSubsectionheader(lang.t("dependents"))}
+          <Button onClick={handleModal} variant="outlined" size="large">
+            {lang.t("addDependent")}
+          </Button>
           {!isEmpty(formValues.dependents) && (
             <Grid container item xs={12} md={4}>
-              <List style={{ width: '100%' }}>
+              <List style={{ width: "100%" }}>
                 {formValues.dependents.map((d, index) => {
                   const onRemoveDependent = () => {
-                    const dependents = formValues.dependents.filter((d, i) => i !== index);
+                    const dependents = formValues.dependents.filter(
+                      (d, i) => i !== index
+                    );
                     setFormValues({
                       ...formValues,
                       dependents
-                    })
-                  }
+                    });
+                  };
 
                   return (
                     <ListItem>
-                      <Typography>{`${index + 1}. ${d.firstName} ${d.lastName}`}</Typography>
+                      <Typography>{`${index + 1}. ${d.firstName} ${
+                        d.lastName
+                      }`}</Typography>
                       <ListItemSecondaryAction>
                         <Button onClick={onRemoveDependent}>Remove</Button>
                       </ListItemSecondaryAction>
                     </ListItem>
-                  )
+                  );
                 })}
               </List>
             </Grid>
           )}
 
-          <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-            <AppBar style={{ background: 'blue' }}>
+          <Dialog
+            fullScreen
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={Transition}
+          >
+            <AppBar style={{ background: "blue" }}>
               <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  onClick={handleClose}
+                  aria-label="close"
+                >
                   <CloseIcon />
                 </IconButton>
                 <Typography>
-                  Passenger Dependents Registration Form
+                  {lang.t("passengerDependentsRegistrationForm")}
                 </Typography>
               </Toolbar>
             </AppBar>
             <Paper style={{ margin: 30, padding: 30 }}>
-              <DependantsForm onSubmit={handleDependentsAdd} lang={lang} />
+              <DependantsForm
+                onSubmit={handleDependentsAdd}
+                lang={lang}
+                langCode={langCode}
+              />
             </Paper>
           </Dialog>
         </Box>
