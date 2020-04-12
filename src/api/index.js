@@ -67,10 +67,24 @@ class Api {
   }
 
   async submitMedical(formValues) {
+
+    //clean up formValues
+    if (formValues.occupation == "other") {
+      formValues.occupation = formValues.occupationOther
+      delete formValues.occupationOther
+    }
+
     return execute(POST, '/public/medical-facilities', formValues);
   }
 
   async submitPortOfEntry(formValues) {
+
+    //clean up formValues
+    if (formValues.occupation == "other") {
+      formValues.occupation = formValues.occupationOther
+      delete formValues.occupationOther
+    }
+    
     return execute(POST, '/public/passengers', formValues);
   }
 }
