@@ -8,7 +8,7 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       type: "text",
       label: lang.t("firstName"),
       property: "firstName",
-      focus: true,
+      focus: false,
       onChange: handleFieldChange("firstName"),
       onValidate: nameValidator.validate,
       validationErrorMsg: lang.t(nameValidator.validationErrorMsg),

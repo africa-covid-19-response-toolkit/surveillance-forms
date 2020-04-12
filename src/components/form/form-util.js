@@ -218,7 +218,7 @@ export const renderDateField = (field) => {
 const StatefulSelectField = ({ field }) => {
   const { label, property, onChange, choices } = field;
 
-  const [value, setValue] = useState(field.value || choices[0].value);
+  const [value, setValue] = useState("");
 
   const handleChange = (event) => {
     const newValue = event.target.value;

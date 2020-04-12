@@ -20,6 +20,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import {
   renderField
 } from "../form/form-util";
+import PortOfEntryState from "./PortOfEntryState"
 import { isEmpty, cloneDeep } from "lodash";
 import {SEX_VALUE, UNDERLYING} from "../../constants/common";
 import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields"
@@ -54,7 +55,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
-    [SEX_VALUE.property]: SEX_VALUE.female,
+      ...PortOfEntryState
   });
 
   const [open, setOpen] = useState(false);
