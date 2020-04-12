@@ -1,4 +1,4 @@
-const MedicalState = {
+const MedicalInitialState = {
     
     firstName: "",
     middleName: "",
@@ -45,4 +45,4 @@ const MedicalState = {
     },
   }
 
-  export default MedicalState;
+  export default MedicalInitialState;

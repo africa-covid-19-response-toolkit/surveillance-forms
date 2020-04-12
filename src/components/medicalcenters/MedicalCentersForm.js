@@ -4,7 +4,7 @@ import { renderField } from "../form/form-util";
 
 import MEDICAL_FIELDS from "../../constants/medicalCenter-fields";
 import {UNDERLYING} from "../../constants/common";
-import MedicalState from "./MedicalCenterState"
+import MedicalInitialState from "./MedicalCentersInitialState"
 
 import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -17,7 +17,7 @@ const DELAY = 1500;
 
 const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-       ...MedicalState
+       ...MedicalInitialState
   });
   console.log(langCode);
   const [open, setOpen] = useState(false);
