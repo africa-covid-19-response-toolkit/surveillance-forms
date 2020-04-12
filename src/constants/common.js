@@ -1,11 +1,10 @@
 
 const OCCUPATION_KEYS = [
-    "hcp",
-    "merchantAnimal",
-    "airport",
-    "student",
-    "other",
-  ];
+    "Health care professional",
+    "Airline/airport employee",
+    "Merchant",
+    "Other",
+];
 
 const UNDERLYING  = [
   "chronicLungDisease",
