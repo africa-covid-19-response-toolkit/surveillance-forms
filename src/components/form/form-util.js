@@ -13,24 +13,10 @@ import {
 } from "@material-ui/core";
 import { isEmpty, cloneDeep } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import * as moment from "moment";
+import momentAm from "../../modules/lang/moment-am";
 
 import MomentUtils from "@date-io/moment";
-import { now as NowEt } from "zemen-qotari";
 import { toEthiopian as ToEthiopian } from "ethio-qalendar";
-
-moment.defineLocale("am", {
-  parentLocale: "en",
-  months: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split("_"),
-  monthsShort: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split(
-    "_"
-  ),
-  weekdays: "ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ_እሑድ_ሰኞ".split("_"),
-  weekdaysShort: "ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ_እሑድ_ሰኞ".split("_"),
-  week: {
-    dow: 6
-  }
-});
 
 const StatefulTextField = ({ field, clear }) => {
   // fullWidth
@@ -137,7 +123,7 @@ const StatefulDateField = ({ field }) => {
       currentDate.getFullYear()
     );
     const etdate = basicDate.year + "-" + basicDate.month + "-" + basicDate.day;
-    currentDate = moment(etdate).format();
+    currentDate = momentAm(etdate).format();
   }
   const [value, setValue] = useState(field.value || currentDate);
 
@@ -208,7 +194,7 @@ export const renderTextField = (field, clear) => {
 };
 
 export const renderDateField = field => {
-  moment.locale(field.langCode);
+  momentAm.locale(field.langCode);
   return <StatefulDateField field={field} />;
 };
 
