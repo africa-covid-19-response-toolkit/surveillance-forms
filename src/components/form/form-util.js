@@ -317,7 +317,9 @@ const StatefulCheckbox = ({ field }) => {
         onChange={handleChange}
         inputProps={{ "aria-label": "primary checkbox" }}
       />
-      <Typography>{label}</Typography>
+      <div style={{width: 'maxContent', cursor: 'pointer'}} onClick={handleChange}>
+        <Typography>{label}</Typography>
+      </div>  
     </Box>
   );
 };
