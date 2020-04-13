@@ -1,5 +1,5 @@
 import moment from "moment";
-import momentAm from "./moment-am";
+import momentAm from "../../config/lang-phrases/moment-am";
 
 moment.defineLocale("am", momentAm);
 

@@ -77,7 +77,7 @@ Overview:
 ### How to setup a localized date field
 
 - To add support for more languages for calendar, we use [moment.js](https://momentjs.com/docs/#/i18n/)
-- For languages `moment.js` does not support, one can add support using `moment.defineLocale()`. See the example in `src/modules/lang/moment-lang.js`, where Amharic support was added.
+- For languages `moment.js` does not support, one can add support using `moment.defineLocale()`. See the example in `src/config/lang-phrases/moment-am.js`, where Amharic support was added.
 
 ### Form Validation
 
