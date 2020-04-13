@@ -77,6 +77,7 @@ export default {
     sapphire: "Sapphire Hotel",
     other: "Other"
   },
+  hotelOther: "Hotel if other was choosen",
   callDate: "Call Date",
   yes: "Yes",
   no: "No",

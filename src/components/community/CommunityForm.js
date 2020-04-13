@@ -147,7 +147,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation == "other" ?
+          {formValues.occupation === "other" ?
               <Grid item xs={12} md={4}>
                         {renderFormField("occupationOther")}
               </Grid> : ""

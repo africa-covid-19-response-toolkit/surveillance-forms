@@ -22,7 +22,7 @@ import {
 } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState"
 import { isEmpty, cloneDeep } from "lodash";
-import {SEX_VALUE, UNDERLYING} from "../../constants/common";
+import { SEX_VALUE, UNDERLYING } from "../../constants/common";
 import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields"
 import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -51,11 +51,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-
-
 const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
-      ...PortOfEntryInitialState
+    ...PortOfEntryInitialState
   });
 
   const [open, setOpen] = useState(false);
@@ -86,22 +84,22 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       setFormValues({
         ...formValues,
         underlyingConditions: {
-           ...formValues.underlyingConditions,
-           [field] : value
+          ...formValues.underlyingConditions,
+          [field]: value
         },
       });
 
     } else {
       setFormValues({
         ...formValues,
-       [field]: value,
+        [field]: value,
       });
     }
   };
 
   const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
 
-  
+
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
     if (!field) {
@@ -118,7 +116,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const renderSubsectionheader = (label) => {
     return (
-        <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
@@ -141,7 +139,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    if(!isEmpty(captchaText) && !isCaptchaExpired) {
+    if (!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
@@ -215,6 +213,12 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={3}>
             {renderFormField("hotelName")}
           </Grid>
+          {formValues.hotelName === "other" ?
+            <Grid item xs={12} md={4}>
+              {renderFormField("hotelOther")}
+            </Grid> : ""
+
+          }
         </Grid>
 
         <Grid container spacing={4}>

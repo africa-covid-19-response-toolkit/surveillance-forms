@@ -126,6 +126,12 @@ import {
     },
     {
       type: "text",
+      label: lang.t("hotelOther"),
+      property: "hotelOther",
+      onChange: handleFieldChange("hotelOther"),
+    },
+    {
+      type: "text",
       label: lang.t("seatNumber"),
       property: "seatNumber",
       onChange: handleFieldChange("seatNumber"),
