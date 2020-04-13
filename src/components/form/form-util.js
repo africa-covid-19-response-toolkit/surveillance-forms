@@ -39,8 +39,12 @@ const StatefulTextField = ({ field, clear }) => {
       firstUpdate.current = false;
       return;
     }
-    handleValidation();
-  }, [value]);
+    // handleValidation();
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  }, [value, onValidate]);
 
   useEffect(() => {
     if (clear === 0) {
@@ -48,7 +52,7 @@ const StatefulTextField = ({ field, clear }) => {
     }
     firstUpdate.current = true;
     setValue(field.value || "");
-  }, [clear]);
+  }, [field.value, clear]);
 
   const handleChange = event => {
     const newValue = event.target.value;
@@ -135,8 +139,12 @@ const StatefulDateField = ({ field }) => {
       firstUpdate.current = false;
       return;
     }
-    handleValidation();
-  }, [value]);
+    // handleValidation();
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  }, [value, onValidate]);
 
   const handleDateChange = date => {
     const newValue = date.format();
@@ -147,12 +155,12 @@ const StatefulDateField = ({ field }) => {
     }
   };
 
-  const handleValidation = () => {
-    if (onValidate) {
-      const result = onValidate(value);
-      setIsValid(result);
-    }
-  };
+  // const handleValidation = () => {
+  //   if (onValidate) {
+  //     const result = onValidate(value);
+  //     setIsValid(result);
+  //   }
+  // };
 
   const props = {};
   if (!isValid) {
