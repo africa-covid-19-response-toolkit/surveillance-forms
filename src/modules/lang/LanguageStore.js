@@ -1,12 +1,14 @@
+import React from "react";
 import { decorate, observable, action } from "mobx";
 import Ployglot from "node-polyglot";
-import getLangaugeByCode from "./lang-util";
+import langUtil from "./lang-util";
 
-const getPolygotInstance = (languageCode) => {
-  const languagePack = getLangaugeByCode(languageCode);
+const getPolygotInstance = languageCode => {
+  const languagePack = langUtil.getLanguagesByCode(languageCode);
+
   const polyglot = new Ployglot({
     locale: languageCode,
-    phrases: languagePack,
+    phrases: languagePack
   });
 
   return polyglot;

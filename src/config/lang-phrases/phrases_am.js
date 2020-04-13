@@ -1,4 +1,10 @@
 export default {
+  language: {
+    label: "ቋንቋ",
+    english: "እንግሊዘኛ",
+    amharic: "አማርኛ",
+    oromo: "ኦሮምኛ"
+  },
   firstName: "ስም",
   middleName: "የአባት ስም",
   lastName: "የአያት ስም",
@@ -6,12 +12,6 @@ export default {
     label: "ዜግነት",
     ethiopian: "ኢትዮጵያዊ",
     other: "ሌላ"
-  },
-  language: {
-    label: "ቋንቋ",
-    english: "እንግሊዘኛ",
-    amharic: "አማርኛ",
-    oromo: "ኦሮምኛ"
   },
   passportNumber: "የፓስፖርት ቁጥር",
   email: "ኢሜል",

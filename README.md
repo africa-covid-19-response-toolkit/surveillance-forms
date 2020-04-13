@@ -58,6 +58,22 @@ Overview:
 - See `src/modules/lang` for functionality
 - See usage in containers in `src/containers/Community.js`
 
+### How to add a new language support
+
+- To add a new lanauge, copy the `src/config/lang-phrases/phrases_en.js`
+- Rename the copied file to `src/config/lang-phrases/phrases_xx.js`
+- Translate the phrases to the lanauge of your choice (xx).
+- Import the new file to `src/modules/lang/lang-util.js`.
+  ```
+  import xx from "../../config/lang-phrases/phrases_xx"
+  ```
+- Add the new lanauges to supportedLanguages list `src/modules/lang/lang-util.js`
+  ```
+  am: { pack: am, name: "amharic" },
+  xx : { pack: xx, name: "newLanguage" }
+  ```
+- Make sure `newLanguage` is in the list of phrases in `language` `src/modules/lang/phrases_xx.js`
+
 ### How to setup a localized date field
 
 - To add support for more languages for calendar, we use [moment.js](https://momentjs.com/docs/#/i18n/)

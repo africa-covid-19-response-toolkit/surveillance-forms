@@ -1,16 +1,16 @@
 export default {
-  firstName: "First Name",
-  middleName: "Middle Name",
-  lastName: "Last Name",
-  age: "Age",
-  email: "Email",
-  dateOfBirth: "Date of Birth",
   language: {
     label: "Language",
     english: "English",
     amharic: "Amharic",
     oromo: "Afan Oromo"
   },
+  firstName: "First Name",
+  middleName: "Middle Name",
+  lastName: "Last Name",
+  age: "Age",
+  email: "Email",
+  dateOfBirth: "Date of Birth",
   region: {
     label: "Region",
     addisAbaba: "Addis Ababa",
