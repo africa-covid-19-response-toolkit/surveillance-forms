@@ -1,8 +1,5 @@
 import React from 'react';
-import {Box, Grid, Typography, FormControl, InputLabel, Select, MenuItem, AppBar, Toolbar } from '@material-ui/core';
-import {
-  renderSelectField
-} from '../form/form-util';
+import {Typography, FormControl, InputLabel, Select, MenuItem, AppBar, Toolbar } from '@material-ui/core';
 
 const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
   const handleLanguageChange = (e) => {
@@ -41,7 +38,7 @@ const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
   return (
     <AppBar position="static" style={{ color: 'white', backgroundColor: '#0040B7', justifyContent: 'middle' }}>
       <Toolbar variant="dense">
-        <img src="/Flag.png" style={{ verticalAlign: 'middle', marginRight: 10 }} />
+        <img src="/Flag.png" style={{ verticalAlign: 'middle', marginRight: 10 }} alt="flag"/>
         <Typography variant="h6" style={{ flexGrow: 1 }}>{lang.t('officalWebsite')}</Typography>
         {renderLanguageSelector()}
       </Toolbar>

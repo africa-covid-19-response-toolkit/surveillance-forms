@@ -1,22 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import {
   Box,
   Grid,
   Typography,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
   Button,
-  Switch,
+  
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import  COMMUNITY_FIELDS from "../../constants/community-fields"
-import {SEX_VALUE, UNDERLYING} from "../../constants/common"
+import { UNDERLYING} from "../../constants/common"
 import CommunityInitialState from "./CommunityInitialState"
 
-import { green } from "@material-ui/core/colors";
+
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
 import config from '../../config';
@@ -147,7 +142,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation == "other" ?
+          {formValues.occupation === "other" ?
               <Grid item xs={12} md={4}>
                         {renderFormField("occupationOther")}
               </Grid> : ""

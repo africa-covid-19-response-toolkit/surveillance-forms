@@ -222,10 +222,6 @@ import {
       label: lang.t("pregnancy"),
       property: "pregnancy",
       onChange: handleFieldChange("pregnancy"),
-      type: "check",
-      label: lang.t("cough"),
-      property: "cough",
-      onChange: handleFieldChange("cough"),
     },
     {
       type: "check",

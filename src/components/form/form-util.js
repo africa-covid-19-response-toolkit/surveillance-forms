@@ -7,11 +7,10 @@ import {
   TextField,
   Select,
   MenuItem,
-  Button,
   Switch,
   Checkbox
 } from "@material-ui/core";
-import { isEmpty, cloneDeep } from "lodash";
+import { isEmpty} from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from "../../modules/lang/moment-lang";
 

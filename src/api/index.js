@@ -2,7 +2,6 @@ import axios from 'axios';
 import config from '../config';
 
 const POST = 'post';
-const GET = 'get';
 // const PUT = 'put';
 const DELETE = 'delete';
 
@@ -58,7 +57,7 @@ class Api {
   async submitCommunity(formValues) {
     
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
