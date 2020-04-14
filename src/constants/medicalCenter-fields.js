@@ -133,7 +133,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "occupation",
       onChange: handleFieldChange("occupation"),
       choices: OCCUPATION_KEYS.map((r) => ({
-        label: lang.t(`${r}`),
+        label: lang.t(`occupation.${r}`),
         value: r,
       })),
     },
@@ -315,4 +315,3 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
   ]};
 
   export default MEDICAL_FIELDS;
-

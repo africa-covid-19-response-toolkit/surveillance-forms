@@ -1,8 +1,6 @@
 import { nameValidator, ageValidator } from "../validation/form/community";
 import {OCCUPATION_KEYS, SEX_VALUE, REGION_KEYS} from "./common"
 
-
-
 const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
     {
       type: "text",
@@ -61,7 +59,7 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       property: "occupation",
       onChange: handleFieldChange("occupation"),
       choices: OCCUPATION_KEYS.map((r) => ({
-        label: lang.t(`${r}`),
+        label: lang.t(`occupation.${r}`),
         value: r,
       })),
     },

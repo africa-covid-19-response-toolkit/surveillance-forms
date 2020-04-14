@@ -53,9 +53,8 @@ export default {
   occupation: {
     label: "Occupation",
     hcp: "HCP",
-    merchantAnimal: "Merchant (Animal)",
+    merchant: "Merchant (Animal)",
     airport: "Airport",
-    student: "Student",
     other: "Other",
   },
   occupationOther: "Occupation if other was choosen",

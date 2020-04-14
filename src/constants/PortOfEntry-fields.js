@@ -95,7 +95,7 @@ import {
       property: "occupation",
       onChange: handleFieldChange("occupation"),
       choices: OCCUPATION_KEYS.map((r) => ({
-        label: lang.t(`${r}`),
+        label: lang.t(`occupation.${r}`),
         value: r,
       })),
     },

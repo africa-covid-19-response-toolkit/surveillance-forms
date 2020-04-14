@@ -1,9 +1,8 @@
-
 const OCCUPATION_KEYS = [
-    "Health care professional",
-    "Airline/airport employee",
-    "Merchant",
-    "Other",
+  "hcp",
+  "airport",
+  "merchant",
+  "other"
 ];
 
 const UNDERLYING  = [
@@ -49,7 +48,7 @@ const SUBCITY_KEYS = [
     "nifasSilkLafto",
     "yeka",
   ];
-  
+
 const NATIONALITY_KEYS = ["ethiopian", "other"];
 
 const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
