@@ -14,7 +14,7 @@ import {
   List,
   ListItem,
   ListItemSecondaryAction,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { renderField } from "../form/form-util";
@@ -30,14 +30,14 @@ import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: "relative"
+    position: "relative",
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1
-  }
+    flex: 1,
+  },
 }));
 
 const DELAY = 1500;
@@ -48,7 +48,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-    ...PortOfEntryInitialState
+    ...PortOfEntryInitialState,
   });
 
   const [open, setOpen] = useState(false);
@@ -63,7 +63,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     }, DELAY);
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     setCaptchaText(value);
     if (value === null) {
       setIsCaptchaExpired(true);
@@ -74,34 +74,34 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
 
-  const handleFieldChange = field => value => {
+  const handleFieldChange = (field) => (value) => {
     if (UNDERLYING.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
           ...formValues.underlyingConditions,
-          [field]: value
-        }
+          [field]: value,
+        },
       });
     } else {
       setFormValues({
         ...formValues,
-        [field]: value
+        [field]: value,
       });
     }
   };
 
   const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
 
-  const renderFormField = property => {
-    const field = fields.find(f => f.property === property);
+  const renderFormField = (property) => {
+    const field = fields.find((f) => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = label => {
+  const renderSectionHeader = (label) => {
     return (
       <Typography className="sectionheader" variant="h2">
         {label}
@@ -109,7 +109,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-  const renderSubsectionheader = label => {
+  const renderSubsectionheader = (label) => {
     return (
       <Typography className="subsectionheader" variant="h5">
         {label}
@@ -136,7 +136,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
   const isFormValid = () => {
     let isValid = true;
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach(f => {
+      fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
         }
@@ -147,13 +147,13 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     return isValid;
   };
 
-  const handleDependentsAdd = dependent => {
+  const handleDependentsAdd = (dependent) => {
     setOpen(false);
     const dependents = formValues.dependents || [];
     dependents.push(dependent);
     setFormValues({
       ...formValues,
-      dependents
+      dependents,
     });
   };
 
@@ -190,6 +190,14 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
         </Grid>
 
         {renderSubsectionheader(lang.t("travelInfo"))}
@@ -247,7 +255,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
                     );
                     setFormValues({
                       ...formValues,
-                      dependents
+                      dependents,
                     });
                   };
 

@@ -9,7 +9,7 @@ import {
   Select,
   MenuItem,
   Button,
-  Switch
+  Switch,
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import COMMUNITY_FIELDS from "../../constants/community-fields";
@@ -26,7 +26,7 @@ const DELAY = 1500;
 
 const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
-    ...CommunityInitialState
+    ...CommunityInitialState,
   });
   const [isLoaded, setIsLoaded] = useState(false);
   const [captchaText, setCaptchaText] = useState("");
@@ -38,7 +38,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     }, DELAY);
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     setCaptchaText(value);
     if (value === null) {
       setIsCaptchaExpired(true);
@@ -50,7 +50,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
   const [clear, setClear] = useState(0);
 
-  const handleFieldChange = field => value => {
+  const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
 
     if (UNDERLYING.includes(field)) {
@@ -58,28 +58,28 @@ const CommunityForm = ({ onSubmit, lang }) => {
         ...formValues,
         underlyingConditions: {
           ...formValues.underlyingConditions,
-          [field]: value
-        }
+          [field]: value,
+        },
       });
     } else {
       setFormValues({
         ...formValues,
-        [field]: value
+        [field]: value,
       });
     }
   };
 
   const fields = COMMUNITY_FIELDS(lang, handleFieldChange);
 
-  const renderFormField = property => {
-    const field = fields.find(f => f.property === property);
+  const renderFormField = (property) => {
+    const field = fields.find((f) => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = label => {
+  const renderSectionHeader = (label) => {
     return (
       <Typography className="sectionheader" variant="h2">
         {label}
@@ -87,7 +87,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  const renderSubsectionheader = label => {
+  const renderSubsectionheader = (label) => {
     return (
       <Typography className="subsectionheader" variant="h5">
         {label}
@@ -112,7 +112,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
       isCaptchaExpired
     );
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach(f => {
+      fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
         }
@@ -150,12 +150,10 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation == "other" ? (
+          {formValues.occupation === "other" && (
             <Grid item xs={12} md={4}>
               {renderFormField("occupationOther")}
             </Grid>
-          ) : (
-            ""
           )}
         </Grid>
 
