@@ -86,7 +86,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
 
-  
+
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
     if (!field) {
@@ -181,6 +181,14 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.occupation === "other" &&
+            <Grid item xs={12} md={4}>
+                      {renderFormField("occupationOther")}
+            </Grid>
+          }
         </Grid>
 
         {renderSubsectionheader("Travel Info")}

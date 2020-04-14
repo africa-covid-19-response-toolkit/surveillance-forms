@@ -1,11 +1,9 @@
-
 const OCCUPATION_KEYS = [
-    "hcp",
-    "merchantAnimal",
-    "airport",
-    "student",
-    "other",
-  ];
+  "hcp",
+  "airport",
+  "merchant",
+  "other"
+];
 
 const UNDERLYING  = [
   "chronicLungDisease",
@@ -50,7 +48,7 @@ const SUBCITY_KEYS = [
     "nifasSilkLafto",
     "yeka",
   ];
-  
+
 const NATIONALITY_KEYS = ["ethiopian", "other"];
 
 const CALLERTYPE_KEYS = ["callerType1", "callerType2"];

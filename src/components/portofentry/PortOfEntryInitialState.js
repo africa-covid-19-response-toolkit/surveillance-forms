@@ -12,6 +12,7 @@ const PortOfEntryInitialState = {
     flightNumber: "",
     seatNumber: "",
     transitFrom: "",
+    occupation: "",
     fever: false,
     shortnessOfBreath: false,
     cough: false,

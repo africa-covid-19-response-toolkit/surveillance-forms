@@ -167,6 +167,11 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
+          {formValues.occupation === "other" &&
+              <Grid item xs={12} md={4}>
+                        {renderFormField("occupationOther")}
+              </Grid>
+          }
           <Grid item xs={12} md={4}>
             {renderFormField("callerType")}
           </Grid>
