@@ -3,23 +3,21 @@ import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 
 import MEDICAL_FIELDS from "../../constants/medicalCenter-fields";
-import {UNDERLYING} from "../../constants/common";
-import MedicalState from "./MedicalCenterState"
+import { UNDERLYING } from "../../constants/common";
+import MedicalInitialState from "./MedicalCentersInitialState";
 
-import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
-import config from '../../config';
+import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
 
-
 const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-       ...MedicalState
+    ...MedicalInitialState
   });
-  console.log(langCode);
+
   const [open, setOpen] = useState(false);
   const [clear, setClear] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,70 +41,70 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
 
-  const handleFieldChange = (field) => (value) => {
-
+  const handleFieldChange = field => value => {
     console.log(field, ": ", value);
     if (UNDERLYING.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
-           ...formValues.underlyingConditions,
-           [field] : value
-        },
+          ...formValues.underlyingConditions,
+          [field]: value
+        }
       });
-
     } else {
-      setFormValues({
-        ...formValues,
-       [field]: value,
-      });
+      if (field == "region") {
+        setFormValues({
+          ...formValues,
+          subcity: null,
+          [field]: value
+        });
+      } else {
+        setFormValues({
+          ...formValues,
+          [field]: value
+        });
+      }
     }
-
   };
 
-  const fields = MEDICAL_FIELDS(lang, handleFieldChange, langCode);
+  const fields = MEDICAL_FIELDS(lang, handleFieldChange, langCode, formValues);
 
-  const renderFormField = (property) => {
-    const field = fields.find((f) => f.property === property);
+  const renderFormField = property => {
+    const field = fields.find(f => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = (label) => {
+  const renderSectionHeader = label => {
     return (
-      <Typography className="sectionheader" variant="h2">{label}</Typography>
+      <Typography className="sectionheader" variant="h2">
+        {label}
+      </Typography>
     );
   };
 
-  const renderSubsectionheader = (label) => {
+  const renderSubsectionheader = label => {
     return (
-        <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">
+        {label}
+      </Typography>
     );
   };
 
   const handleSubmit = () => {
-    onSubmit(formValues)
-      .then(() => {
-        // clear form values
-        setFormValues({})
-        setClear(clear + 1);
-      })
-  };
-
-  const handleModal = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+    onSubmit(formValues).then(() => {
+      // clear form values
+      setFormValues({});
+      setClear(clear + 1);
+    });
   };
 
   const isFormValid = () => {
     let isValid = true;
-    if(!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach((f) => {
+    if (!isEmpty(captchaText) && !isCaptchaExpired) {
+      fields.forEach(f => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
         }
@@ -120,10 +118,8 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader("Health Facilities Application Form")}
-        {renderSubsectionheader(
-          "Health Facilities Reporting Form For COVID-19"
-        )}
+        {renderSectionHeader(lang.t("healthFacilitiesApplicationForm"))}
+        {renderSubsectionheader(lang.t("healthFacilitiesApplicationForm"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
@@ -187,7 +183,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         </Grid>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>
-            {renderSubsectionheader("Symptoms")}
+            {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
@@ -206,7 +202,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader("General Information")}
+            {renderSubsectionheader(lang.t("generalInformation"))}
             {renderFormField("travelHx")}
             {renderFormField("animalMarket")}
             {renderFormField("haveSex")}
@@ -236,15 +232,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-
-  console.log(formValues)
-
-  return (
-    <Box>
-      {renderForm()}
-    </Box>
-  );
-
+  return <Box>{renderForm()}</Box>;
 };
 
 export default MedicalCentersEntryForm;

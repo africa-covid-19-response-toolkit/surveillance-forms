@@ -1,19 +1,20 @@
-
-import {SEX_VALUE,
-       OCCUPATION_KEYS,
-       REGION_KEYS,
-       NATIONALITY_KEYS,
-       SUBCITY_KEYS,
-        CALLERTYPE_KEYS} from "./common";
 import {
-    nameValidator,
-    ageValidator,
-    emailValidator,
-    nameMaxLengthValidator,
-  } from "../validation/form/medical";
+  SEX_VALUE,
+  OCCUPATION_KEYS,
+  REGION_KEYS,
+  NATIONALITY_KEYS,
+  SUBCITY_KEYS,
+  CALLERTYPE_KEYS
+} from "./common";
+import {
+  nameValidator,
+  ageValidator,
+  emailValidator,
+  nameMaxLengthValidator
+} from "../validation/form/medical";
 
-
-const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
+const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
+  return [
     {
       type: "text",
       label: lang.t("firstName"),
@@ -21,7 +22,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       focus: true,
       onChange: handleFieldChange("firstName"),
       onValidate: nameValidator.validate,
-      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg)
     },
     {
       type: "text",
@@ -30,7 +31,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       focus: true,
       onChange: handleFieldChange("middleName"),
       onValidate: nameMaxLengthValidator.validate,
-      validationErrorMsg: lang.t(nameMaxLengthValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(nameMaxLengthValidator.validationErrorMsg)
     },
     {
       type: "text",
@@ -38,7 +39,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "lastName",
       onChange: handleFieldChange("lastName"),
       onValidate: nameValidator.validate,
-      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg)
     },
     {
       type: "text",
@@ -46,7 +47,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "age",
       onChange: handleFieldChange("age"),
       onValidate: ageValidator.validate,
-      validationErrorMsg: lang.t(ageValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(ageValidator.validationErrorMsg)
     },
     {
       type: "select",
@@ -55,14 +56,14 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       onChange: handleFieldChange(SEX_VALUE.property),
       choices: [
         { label: lang.t("sex.female"), value: SEX_VALUE.female },
-        { label: lang.t("sex.male"), value: SEX_VALUE.male },
-      ],
+        { label: lang.t("sex.male"), value: SEX_VALUE.male }
+      ]
     },
     {
       type: "text",
       label: lang.t("phoneNumber"),
       property: "phoneNumber",
-      onChange: handleFieldChange("phoneNumber"),
+      onChange: handleFieldChange("phoneNumber")
     },
     {
       type: "text",
@@ -70,72 +71,73 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "email",
       onChange: handleFieldChange("email"),
       onValidate: emailValidator.validate,
-      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
+      validationErrorMsg: lang.t(emailValidator.validationErrorMsg)
     },
     {
       type: "select",
       label: lang.t("nationality.label"),
       property: "nationality",
       onChange: handleFieldChange("nationality"),
-      choices: NATIONALITY_KEYS.map((r) => ({
+      choices: NATIONALITY_KEYS.map(r => ({
         label: lang.t(`nationality.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "select",
       label: lang.t("region.label"),
       property: "region",
       onChange: handleFieldChange("region"),
-      choices: REGION_KEYS.map((r) => ({
+      choices: REGION_KEYS.map(r => ({
         label: lang.t(`region.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "text",
       label: lang.t("zone"),
       property: "zone",
-      onChange: handleFieldChange("zone"),
+      onChange: handleFieldChange("zone")
     },
     {
       type: "select",
       label: lang.t("subcity.label"),
       property: "subcity",
       onChange: handleFieldChange("subcity"),
-      choices: SUBCITY_KEYS.map((r) => ({
+      disabled: formValues.region && formValues.region !== "addisAbaba",
+      choices: SUBCITY_KEYS.map(r => ({
         label: lang.t(`subcity.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "text",
       label: lang.t("kebele"),
       property: "kebele",
-      onChange: handleFieldChange("kebele"),
+      onChange: handleFieldChange("kebele")
     },
 
     {
       type: "text",
       label: lang.t("woreda"),
       property: "woreda",
-      onChange: handleFieldChange("woreda"),
+      onChange: handleFieldChange("woreda")
     },
     {
       type: "text",
       label: lang.t("houseNumber"),
       property: "houseNumber",
-      onChange: handleFieldChange("houseNumber"),
+      onChange: handleFieldChange("houseNumber")
     },
     {
       type: "select",
       label: lang.t("occupation.label"),
       property: "occupation",
       onChange: handleFieldChange("occupation"),
-      choices: OCCUPATION_KEYS.map((r) => ({
+      choices: OCCUPATION_KEYS.map(r => ({
         label: lang.t(`occupation.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
     {
       type: "text",
@@ -148,10 +150,10 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       label: lang.t("callerType.label"),
       property: "callerType",
       onChange: handleFieldChange("callerType"),
-      choices: CALLERTYPE_KEYS.map((r) => ({
+      choices: CALLERTYPE_KEYS.map(r => ({
         label: lang.t(`callerType.${r}`),
-        value: r,
-      })),
+        value: r
+      }))
     },
 
     {
@@ -159,126 +161,124 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       label: lang.t("callDate"),
       property: "callDate",
       langCode: langCode,
-      onChange: handleFieldChange("callDate"),
+      onChange: handleFieldChange("callDate")
     },
     {
       type: "check",
       label: lang.t("fever"),
       property: "fever",
-      onChange: handleFieldChange("fever"),
+      onChange: handleFieldChange("fever")
     },
     {
       type: "check",
       label: lang.t("cough"),
       property: "cough",
-      onChange: handleFieldChange("cough"),
+      onChange: handleFieldChange("cough")
     },
     {
       type: "check",
       label: lang.t("fatigue"),
       property: "fatigue",
-      onChange: handleFieldChange("fatigue"),
+      onChange: handleFieldChange("fatigue")
     },
     {
       type: "check",
       label: lang.t("headache"),
       property: "headache",
-      onChange: handleFieldChange("headache"),
+      onChange: handleFieldChange("headache")
     },
     {
       type: "check",
       label: lang.t("bodyPain"),
       property: "bodyPain",
-      onChange: handleFieldChange("bodyPain"),
+      onChange: handleFieldChange("bodyPain")
     },
     {
       type: "check",
       label: lang.t("runnyNose"),
       property: "runnyNose",
-      onChange: handleFieldChange("runnyNose"),
+      onChange: handleFieldChange("runnyNose")
     },
     {
       type: "check",
       label: lang.t("shortnessOfBreath"),
       property: "shortnessOfBreath",
-      onChange: handleFieldChange("shortnessOfBreath"),
+      onChange: handleFieldChange("shortnessOfBreath")
     },
 
     {
       type: "check",
       label: lang.t("chronicLungDisease"),
       property: "chronicLungDisease",
-      onChange: handleFieldChange("chronicLungDisease"),
-    },
-
-
-    {
-      type: "check",
-      label: lang.t("heartDisease"),
-      property: "heartDisease",
-      onChange: handleFieldChange("heartDisease"),
+      onChange: handleFieldChange("chronicLungDisease")
     },
 
     {
       type: "check",
       label: lang.t("heartDisease"),
       property: "heartDisease",
-      onChange: handleFieldChange("heartDisease"),
+      onChange: handleFieldChange("heartDisease")
+    },
+
+    {
+      type: "check",
+      label: lang.t("heartDisease"),
+      property: "heartDisease",
+      onChange: handleFieldChange("heartDisease")
     },
 
     {
       type: "check",
       label: lang.t("liverDisease"),
       property: "liverDisease",
-      onChange: handleFieldChange("liverDisease"),
+      onChange: handleFieldChange("liverDisease")
     },
     {
       type: "check",
       label: lang.t("renalDisease"),
       property: "renalDisease",
-      onChange: handleFieldChange("renalDisease"),
+      onChange: handleFieldChange("renalDisease")
     },
 
     {
       type: "check",
       label: lang.t("autoimmuneDisease"),
       property: "autoimmuneDisease",
-      onChange: handleFieldChange("autoimmuneDisease"),
+      onChange: handleFieldChange("autoimmuneDisease")
     },
 
     {
       type: "check",
       label: lang.t("cancer"),
       property: "cancer",
-      onChange: handleFieldChange("cancer"),
+      onChange: handleFieldChange("cancer")
     },
 
     {
       type: "check",
       label: lang.t("diabetes"),
       property: "diabetes",
-      onChange: handleFieldChange("diabetes"),
+      onChange: handleFieldChange("diabetes")
     },
-
 
     {
       type: "check",
       label: lang.t("hiv"),
       property: "hiv",
-      onChange: handleFieldChange("hiv"),
+      onChange: handleFieldChange("hiv")
     },
 
     {
       type: "check",
       label: lang.t("pregnancy"),
       property: "pregnancy",
-      onChange: handleFieldChange("pregnancy"),
+      onChange: handleFieldChange("pregnancy")
     },
     {
       type: "check",
       label: lang.t("feelingUnwell"),
       property: "feelingUnwell",
-      onChange: handleFieldChange("feelingUnwell"),
+      onChange: handleFieldChange("feelingUnwell")
     },
     {
       type: "switch",
@@ -286,7 +286,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "travelHx",
       onChange: handleFieldChange("travelHx"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      offLabel: lang.t("no")
     },
     {
       type: "switch",
@@ -294,7 +294,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "haveSex",
       onChange: handleFieldChange("haveSex"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      offLabel: lang.t("no")
     },
     {
       type: "switch",
@@ -302,7 +302,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "animalMarket",
       onChange: handleFieldChange("animalMarket"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      offLabel: lang.t("no")
     },
     {
       type: "switch",
@@ -310,8 +310,9 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode) => { return  [
       property: "healthFacility",
       onChange: handleFieldChange("healthFacility"),
       onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
-    },
-  ]};
+      offLabel: lang.t("no")
+    }
+  ];
+};
 
-  export default MEDICAL_FIELDS;
+export default MEDICAL_FIELDS;

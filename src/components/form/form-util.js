@@ -9,28 +9,14 @@ import {
   MenuItem,
   Button,
   Switch,
-  Checkbox,
+  Checkbox
 } from "@material-ui/core";
 import { isEmpty, cloneDeep } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import * as moment from "moment";
+import moment from "../../modules/lang/moment-lang";
 
 import MomentUtils from "@date-io/moment";
-import { now as NowEt } from "zemen-qotari";
 import { toEthiopian as ToEthiopian } from "ethio-qalendar";
-
-moment.defineLocale("am", {
-  parentLocale: "en",
-  months: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split("_"),
-  monthsShort: "መስከረም_ጥቅምት_ህዳር_ታህሳስ_ጥር_የካቲት_መጋቢት_ሚያዚያ_ግንቦት_ሰኔ_ሀምሌ_ነሐሴ".split(
-    "_"
-  ),
-  weekdays: "ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ_እሑድ_ሰኞ".split("_"),
-  weekdaysShort: "ማክሰኞ_እሮብ_ሐሙስ_አርብ_ቅዳሜ_እሑድ_ሰኞ".split("_"),
-  week: {
-    dow: 6,
-  },
-});
 
 const StatefulTextField = ({ field, clear }) => {
   // fullWidth
@@ -41,7 +27,7 @@ const StatefulTextField = ({ field, clear }) => {
     disabled,
     onValidate,
     validationErrorMsg,
-    focus,
+    focus
   } = field;
 
   const [value, setValue] = useState(field.value || "");
@@ -65,8 +51,7 @@ const StatefulTextField = ({ field, clear }) => {
     setValue(field.value || "");
   }, [clear]);
 
-
-  const handleChange = (event) => {
+  const handleChange = event => {
     const newValue = event.target.value;
     setValue(newValue);
 
@@ -125,24 +110,23 @@ const StatefulDateField = ({ field }) => {
     disabled,
     onValidate,
     validationErrorMsg,
-    focus,
+    focus
   } = field;
 
   var locale = field.langCode;
-  var dates = new Date();
-  console.log(dates);
+  var currentDate = new Date();
 
   if (locale === "am") {
-    const c = dates.getMonth();
     const basicDate = ToEthiopian(
-      dates.getDate(),
-      dates.getMonth() + 1,
-      dates.getFullYear()
+      currentDate.getDate(),
+      currentDate.getMonth() + 1,
+      currentDate.getFullYear()
     );
     const etdate = basicDate.year + "-" + basicDate.month + "-" + basicDate.day;
-    dates = moment(etdate).format();
+
+    currentDate = moment(etdate).format();
   }
-  const [value, setValue] = useState(field.value || dates);
+  const [value, setValue] = useState(field.value || currentDate);
 
   const [isValid, setIsValid] = useState(true);
 
@@ -155,7 +139,7 @@ const StatefulDateField = ({ field }) => {
     handleValidation();
   }, [value]);
 
-  const handleDateChange = (date) => {
+  const handleDateChange = date => {
     const newValue = date.format();
     setValue(newValue);
 
@@ -194,7 +178,7 @@ const StatefulDateField = ({ field }) => {
           id={`${property}-outlined`}
           inputVariant="outlined"
           value={value}
-          onChange={(date) => handleDateChange(date)}
+          onChange={date => handleDateChange(date)}
           disabled={!!disabled}
           format="LL"
           fullWidth={true}
@@ -210,17 +194,17 @@ export const renderTextField = (field, clear) => {
   return <StatefulTextField field={field} clear={clear} />;
 };
 
-export const renderDateField = (field) => {
+export const renderDateField = field => {
   moment.locale(field.langCode);
   return <StatefulDateField field={field} />;
 };
 
 const StatefulSelectField = ({ field }) => {
-  const { label, property, onChange, choices } = field;
+  const { label, property, onChange, disabled, choices } = field;
 
   const [value, setValue] = useState("");
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const newValue = event.target.value;
     setValue(newValue);
 
@@ -234,7 +218,7 @@ const StatefulSelectField = ({ field }) => {
       <InputLabel shrink>{label}</InputLabel>
       <FormControl
         style={{
-          width: "100%",
+          width: "100%"
         }}
         variant="outlined"
         size="small"
@@ -243,6 +227,7 @@ const StatefulSelectField = ({ field }) => {
           labelId={`label-${property}`}
           id={`select-${property}`}
           value={value}
+          disabled={!!disabled}
           onChange={handleChange}
         >
           {choices.map((c, index) => (
@@ -256,7 +241,7 @@ const StatefulSelectField = ({ field }) => {
   );
 };
 
-export const renderSelectField = (field) => {
+export const renderSelectField = field => {
   return <StatefulSelectField field={field} />;
 };
 
@@ -277,22 +262,29 @@ const StatefulSwitch = ({ field }) => {
 
   return (
     <Box display="flex" alignItems="center">
-      <Box style={{ borderRadius: '50px', border: '1px solid #ccc', margin: '5px 10px 5px 0' }}>
+      <Box
+        style={{
+          borderRadius: "50px",
+          border: "1px solid #ccc",
+          margin: "5px 10px 5px 0"
+        }}
+      >
         <Switch
           checked={value}
           onChange={handleChange}
           name="checkedA"
           inputProps={{ "aria-label": "secondary checkbox" }}
-          
         />
-        <Typography variant="caption" style={{ opacity: 0.5, marginRight: 10}}>{switchLabel}</Typography>
-        </Box>
+        <Typography variant="caption" style={{ opacity: 0.5, marginRight: 10 }}>
+          {switchLabel}
+        </Typography>
+      </Box>
       <Typography>{label}</Typography>
     </Box>
   );
 };
 
-export const renderSwitch = (field) => {
+export const renderSwitch = field => {
   return <StatefulSwitch field={field} />;
 };
 
@@ -317,14 +309,17 @@ const StatefulCheckbox = ({ field }) => {
         onChange={handleChange}
         inputProps={{ "aria-label": "primary checkbox" }}
       />
-      <div style={{width: 'maxContent', cursor: 'pointer'}} onClick={handleChange}>
+      <div
+        style={{ width: "maxContent", cursor: "pointer" }}
+        onClick={handleChange}
+      >
         <Typography>{label}</Typography>
-      </div>  
+      </div>
     </Box>
   );
 };
 
-export const renderCheckbox = (field) => {
+export const renderCheckbox = field => {
   return <StatefulCheckbox field={field} />;
 };
 

@@ -14,7 +14,7 @@ import {
 import { renderField } from "../form/form-util";
 import  COMMUNITY_FIELDS from "../../constants/community-fields"
 import {SEX_VALUE, UNDERLYING} from "../../constants/common"
-import formState from "./CommunityState"
+import CommunityInitialState from "./CommunityInitialState"
 
 import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -27,7 +27,7 @@ const DELAY = 1500;
 
 const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
-    ...formState,
+    ...CommunityInitialState,
   });
   const [isLoaded, setIsLoaded] = useState(false);
   const [captchaText, setCaptchaText] = useState("");

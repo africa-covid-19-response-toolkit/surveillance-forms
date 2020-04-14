@@ -1,4 +1,4 @@
-const PortOfEntryState = {
+const PortOfEntryInitialState = {
     firstName: "",
     middleName: "",
     lastName: "",
@@ -37,4 +37,4 @@ const PortOfEntryState = {
     healthFacility: false 
  }
 
- export default PortOfEntryState;
+ export default PortOfEntryInitialState;

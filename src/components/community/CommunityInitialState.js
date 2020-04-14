@@ -1,4 +1,4 @@
-const CommunityState = {
+const CommunityInitialState = {
 
   firstName: "",
   lastName: "",
@@ -38,6 +38,6 @@ const CommunityState = {
   },
 }
 
-export default CommunityState;
+export default CommunityInitialState;
     
 
