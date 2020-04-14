@@ -140,6 +140,12 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
       }))
     },
     {
+      type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
+    },
+    {
       type: "select",
       label: lang.t("callerType.label"),
       property: "callerType",
