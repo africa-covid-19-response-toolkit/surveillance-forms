@@ -3,7 +3,7 @@ export default {
     label: "ቋንቋ",
     english: "እንግሊዘኛ",
     amharic: "አማርኛ",
-    oromo: "ኦሮምኛ"
+    oromo: "ኦሮምኛ",
   },
   firstName: "ስም",
   middleName: "የአባት ስም",
@@ -11,7 +11,7 @@ export default {
   nationality: {
     label: "ዜግነት",
     ethiopian: "ኢትዮጵያዊ",
-    other: "ሌላ"
+    other: "ሌላ",
   },
   passportNumber: "የፓስፖርት ቁጥር",
   email: "ኢሜል",
@@ -19,7 +19,7 @@ export default {
   sex: {
     label: "ጾታ",
     male: "ወንድ",
-    female: "ሴት"
+    female: "ሴት",
   },
   age: "እድሜ",
   region: {
@@ -34,7 +34,7 @@ export default {
     oromia: "ኦሮሚያ",
     somali: "ሶማሌ",
     southern: "የደቡብ ብሔር ብሔረሰቦችና ህዝቦች ክልል",
-    tigray: "ትግራይ"
+    tigray: "ትግራይ",
   },
   subcity: {
     label: "ክፍለ ከተማ",
@@ -47,9 +47,11 @@ export default {
     kolfe: "ኮልፌ",
     lideta: "ልደታ",
     nifasSilkLafto: "ንፋስ ስልክ ላፍቶ",
-    yeka: "የካ"
+    yeka: "የካ",
   },
-  sefer: "ሰፈር",
+  country: {
+    label: "ሀገር",
+  },
   zone: "ዞን",
   woreda: "ወረዳ",
   kebele: "ቀበሌ",
@@ -69,7 +71,7 @@ export default {
   callerType: {
     label: "የደዋይ ዓይነት",
     callerType1: "callerType1",
-    callerType2: "callerType2"
+    callerType2: "callerType2",
   },
   fever: "ትኩሳት",
   cough: "ሳል",
@@ -104,7 +106,7 @@ export default {
     ghion: "ጊዮን ሆቴል",
     azzeman: "አዜማን ሆቴል",
     sapphire: "ሳፋየር ሆቴል",
-    other: "ሌላ"
+    other: "ሌላ",
   },
 
   addDependent: "ጥገኛ (ኦች) ያክሉ",
@@ -112,7 +114,7 @@ export default {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
     email: "እባክዎ ትክክል ኢሜይል ያስገቡ",
-    lengthAtMost100: "እባክዎ 100 ቃላት ብቻ ያስገቡ"
+    lengthAtMost100: "እባክዎ 100 ቃላት ብቻ ያስገቡ",
   },
   note: {
     lable: "ማስታወሻ",
@@ -120,7 +122,7 @@ export default {
     note2:
       "ከላይ ከተዘረዘሩት ምልክቶች መካከል ከአንድ ወይም ከዚያ በላይ ከሆኑ ካጋጠሙዎት እራስዎን ችላ ብለው ለ 8335 ይደውሉ",
     note3: "እነዚህ ምልክቶች ያሉት ሰው ከተጠራጠሩ ወደ 8335 ለመደወል አያመንቱ",
-    note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ"
+    note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ",
   },
   travelFrom: "መነሻ",
   flightNumber: "የበረራ ቁጥር",
@@ -137,5 +139,5 @@ export default {
   travelInfo: "የጉዞ መረጃ",
   dependentBasicInformation: "ጥገኛ መሠረታዊ መረጃ",
   passengerDependentsRegistrationForm: "የተሳፋሪዎች ጥገኛ ምዝገባዎች ቅጽ",
-  dependents: "ጥገኛዎች"
+  dependents: "ጥገኛዎች",
 };

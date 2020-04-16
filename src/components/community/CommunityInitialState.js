@@ -1,30 +1,38 @@
 const CommunityInitialState = {
-
   firstName: "",
+  middleName: "",
   lastName: "",
-  age:  "",
+  age: "",
   sex: "",
   language: "",
-  region: "",
-  subcityOrZone: "",
-  sefer: "",
-  woreda: "",
-  kebele: "",
-  houseNumber: "",
   phoneNumber: "",
+  occupation: "",
+  address: {
+    country: "",
+    region: "",
+    city: "",
+    postalCode: "",
+    street: "",
+    building: "",
+  },
   latitude: 0,
   longitude: 0,
-  fever: false,
-  cough: false,
-  shortnessOfBreath: false,
+  symptom: {
+    fever: false,
+    cough: false,
+    shortnessOfBreath: false,
+    fatigue: false,
+    headache: false,
+    runnyNose: false,
+    feelingUnwell: false,
+  },
+
   formStatus: "",
   travelHx: false,
-  haveSex: false,
-  animalMarket: false,
+  contactWithSuspected: false,
+  contactWithConfirmed: false,
   healthFacility: false,
-  occupation: "",
   dataSource: "",
-  fatigue: false,
   underlyingConditions: {
     chronicLungDisease: false,
     heartDisease: false,
@@ -36,8 +44,6 @@ const CommunityInitialState = {
     hiv: false,
     pregnancy: false,
   },
-}
+};
 
 export default CommunityInitialState;
-    
-

@@ -1,22 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
-  Button,
-  Switch,
-} from "@material-ui/core";
+import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import COMMUNITY_FIELDS from "../../constants/community-fields";
-import { SEX_VALUE, UNDERLYING } from "../../constants/common";
+import { UNDERLYING, ADDRESS, SYMPTOMS } from "../../constants/common";
 import CommunityInitialState from "./CommunityInitialState";
 
-import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
 import config from "../../config";
@@ -61,6 +49,22 @@ const CommunityForm = ({ onSubmit, lang }) => {
           [field]: value,
         },
       });
+    } else if (ADDRESS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        address: {
+          ...formValues.address,
+          [field]: value,
+        },
+      });
+    } else if (SYMPTOMS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        address: {
+          ...formValues.symptom,
+          [field]: value,
+        },
+      });
     } else {
       setFormValues({
         ...formValues,
@@ -96,6 +100,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
 
   const hadleSubmit = () => {
+    console.log(formValues);
     onSubmit(formValues).then(() => {
       // clear form values
       setFormValues({});
@@ -133,6 +138,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("firstName")}
           </Grid>
           <Grid item xs={12} md={3}>
+            {renderFormField("middleName")}
+          </Grid>
+          <Grid item xs={12} md={3}>
             {renderFormField("lastName")}
           </Grid>
           <Grid item xs={12} md={3}>
@@ -160,22 +168,22 @@ const CommunityForm = ({ onSubmit, lang }) => {
         {renderSubsectionheader(lang.t("address"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
+            {renderFormField("country")}
+          </Grid>
+          <Grid item xs={12} md={3}>
             {renderFormField("region")}
           </Grid>
           <Grid item xs={12} md={3}>
-            {renderFormField("subcityOrZone")}
+            {renderFormField("city")}
           </Grid>
           <Grid item xs={12} md={3}>
-            {renderFormField("sefer")}
+            {renderFormField("postalCode")}
           </Grid>
           <Grid item xs={12} md={3}>
-            {renderFormField("woreda")}
+            {renderFormField("street")}
           </Grid>
           <Grid item xs={12} md={3}>
-            {renderFormField("kebele")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("houseNo")}
+            {renderFormField("building")}
           </Grid>
         </Grid>
 
@@ -186,6 +194,9 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
             {renderFormField("fatigue")}
+            {renderFormField("headache")}
+            {renderFormField("runnyNose")}
+            {renderFormField("feelingUnwell")}
           </Grid>
           <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("underlyingConditions"))}
@@ -202,8 +213,8 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderSubsectionheader(lang.t("generalInformation"))}
             {renderFormField("travelHx")}
-            {renderFormField("animalMarket")}
-            {renderFormField("haveSex")}
+            {renderFormField("contactWithSuspected")}
+            {renderFormField("contactWithConfirmed")}
             {renderFormField("healthFacility")}
           </Grid>
         </Grid>

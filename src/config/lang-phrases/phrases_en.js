@@ -3,7 +3,7 @@ export default {
     label: "Language",
     english: "English",
     amharic: "Amharic",
-    oromo: "Afan Oromo"
+    oromo: "Afan Oromo",
   },
   firstName: "First Name",
   middleName: "Middle Name",
@@ -11,6 +11,11 @@ export default {
   age: "Age",
   email: "Email",
   dateOfBirth: "Date of Birth",
+  country: {
+    // todo: add a list
+    label: "country",
+  },
+  city: "city",
   region: {
     label: "Region",
     addisAbaba: "Addis Ababa",
@@ -23,7 +28,7 @@ export default {
     oromia: "Oromia",
     somali: "Somali",
     southern: "Southern Nations, Nationalities, and Peoples",
-    tigray: "Tigray"
+    tigray: "Tigray",
   },
   subcity: {
     label: "Sub City",
@@ -36,17 +41,17 @@ export default {
     kolfe: "Kolfe",
     lideta: "Lideta",
     nifasSilkLafto: "Nifas Silk Lafto",
-    yeka: "Yeka"
+    yeka: "Yeka",
   },
-  sefer: "Sefer",
-  woreda: "woreda",
-  kebele: "Kebele",
+  postalCode: "Postal Code",
+  street: "Street",
+  building: "Building",
   zone: "Zone",
   houseNumber: "House Number",
   nationality: {
     label: "Nationality",
     ethiopian: "Ethiopian",
-    other: "Other"
+    other: "Other",
   },
   passportNumber: "Passport Number",
   phoneNumber: "Phone Number",
@@ -61,12 +66,12 @@ export default {
   sex: {
     label: "Sex",
     male: "Male",
-    female: "Female"
+    female: "Female",
   },
   callerType: {
     label: "Caller Type",
     callerType1: "callerType1",
-    callerType2: "callerType2"
+    callerType2: "callerType2",
   },
   hotel: {
     label: "Hotel",
@@ -74,7 +79,7 @@ export default {
     ghion: "Ghion Hotel",
     azzeman: "Azzeman Hotel",
     sapphire: "Sapphire Hotel",
-    other: "Other"
+    other: "Other",
   },
   callDate: "Call Date",
   yes: "Yes",
@@ -83,8 +88,8 @@ export default {
   submitDependent: "Submit Dependent",
   travelFrom: "Travel From",
   travelHistory: "Travel History",
-  haveSex: "Had Sex",
-  animalMarket: "Animal Market",
+  contactWithSuspected: "Contact With Suspected",
+  contactWithConfirmed: "Contact With Confirmed",
   healthFacility: "Health Facility",
   transitFrom: "Transit (if any)",
   flightNumber: "Flight Number",
@@ -95,7 +100,7 @@ export default {
   form: {
     community: "Community",
     medicalCenters: "Medical Centers",
-    portOfEntry: "Port Of Entry"
+    portOfEntry: "Port Of Entry",
   },
   fever: "Fever",
   cough: "Cough",
@@ -123,13 +128,13 @@ export default {
       "If you experience one or more of the above symptoms, isolate yourself and call 8335.",
     note3:
       "If you suspect someone else has these symptoms, don't hesitate to call to 8335.",
-    note4: "Keep your distance (minimum 1 Meter) from anyone who has symptoms."
+    note4: "Keep your distance (minimum 1 Meter) from anyone who has symptoms.",
   },
   formErrors: {
     empty: "This field can not be empty",
     numberOnly: "This field is for number only",
     email: "Email address must be valid",
-    lengthAtMost100: "100 or few characters please"
+    lengthAtMost100: "100 or few characters please",
   },
   healthFacilitiesApplicationForm: "Health Facilities Application Form",
   healthFacilitiesReportingFormForCOVID19:
@@ -143,5 +148,5 @@ export default {
   travelInfo: "Travel Info",
   dependentBasicInformation: "Dependent's Basic Information",
   passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
-  dependents: "Dependents"
+  dependents: "Dependents",
 };

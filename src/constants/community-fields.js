@@ -1,13 +1,28 @@
 import { nameValidator, ageValidator } from "../validation/form/community";
-import {OCCUPATION_KEYS, SEX_VALUE, REGION_KEYS} from "./common"
+import {
+  OCCUPATION_KEYS,
+  SEX_VALUE,
+  COUNTRY_KEYS,
+  REGION_KEYS,
+} from "./common";
 
-const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
+const COMMUNITY_FIELDS = (lang, handleFieldChange) => {
+  return [
     {
       type: "text",
       label: lang.t("firstName"),
       property: "firstName",
       focus: false,
       onChange: handleFieldChange("firstName"),
+      onValidate: nameValidator.validate,
+      validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
+    },
+    {
+      type: "text",
+      label: lang.t("middleName"),
+      property: "middleName",
+      focus: false,
+      onChange: handleFieldChange("middleName"),
       onValidate: nameValidator.validate,
       validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
@@ -20,7 +35,7 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
-      type: "text",
+      type: "number",
       label: lang.t("age"),
       property: "age",
       onChange: handleFieldChange("age"),
@@ -71,6 +86,16 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
     },
     {
       type: "select",
+      label: lang.t("country.label"),
+      property: "country",
+      choices: COUNTRY_KEYS.map((c) => ({
+        label: lang.t(`country.${c}`),
+        value: c,
+      })),
+      onChange: handleFieldChange("country"),
+    },
+    {
+      type: "select",
       label: lang.t("region.label"),
       property: "region",
       choices: REGION_KEYS.map((r) => ({
@@ -81,33 +106,27 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
     },
     {
       type: "text",
-      label: lang.t("subcity.label"),
-      property: "subcityOrZone",
-      onChange: handleFieldChange("subcityOrZone"),
+      label: lang.t("city"),
+      property: "city",
+      onChange: handleFieldChange("city"),
     },
     {
       type: "text",
-      label: lang.t("sefer"),
-      property: "sefer",
-      onChange: handleFieldChange("sefer"),
+      label: lang.t("postalCode"),
+      property: "postalCode",
+      onChange: handleFieldChange("postalCode"),
     },
     {
       type: "text",
-      label: lang.t("woreda"),
-      property: "woreda",
-      onChange: handleFieldChange("woreda"),
+      label: lang.t("street"),
+      property: "street",
+      onChange: handleFieldChange("street"),
     },
     {
       type: "text",
-      label: lang.t("kebele"),
-      property: "kebele",
-      onChange: handleFieldChange("kebele"),
-    },
-    {
-      type: "text",
-      label: lang.t("houseNumber"),
-      property: "houseNumber",
-      onChange: handleFieldChange("houseNumber"),
+      label: lang.t("building"),
+      property: "building",
+      onChange: handleFieldChange("building"),
     },
     {
       type: "check",
@@ -123,25 +142,41 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
     },
     {
       type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+    {
+      type: "check",
       label: lang.t("shortnessOfBreath"),
       property: "shortnessOfBreath",
       onChange: handleFieldChange("shortnessOfBreath"),
     },
     {
       type: "check",
-      label: lang.t("fatigue"),
-      property: "fatigue",
-      onChange: handleFieldChange("fatigue"),
+      label: lang.t("headache"),
+      property: "headache",
+      onChange: handleFieldChange("headache"),
     },
 
-
+    {
+      type: "check",
+      label: lang.t("runnyNose"),
+      property: "runnyNose",
+      onChange: handleFieldChange("runnyNose"),
+    },
+    {
+      type: "check",
+      label: lang.t("feelingUnwell"),
+      property: "feelingUnwell",
+      onChange: handleFieldChange("feelingUnwell"),
+    },
     {
       type: "check",
       label: lang.t("chronicLungDisease"),
       property: "chronicLungDisease",
       onChange: handleFieldChange("chronicLungDisease"),
     },
-
 
     {
       type: "check",
@@ -191,7 +226,6 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       onChange: handleFieldChange("diabetes"),
     },
 
-
     {
       type: "check",
       label: lang.t("hiv"),
@@ -216,17 +250,17 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
     },
     {
       type: "switch",
-      label: lang.t("haveSex"),
-      property: "haveSex",
-      onChange: handleFieldChange("haveSex"),
+      label: lang.t("contactWithSuspected"),
+      property: "contactWithSuspected",
+      onChange: handleFieldChange("contactWithSuspected"),
       onLabel: lang.t("yes"),
       offLabel: lang.t("no"),
     },
     {
       type: "switch",
-      label: lang.t("animalMarket"),
-      property: "animalMarket",
-      onChange: handleFieldChange("animalMarket"),
+      label: lang.t("contactWithConfirmed"),
+      property: "contactWithConfirmed",
+      onChange: handleFieldChange("contactWithConfirmed"),
       onLabel: lang.t("yes"),
       offLabel: lang.t("no"),
     },
@@ -238,6 +272,7 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       onLabel: lang.t("yes"),
       offLabel: lang.t("no"),
     },
-  ]};
+  ];
+};
 
-  export default COMMUNITY_FIELDS;
+export default COMMUNITY_FIELDS;
