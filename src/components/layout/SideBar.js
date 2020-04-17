@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ListItemIcon } from "@material-ui/core";
+import { List, ListItem, ListItemText, ListItemAvatar, Avatar} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   card: {

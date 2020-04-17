@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import { Switch, Route } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Community from "../containers/Community";
 import MedicalCenters from "../containers/MedicalCenters";
-import { Box, Container, Loading, Typography, Grid } from "@material-ui/core";
+import { Box, Container, Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PortOfEntry from "../containers/PortOfEntry";
 import SideBarCard from "../components/layout/SideBar";
