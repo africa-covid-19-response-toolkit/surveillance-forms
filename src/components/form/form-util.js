@@ -7,11 +7,10 @@ import {
   TextField,
   Select,
   MenuItem,
-  Button,
   Switch,
   Checkbox
 } from "@material-ui/core";
-import { isEmpty, cloneDeep } from "lodash";
+import { isEmpty} from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from "../../modules/lang/moment-lang";
 
@@ -19,7 +18,6 @@ import MomentUtils from "@date-io/moment";
 import { toEthiopian as ToEthiopian } from "ethio-qalendar";
 
 const StatefulTextField = ({ field, clear }) => {
-  // fullWidth
   const {
     label,
     property,
@@ -40,8 +38,12 @@ const StatefulTextField = ({ field, clear }) => {
       firstUpdate.current = false;
       return;
     }
-    handleValidation();
-  }, [value]);
+
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  }, [value, onValidate]);
 
   useEffect(() => {
     if (clear === 0) {
@@ -49,7 +51,7 @@ const StatefulTextField = ({ field, clear }) => {
     }
     firstUpdate.current = true;
     setValue(field.value || "");
-  }, [clear]);
+  }, [field.value, clear]);
 
   const handleChange = event => {
     const newValue = event.target.value;
@@ -102,7 +104,6 @@ const StatefulTextField = ({ field, clear }) => {
   );
 };
 const StatefulDateField = ({ field }) => {
-  // fullWidth
   const {
     label,
     property,
@@ -136,8 +137,12 @@ const StatefulDateField = ({ field }) => {
       firstUpdate.current = false;
       return;
     }
-    handleValidation();
-  }, [value]);
+
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  }, [value, onValidate]);
 
   const handleDateChange = date => {
     const newValue = date.format();
@@ -145,13 +150,6 @@ const StatefulDateField = ({ field }) => {
 
     if (onChange) {
       onChange(newValue);
-    }
-  };
-
-  const handleValidation = () => {
-    if (onValidate) {
-      const result = onValidate(value);
-      setIsValid(result);
     }
   };
 

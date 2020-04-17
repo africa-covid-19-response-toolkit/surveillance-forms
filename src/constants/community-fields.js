@@ -1,8 +1,6 @@
 import { nameValidator, ageValidator } from "../validation/form/community";
 import {OCCUPATION_KEYS, SEX_VALUE, REGION_KEYS} from "./common"
 
-
-
 const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
     {
       type: "text",

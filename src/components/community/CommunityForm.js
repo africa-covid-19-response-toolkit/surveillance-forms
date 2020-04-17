@@ -1,29 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import {
   Box,
   Grid,
   Typography,
-  FormControl,
-  InputLabel,
-  TextField,
-  Select,
-  MenuItem,
   Button,
-  Switch,
+
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import  COMMUNITY_FIELDS from "../../constants/community-fields"
-import {SEX_VALUE, UNDERLYING} from "../../constants/common"
+import { UNDERLYING} from "../../constants/common"
 import CommunityInitialState from "./CommunityInitialState"
-
-import { green } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
 import config from '../../config';
 
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
-
 
 const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
@@ -147,13 +139,11 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation === "other" ?
-              <Grid item xs={12} md={4}>
-                        {renderFormField("occupationOther")}
-              </Grid> : ""
-
-          }
-
+          {formValues.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
         </Grid>
 
         {renderSubsectionheader("Address")}

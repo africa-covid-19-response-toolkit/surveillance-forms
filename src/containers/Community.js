@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import { Box, Typography, Loading } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import CommunityForm from "../components/community/CommunityForm";
 import api from '../api';
 

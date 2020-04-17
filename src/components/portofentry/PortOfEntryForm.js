@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import {
   Box,
   Grid,
@@ -9,47 +9,30 @@ import {
   IconButton,
   Button,
   Slide,
-  Switch,
   Dialog,
   List,
   ListItem,
   ListItemSecondaryAction,
-  makeStyles
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import {
   renderField
 } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState"
-import { isEmpty, cloneDeep } from "lodash";
-import { SEX_VALUE, UNDERLYING } from "../../constants/common";
+import { isEmpty} from "lodash";
+import {UNDERLYING} from "../../constants/common";
 import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields"
-import { green, red, grey, teal, amber } from "@material-ui/core/colors";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
-
 
 import config from '../../config';
 
 const TEST_SITE_KEY = config.captchaKey;
-
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
-}));
-
 const DELAY = 1500;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
@@ -194,6 +177,14 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.occupation === "other" &&
+            <Grid item xs={12} md={4}>
+             {renderFormField("occupationOther")}
+            </Grid>
+          }
         </Grid>
 
         {renderSubsectionheader("Travel Info")}
@@ -308,8 +299,6 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       </form>
     );
   };
-
-  console.log(formValues);
 
   return <Box>{renderForm()}</Box>;
 };

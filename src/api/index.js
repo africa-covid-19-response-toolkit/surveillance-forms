@@ -2,7 +2,6 @@ import axios from 'axios';
 import config from '../config';
 
 const POST = 'post';
-const GET = 'get';
 // const PUT = 'put';
 const DELETE = 'delete';
 
@@ -56,9 +55,9 @@ const execute = async (verb, url, body) => {
 
 class Api {
   async submitCommunity(formValues) {
-    
+
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
@@ -67,10 +66,24 @@ class Api {
   }
 
   async submitMedical(formValues) {
+
+    //clean up formValues
+    if (formValues.occupation === "other") {
+      formValues.occupation = formValues.occupationOther
+      delete formValues.occupationOther
+    }
+
     return execute(POST, '/public/medical-facilities', formValues);
   }
 
   async submitPortOfEntry(formValues) {
+
+    //clean up formValues
+    if (formValues.occupation === "other") {
+      formValues.occupation = formValues.occupationOther
+      delete formValues.occupationOther
+    }
+
     return execute(POST, '/public/passengers', formValues);
   }
 }

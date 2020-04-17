@@ -58,11 +58,10 @@ export default {
 
   occupation: {
     label: "የሥራ መደብ",
-    hcp: "HCP",
-    merchantAnimal: "ነጋዴ (እንስሳ)",
-    airport: "አየር ማረፊያ",
-    student: "ተማሪ",
-    other: "ሌላ"
+    hcp: "የጤና ሰራተኛ",
+    airport: "የአየር ማረፊያ ሰራተኛ",
+    merchant: "ነጋዴ",
+    other: "ሌላ",
   },
   occupationOther: "የሥራ መደብ ሌላ ከተመረጠ",
   callDate: "የጥሪ ቀን",
