@@ -55,7 +55,7 @@ const execute = async (verb, url, body) => {
 
 class Api {
   async submitCommunity(formValues) {
-    
+
     //clean up formValues
     if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
@@ -68,7 +68,7 @@ class Api {
   async submitMedical(formValues) {
 
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
@@ -79,11 +79,11 @@ class Api {
   async submitPortOfEntry(formValues) {
 
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
-    
+
     return execute(POST, '/public/passengers', formValues);
   }
 }

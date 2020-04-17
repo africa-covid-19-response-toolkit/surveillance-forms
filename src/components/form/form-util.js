@@ -18,7 +18,6 @@ import MomentUtils from "@date-io/moment";
 import { toEthiopian as ToEthiopian } from "ethio-qalendar";
 
 const StatefulTextField = ({ field, clear }) => {
-  // fullWidth
   const {
     label,
     property,
@@ -39,7 +38,7 @@ const StatefulTextField = ({ field, clear }) => {
       firstUpdate.current = false;
       return;
     }
-    // handleValidation();
+
     if (onValidate) {
       const result = onValidate(value);
       setIsValid(result);
@@ -105,7 +104,6 @@ const StatefulTextField = ({ field, clear }) => {
   );
 };
 const StatefulDateField = ({ field }) => {
-  // fullWidth
   const {
     label,
     property,
@@ -139,7 +137,7 @@ const StatefulDateField = ({ field }) => {
       firstUpdate.current = false;
       return;
     }
-    // handleValidation();
+
     if (onValidate) {
       const result = onValidate(value);
       setIsValid(result);
@@ -154,13 +152,6 @@ const StatefulDateField = ({ field }) => {
       onChange(newValue);
     }
   };
-
-  // const handleValidation = () => {
-  //   if (onValidate) {
-  //     const result = onValidate(value);
-  //     setIsValid(result);
-  //   }
-  // };
 
   const props = {};
   if (!isValid) {
