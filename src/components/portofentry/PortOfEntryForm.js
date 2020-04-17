@@ -147,8 +147,8 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader("Passenger Registration Form")}
-        {renderSubsectionheader("Basic Information")}
+        {renderSectionHeader(lang.t("passengerRegistrationForm"))}
+        {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
@@ -187,7 +187,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           }
         </Grid>
 
-        {renderSubsectionheader("Travel Info")}
+        {renderSubsectionheader(lang.t("travelInfo"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("travelFrom")}
@@ -214,7 +214,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
-            {renderSubsectionheader("Symptoms")}
+            {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
@@ -234,7 +234,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
         </Grid>
         <Box mt={4} textAlign="left">
-          {renderSubsectionheader('Dependents')}
+          {renderSubsectionheader(lang.t("dependents"))}
           <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
           {!isEmpty(formValues.dependents) && (
             <Grid container item xs={12} md={4}>
@@ -268,7 +268,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
                   <CloseIcon />
                 </IconButton>
                 <Typography>
-                  Passenger Dependents Registration Form
+                  {lang.t("passengerDependentsRegistrationForm")}
                 </Typography>
               </Toolbar>
             </AppBar>

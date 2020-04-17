@@ -35,17 +35,15 @@ const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
     )
   }
 
+  // <img src="/Flag.png" style={{ verticalAlign: 'middle', marginRight: 10 }} alt="flag"/>
+
   return (
     <AppBar position="static" style={{ color: 'white', backgroundColor: '#0040B7', justifyContent: 'middle' }}>
-      <Toolbar variant="dense">
-        <img src="/Flag.png" style={{ verticalAlign: 'middle', marginRight: 10 }} alt="flag"/>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>{lang.t('officalWebsite')}</Typography>
+      <Toolbar variant="dense">      
+        <Typography variant="h6" style={{ flexGrow: 1 }}>{lang.t('headerTitle')}</Typography>
         {renderLanguageSelector()}
       </Toolbar>
     </AppBar>
-    // <Box py={1} pl={4} pr={7} style={{ color: 'white', backgroundColor: '#0944B4' }}>
-     
-    // </Box>
   );
 };
 

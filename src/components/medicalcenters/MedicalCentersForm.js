@@ -118,7 +118,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     return (
       <form autoComplete="off">
         {renderSectionHeader(lang.t("healthFacilitiesApplicationForm"))}
-        {renderSubsectionheader(lang.t("healthFacilitiesApplicationForm"))}
+        {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}

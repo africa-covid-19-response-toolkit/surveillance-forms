@@ -13,25 +13,6 @@ import SideBarCard from "../components/layout/SideBar";
 // import Api from '../api';
 
 class App extends Component {
-  // unsubscribeFromHistory;
-  //
-  // componentWillMount() {
-  //   const { userStore } = this.props;
-  //
-  //   // userStore.fetchUser();
-  //
-  //   this.unsubscribeFromHistory = this.props.history.listen(() => {
-  //     // Keep alive on any further route changes
-  //     Api.keepAlive(userStore.user.eid);
-  //   });
-  // }
-  //
-  // componentWillUnmount() {
-  //   if (this.unsubscribeFromHistory) {
-  //     this.unsubscribeFromHistory();
-  //   }
-  // }
-
   render() {
     const { languageStore } = this.props;
     const { lang, langCode } = languageStore;
@@ -50,19 +31,19 @@ class App extends Component {
         <Box mx="auto" pb={5}>
           <Container>
             <Box my={3}>
-            <Typography style={{display: 'inline'}} variant="body2">Forms:</Typography>&nbsp;&nbsp;
+            <Typography style={{display: 'inline'}} variant="body2">{lang.t('form.label')}:</Typography>&nbsp;&nbsp;
             <Link to={"/community-form"}>
               <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.community")}
               </Typography>
             </Link>
-            &nbsp;&nbsp;
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <Link to={"/medical-form"}>
               <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.medicalCenters")}
               </Typography>
             </Link>
-            &nbsp;&nbsp;
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <Link to={"/port-of-entry-form"}>
               <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.portOfEntry")}

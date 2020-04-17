@@ -115,8 +115,8 @@ const CommunityForm = ({ onSubmit, lang }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader("Online Suspect Form")}
-        {renderSubsectionheader("Basic Information")}
+        {renderSectionHeader(lang.t("onlineSuspectForm"))}
+        {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("firstName")}
@@ -146,7 +146,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
           )}
         </Grid>
 
-        {renderSubsectionheader("Address")}
+        {renderSubsectionheader(lang.t("address"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
             {renderFormField("region")}
@@ -170,7 +170,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
 
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>
-            {renderSubsectionheader("Symptoms")}
+            {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
@@ -189,7 +189,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader("General Information")}
+            {renderSubsectionheader(lang.t("generalInformation"))}
             {renderFormField("travelHx")}
             {renderFormField("animalMarket")}
             {renderFormField("haveSex")}

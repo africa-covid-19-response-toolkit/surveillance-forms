@@ -72,6 +72,12 @@ export default {
     callerType2: "callerType2"
   },
   fever: "ትኩሳት",
+  form: {
+    label: "ቅጾች",
+    community: "የማህበረሰብ",
+    medicalCenters: "ጤና ተቋማት",
+    portOfEntry: "ተጓዥ"
+  },
   cough: "ሳል",
   fatigue: "የድካም ስሜት",
   headache: "ራስ ምታት",
@@ -104,9 +110,9 @@ export default {
     ghion: "ጊዮን ሆቴል",
     azzeman: "አዜማን ሆቴል",
     sapphire: "ሳፋየር ሆቴል",
-    other: "ሌላ",
-    addDependent: "Add Dependent(s)"
+    other: "ሌላ"
   },
+  addDependent: "ጥገኛ (ኦች) ያክሉ",
   hotelOther: "ሆቴል ሌላ ከተመረጠ",
   formErrors: {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
@@ -125,9 +131,22 @@ export default {
   travelFrom: "መነሻ",
   flightNumber: "የበረራ ቁጥር",
   seatNumber: "መቀመጫ ቁጥር",
+  headerTitle: "የ COVID-19 ቅጾች",
+  footerText: "የ COVID-19 ቅጾች",
   transitFrom: "ትራንዚት (ካለ)",
   healthFacilitiesApplicationForm: "የጤና ተቋማት ማመልከቻ ቅጽ",
   healthFacilitiesReportingFormForCOVID19: "የ COVID-19 ን ቅጽ የሚገልጽ የጤና አቅርቦቶች",
   generalInformation: "አጠቃላይ መረጃ",
-  symptoms: "ምልክቶች"
+  symptoms: "ምልክቶች",
+  onlineSuspectForm: "የማህበረሰብ ምዝገባ ቅጽ",
+  basicInformation: "መሰረታዊ መረጃ",
+  address: "አድራሻ",
+  passengerRegistrationForm: "የተጓዥ ምዝገባ ቅጽ",
+  travelInfo: "የጉዞ መረጃ",
+  dependentBasicInformation: "ጥገኛ መሠረታዊ መረጃ",
+  passengerDependentsRegistrationForm: "የተጓዥ ጥገኛ ምዝገባ ቅጽ",
+  dependents: "ጥገኛዎች",
+  dependentsBasicInformation: "የጥገኛ መሰረታዊ መረጃ",
+  submitDependent: "ጥገኛ ይመዝግቡ",
+  submit: "ያስገቡ"
 };

@@ -91,9 +91,10 @@ export default {
   flightNumber: "Flight Number",
   seatNumber: "Seat Number",
   addDependent: "Add Dependent(s)",
-  officalWebsite: "An offical website of the Ethiopian Government",
-  footerText: "COVID-19 Ethiopia Response",
+  headerTitle: "COVID-19 Surveillance Forms",
+  footerText: "COVID-19 Surveillance Forms",
   form: {
+    label: "Forms",
     community: "Community",
     medicalCenters: "Medical Centers",
     portOfEntry: "Port Of Entry"
@@ -136,5 +137,14 @@ export default {
   healthFacilitiesReportingFormForCOVID19:
     "Health Facilities Reporting Form For COVID-19",
   generalInformation: "GENERAL INFORMATION",
-  symptoms: "SYMPTOMS"
+  symptoms: "SYMPTOMS",
+  onlineSuspectForm: "Community Reporting Form",
+  basicInformation: "Basic Information",
+  address: "Address",
+  passengerRegistrationForm: "Passenger Registration Form",
+  travelInfo: "Travel Info",
+  dependentBasicInformation: "Dependent's Basic Information",
+  passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
+  dependents: "Dependents",
+  dependentsBasicInformation: "Dependent\'s Basic Information"
 };
