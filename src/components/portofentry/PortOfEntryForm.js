@@ -25,22 +25,18 @@ import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields"
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
 
-
 import config from '../../config';
 
 const TEST_SITE_KEY = config.captchaKey;
-
-
 const DELAY = 1500;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 const PortOfEntryForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
-      ...PortOfEntryInitialState
+    ...PortOfEntryInitialState
   });
 
   const [open, setOpen] = useState(false);
@@ -71,15 +67,15 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       setFormValues({
         ...formValues,
         underlyingConditions: {
-           ...formValues.underlyingConditions,
-           [field] : value
+          ...formValues.underlyingConditions,
+          [field]: value
         },
       });
 
     } else {
       setFormValues({
         ...formValues,
-       [field]: value,
+        [field]: value,
       });
     }
   };
@@ -103,7 +99,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const renderSubsectionheader = (label) => {
     return (
-        <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">{label}</Typography>
     );
   };
 
@@ -126,7 +122,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    if(!isEmpty(captchaText) && !isCaptchaExpired) {
+    if (!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
@@ -186,7 +182,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           </Grid>
           {formValues.occupation === "other" &&
             <Grid item xs={12} md={4}>
-                      {renderFormField("occupationOther")}
+             {renderFormField("occupationOther")}
             </Grid>
           }
         </Grid>
@@ -208,6 +204,12 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={3}>
             {renderFormField("hotelName")}
           </Grid>
+          {formValues.hotelName === "other" ?
+            <Grid item xs={12} md={4}>
+              {renderFormField("hotelOther")}
+            </Grid> : ""
+
+          }
         </Grid>
 
         <Grid container spacing={4}>
@@ -297,8 +299,6 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
       </form>
     );
   };
-
-  console.log(formValues);
 
   return <Box>{renderForm()}</Box>;
 };

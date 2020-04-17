@@ -4,21 +4,18 @@ import {
   Grid,
   Typography,
   Button,
-  
+
 } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import  COMMUNITY_FIELDS from "../../constants/community-fields"
 import { UNDERLYING} from "../../constants/common"
 import CommunityInitialState from "./CommunityInitialState"
-
-
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
 import config from '../../config';
 
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
-
 
 const CommunityForm = ({ onSubmit, lang }) => {
   const [formValues, setFormValues] = useState({
@@ -142,11 +139,11 @@ const CommunityForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation === "other" &&
+          {formValues.occupation === "other" && (
             <Grid item xs={12} md={4}>
               {renderFormField("occupationOther")}
             </Grid>
-          }
+          )}
         </Grid>
 
         {renderSubsectionheader("Address")}

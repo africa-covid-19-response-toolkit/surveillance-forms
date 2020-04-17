@@ -107,6 +107,7 @@ export default {
     other: "ሌላ",
     addDependent: "Add Dependent(s)"
   },
+  hotelOther: "ሆቴል ሌላ ከተመረጠ",
   formErrors: {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
