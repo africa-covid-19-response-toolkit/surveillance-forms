@@ -6,11 +6,17 @@ import api from '../api';
 
 class Community extends Component {
   render() {
-    const { languageStore } = this.props;
+    const { languageStore, notificationStore } = this.props;
     const { lang } = languageStore;
 
     const onSubmit = async (formValues) => {
-      return api.submitCommunity(formValues);
+      return api.submitCommunity(formValues)
+        .then(() => {
+          notificationStore.showMessage(lang.t('formSubmittedSuccess'), 3000);
+        })
+        .catch(() => {
+          notificationStore.showMessage(lang.t('formSubmittedError'), 5000);
+        })
     }
 
     return (
@@ -21,4 +27,4 @@ class Community extends Component {
   }
 }
 
-export default inject("languageStore")(observer(Community));
+export default inject("languageStore", "notificationStore")(observer(Community));

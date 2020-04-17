@@ -7,11 +7,17 @@ import api from '../api';
 
 class PortOfEntry extends Component {
   render() {
-    const { languageStore } = this.props;
+    const { languageStore, notificationStore } = this.props;
     const { lang } = languageStore;
 
     const onSubmit = async (formValues) => {
-      return api.submitPortOfEntry(formValues);
+      return api.submitPortOfEntry(formValues)
+        .then(() => {
+          notificationStore.showMessage(lang.t('formSubmittedSuccess'), 3000);
+        })
+        .catch(() => {
+          notificationStore.showMessage(lang.t('formSubmittedError'), 5000);
+        })
     }
 
     return (
@@ -22,4 +28,4 @@ class PortOfEntry extends Component {
   }
 }
 
-export default inject('languageStore')(observer(PortOfEntry));
+export default inject('languageStore', 'notificationStore')(observer(PortOfEntry));

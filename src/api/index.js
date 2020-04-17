@@ -41,15 +41,15 @@ const execute = async (verb, url, body) => {
     };
   } catch (error) {
     // const { status, data } = error.response;
-    const { status } = error.response;
+    // const { status } = error.response;
 
     // handle 401s in the store, payload may contain relevant redirect info
     // if (status === 401) {
     // }
 
-    // CSC - for now re-throwing the error as all of the app code was written to catch exceptions...
     // throw error;
-    return { status, data: null };
+    // return { status, data: null };
+    throw error;
   }
 };
 
