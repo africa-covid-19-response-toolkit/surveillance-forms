@@ -37,3 +37,4 @@ urix@0.1.0
 workbox-build
 workbox-webpack-plugin
 .vscode/
+.env

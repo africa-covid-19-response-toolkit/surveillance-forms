@@ -3,7 +3,7 @@ export default {
     label: "Language",
     english: "English",
     amharic: "Amharic",
-    oromo: "Afan Oromo"
+    oromo: "Afan Oromo",
   },
   firstName: "First Name",
   middleName: "Middle Name",
@@ -23,7 +23,7 @@ export default {
     oromia: "Oromia",
     somali: "Somali",
     southern: "Southern Nations, Nationalities, and Peoples",
-    tigray: "Tigray"
+    tigray: "Tigray",
   },
   subcity: {
     label: "Sub City",
@@ -36,7 +36,7 @@ export default {
     kolfe: "Kolfe",
     lideta: "Lideta",
     nifasSilkLafto: "Nifas Silk Lafto",
-    yeka: "Yeka"
+    yeka: "Yeka",
   },
   sefer: "Sefer",
   woreda: "woreda",
@@ -46,7 +46,7 @@ export default {
   nationality: {
     label: "Nationality",
     ethiopian: "Ethiopian",
-    other: "Other"
+    other: "Other",
   },
   passportNumber: "Passport Number",
   phoneNumber: "Phone Number",
@@ -61,12 +61,12 @@ export default {
   sex: {
     label: "Sex",
     male: "Male",
-    female: "Female"
+    female: "Female",
   },
   callerType: {
     label: "Caller Type",
     callerType1: "callerType1",
-    callerType2: "callerType2"
+    callerType2: "callerType2",
   },
   hotel: {
     label: "Hotel",
@@ -74,13 +74,16 @@ export default {
     ghion: "Ghion Hotel",
     azzeman: "Azzeman Hotel",
     sapphire: "Sapphire Hotel",
-    other: "Other"
+    other: "Other",
   },
+  hotelOther: "Hotel if other was choosen",
   callDate: "Call Date",
   yes: "Yes",
   no: "No",
   submit: "Submit",
   submitDependent: "Submit Dependent",
+  formSubmittedSuccess: "Form Submitted",
+  formSubmittedError: "ERROR: Unable to Submit Form",
   travelFrom: "Travel From",
   travelHistory: "Travel History",
   haveSex: "Had Sex",
@@ -90,12 +93,13 @@ export default {
   flightNumber: "Flight Number",
   seatNumber: "Seat Number",
   addDependent: "Add Dependent(s)",
-  officalWebsite: "An offical website of the Ethiopian Government",
-  footerText: "COVID-19 Ethiopia Response",
+  headerTitle: "COVID-19 Surveillance Forms",
+  footerText: "COVID-19 Surveillance Forms",
   form: {
+    label: "Forms",
     community: "Community",
     medicalCenters: "Medical Centers",
-    portOfEntry: "Port Of Entry"
+    portOfEntry: "Passengers",
   },
   fever: "Fever",
   cough: "Cough",
@@ -123,25 +127,26 @@ export default {
       "If you experience one or more of the above symptoms, isolate yourself and call 8335.",
     note3:
       "If you suspect someone else has these symptoms, don't hesitate to call to 8335.",
-    note4: "Keep your distance (minimum 1 Meter) from anyone who has symptoms."
+    note4: "Keep your distance (minimum 1 Meter) from anyone who has symptoms.",
   },
   formErrors: {
     empty: "This field can not be empty",
     numberOnly: "This field is for number only",
     email: "Email address must be valid",
-    lengthAtMost100: "100 or few characters please"
+    lengthAtMost100: "100 or few characters please",
   },
   healthFacilitiesApplicationForm: "Health Facilities Application Form",
   healthFacilitiesReportingFormForCOVID19:
     "Health Facilities Reporting Form For COVID-19",
   generalInformation: "GENERAL INFORMATION",
-  symptoms: "Symptoms",
-  onlineSuspectForm: "Online Suspect Form",
+  symptoms: "SYMPTOMS",
+  onlineSuspectForm: "Community Reporting Form",
   basicInformation: "Basic Information",
   address: "Address",
   passengerRegistrationForm: "Passenger Registration Form",
   travelInfo: "Travel Info",
   dependentBasicInformation: "Dependent's Basic Information",
   passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
-  dependents: "Dependents"
+  dependents: "Dependents",
+  dependentsBasicInformation: "Dependent's Basic Information",
 };

@@ -8,11 +8,11 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
   console.log(lang);
   const [formValues, setFormValues] = useState({});
 
-  const handleFieldChange = field => value => {
+  const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
     setFormValues({
       ...formValues,
-      [field]: value
+      [field]: value,
     });
   };
 
@@ -23,28 +23,28 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
       property: "firstName",
       focus: true,
       onChange: handleFieldChange("firstName"),
-      onValidate: val => {
+      onValidate: (val) => {
         return !isEmpty(val) && val.length >= 3;
       },
-      validationErrorMsg: "Enter name (min 3 chars)"
+      validationErrorMsg: "Enter name (min 3 chars)",
     },
     {
       type: "text",
       label: lang.t("middleName"),
       property: "middleName",
-      onChange: handleFieldChange("middleName")
+      onChange: handleFieldChange("middleName"),
     },
     {
       type: "text",
       label: lang.t("lastName"),
       property: "lastName",
-      onChange: handleFieldChange("lastName")
+      onChange: handleFieldChange("lastName"),
     },
     {
       type: "text",
       label: lang.t("age"),
       property: "age",
-      onChange: handleFieldChange("age")
+      onChange: handleFieldChange("age"),
     },
     {
       type: "select",
@@ -53,8 +53,8 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
       onChange: handleFieldChange("sex"),
       choices: [
         { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" }
-      ]
+        { label: lang.t("sex.male"), value: "M" },
+      ],
     },
     {
       type: "date",
@@ -62,7 +62,7 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
       property: "dateOfBirth",
       langCode: langCode,
       focus: true,
-      onChange: handleFieldChange("dateOfBirth")
+      onChange: handleFieldChange("dateOfBirth"),
     },
     {
       type: "select",
@@ -71,20 +71,20 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
       onChange: handleFieldChange("nationality"),
       choices: [
         { label: lang.t("nationality.ethiopian"), value: "ET" }, //placeholder
-        { label: lang.t("nationality.other"), value: "other" }
-      ]
+        { label: lang.t("nationality.other"), value: "other" },
+      ],
     },
     {
       type: "text",
       label: lang.t("passportNumber"),
       property: "passportNo",
-      onChange: handleFieldChange("passportNo")
+      onChange: handleFieldChange("passportNo"),
     },
     {
       type: "text",
       label: lang.t("phoneNumber"),
       property: "phoneNo",
-      onChange: handleFieldChange("phoneNo")
+      onChange: handleFieldChange("phoneNo"),
     },
     {
       type: "select",
@@ -93,8 +93,8 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
       onChange: handleFieldChange("travelFrom"),
       choices: [
         { label: "country 1", value: "1" }, //placeholder
-        { label: "country 2", value: "2" }
-      ]
+        { label: "country 2", value: "2" },
+      ],
     },
     {
       type: "select",
@@ -103,50 +103,50 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
       onChange: handleFieldChange("transitFrom"),
       choices: [
         { label: "country 1", value: "1" }, //placeholder
-        { label: "country 2", value: "2" }
-      ]
+        { label: "country 2", value: "2" },
+      ],
     },
     {
       type: "text",
       label: lang.t("seatNumber"),
       property: "seatNumber",
-      onChange: handleFieldChange("phoseatNumberneNo")
+      onChange: handleFieldChange("phoseatNumberneNo"),
     },
     {
       type: "text",
       label: lang.t("flightNumber"),
       property: "flightNumber",
-      onChange: handleFieldChange("flightNumber")
+      onChange: handleFieldChange("flightNumber"),
     },
     {
       type: "check",
       label: lang.t("fever"),
       property: "fever",
-      onChange: handleFieldChange("fever")
+      onChange: handleFieldChange("fever"),
     },
     {
       type: "check",
       label: lang.t("cough"),
       property: "cough",
-      onChange: handleFieldChange("cough")
+      onChange: handleFieldChange("cough"),
     },
     {
       type: "check",
       label: lang.t("shortnessOfBreath"),
       property: "shortnessOfBreath",
-      onChange: handleFieldChange("shortnessOfBreath")
-    }
+      onChange: handleFieldChange("shortnessOfBreath"),
+    },
   ];
 
-  const renderFormField = property => {
-    const field = fields.find(f => f.property === property);
+  const renderFormField = (property) => {
+    const field = fields.find((f) => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field);
   };
 
-  const renderSubsectionheader = label => {
+  const renderSubsectionheader = (label) => {
     return (
       <Box mt={3} mb={1}>
         <Typography variant="h5">{label}</Typography>
@@ -161,7 +161,7 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
 
   const isFormValid = () => {
     let isValid = true;
-    fields.forEach(f => {
+    fields.forEach((f) => {
       if (f.onValidate) {
         isValid = isValid && f.onValidate(formValues[f.property]);
       }
@@ -172,7 +172,7 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSubsectionheader(lang.t("dependentBasicInformation"))}
+        {renderSubsectionheader(lang.t("dependentsBasicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}

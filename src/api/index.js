@@ -2,7 +2,6 @@ import axios from 'axios';
 import config from '../config';
 
 const POST = 'post';
-const GET = 'get';
 // const PUT = 'put';
 const DELETE = 'delete';
 
@@ -42,23 +41,23 @@ const execute = async (verb, url, body) => {
     };
   } catch (error) {
     // const { status, data } = error.response;
-    const { status } = error.response;
+    // const { status } = error.response;
 
     // handle 401s in the store, payload may contain relevant redirect info
     // if (status === 401) {
     // }
 
-    // CSC - for now re-throwing the error as all of the app code was written to catch exceptions...
     // throw error;
-    return { status, data: null };
+    // return { status, data: null };
+    throw error;
   }
 };
 
 class Api {
   async submitCommunity(formValues) {
-    
+
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
@@ -69,7 +68,7 @@ class Api {
   async submitMedical(formValues) {
 
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
@@ -80,11 +79,11 @@ class Api {
   async submitPortOfEntry(formValues) {
 
     //clean up formValues
-    if (formValues.occupation == "other") {
+    if (formValues.occupation === "other") {
       formValues.occupation = formValues.occupationOther
       delete formValues.occupationOther
     }
-    
+
     return execute(POST, '/public/passengers', formValues);
   }
 }
