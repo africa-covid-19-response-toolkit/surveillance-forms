@@ -82,6 +82,8 @@ export default {
   no: "No",
   submit: "Submit",
   submitDependent: "Submit Dependent",
+  formSubmittedSuccess: "Form Submitted",
+  formSubmittedError: "ERROR: Unable to Submit Form",
   travelFrom: "Travel From",
   travelHistory: "Travel History",
   haveSex: "Had Sex",
@@ -97,7 +99,7 @@ export default {
     label: "Forms",
     community: "Community",
     medicalCenters: "Medical Centers",
-    portOfEntry: "Port Of Entry"
+    portOfEntry: "Passengers"
   },
   fever: "Fever",
   cough: "Cough",
@@ -146,5 +148,5 @@ export default {
   dependentBasicInformation: "Dependent's Basic Information",
   passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
   dependents: "Dependents",
-  dependentsBasicInformation: "Dependent\'s Basic Information"
+  dependentsBasicInformation: "Dependent's Basic Information"
 };

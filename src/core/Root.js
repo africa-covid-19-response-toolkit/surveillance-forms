@@ -7,6 +7,7 @@ import asyncComponent from '../util/asyncComponent';
 // == Stores
 // common
 import languageStore from '../modules/lang/LanguageStore';
+import notificationStore from '../modules/notification/NotificationStore';
 
 // == Theme
 import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -20,6 +21,7 @@ const Root = () => {
     <MuiThemeProvider theme={theme}>
       <Provider
         languageStore={languageStore}
+        notificationStore={notificationStore}
       >
         <Router basename="/">
           <Switch>

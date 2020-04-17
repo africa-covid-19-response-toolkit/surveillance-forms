@@ -148,5 +148,7 @@ export default {
   dependents: "ጥገኛዎች",
   dependentsBasicInformation: "የጥገኛ መሰረታዊ መረጃ",
   submitDependent: "ጥገኛ ይመዝግቡ",
-  submit: "ያስገቡ"
+  submit: "ያስገቡ",
+  formSubmittedSuccess: "ቅጽ ገብቷል",
+  formSubmittedError: "ስህተት: ቅጽ ማስገባት አልተቻለም"
 };

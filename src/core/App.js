@@ -3,6 +3,7 @@ import { observer, inject } from "mobx-react";
 import { Route } from "react-router-dom";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import Notification from "../components/layout/Notification";
 import Community from "../containers/Community";
 import MedicalCenters from "../containers/MedicalCenters";
 import { Box, Container, Typography, Grid } from "@material-ui/core";
@@ -14,15 +15,33 @@ import SideBarCard from "../components/layout/SideBar";
 
 class App extends Component {
   render() {
-    const { languageStore } = this.props;
+    const { languageStore, notificationStore } = this.props;
     const { lang, langCode } = languageStore;
 
     const onLanguageSelect = (code) => {
       languageStore.setLanguage(code);
     };
 
+    const renderNotificationContainer = () => {
+      const { open, message, onClose, durationMs } = notificationStore;
+
+      if (!open) {
+        return null;
+      }
+
+      return (
+        <Notification
+          open={open}
+          message={message}
+          onClose={onClose}
+          durationMs={durationMs}
+        />
+      );
+    }
+
     return (
       <Box>
+        {renderNotificationContainer()}
         <Header
           lang={lang}
           langCode={langCode}
@@ -99,4 +118,4 @@ class App extends Component {
   }
 }
 
-export default inject("languageStore")(observer(App));
+export default inject("languageStore", "notificationStore")(observer(App));
