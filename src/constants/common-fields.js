@@ -1,10 +1,5 @@
 import { nameValidator, ageValidator } from "../validation/form/community";
-import {
-  OCCUPATION_KEYS,
-  SEX_VALUE,
-  COUNTRY_KEYS,
-  REGION_KEYS,
-} from "./common";
+import { SEX_VALUE, COUNTRY_KEYS, REGION_KEYS } from "./common";
 
 const COMMON_FIELDS = (lang, handleFieldChange) => {
   return [
@@ -61,22 +56,6 @@ const COMMON_FIELDS = (lang, handleFieldChange) => {
 
     {
       type: "select",
-      label: lang.t("occupation.label"),
-      property: "occupation",
-      onChange: handleFieldChange("occupation"),
-      choices: OCCUPATION_KEYS.map((r) => ({
-        label: lang.t(`occupation.${r}`),
-        value: r,
-      })),
-    },
-    {
-      type: "text",
-      label: lang.t("occupationOther"),
-      property: "occupationOther",
-      onChange: handleFieldChange("occupationOther"),
-    },
-    {
-      type: "select",
       label: lang.t("country.label"),
       property: "country",
       choices: COUNTRY_KEYS.map((c) => ({
@@ -119,49 +98,7 @@ const COMMON_FIELDS = (lang, handleFieldChange) => {
       property: "building",
       onChange: handleFieldChange("building"),
     },
-    {
-      type: "check",
-      label: lang.t("fever"),
-      property: "fever",
-      onChange: handleFieldChange("fever"),
-    },
-    {
-      type: "check",
-      label: lang.t("cough"),
-      property: "cough",
-      onChange: handleFieldChange("cough"),
-    },
-    {
-      type: "check",
-      label: lang.t("fatigue"),
-      property: "fatigue",
-      onChange: handleFieldChange("fatigue"),
-    },
-    {
-      type: "check",
-      label: lang.t("shortnessOfBreath"),
-      property: "shortnessOfBreath",
-      onChange: handleFieldChange("shortnessOfBreath"),
-    },
-    {
-      type: "check",
-      label: lang.t("headache"),
-      property: "headache",
-      onChange: handleFieldChange("headache"),
-    },
 
-    {
-      type: "check",
-      label: lang.t("runnyNose"),
-      property: "runnyNose",
-      onChange: handleFieldChange("runnyNose"),
-    },
-    {
-      type: "check",
-      label: lang.t("feelingUnwell"),
-      property: "feelingUnwell",
-      onChange: handleFieldChange("feelingUnwell"),
-    },
     {
       type: "check",
       label: lang.t("chronicLungDisease"),
@@ -230,14 +167,48 @@ const COMMON_FIELDS = (lang, handleFieldChange) => {
       property: "pregnancy",
       onChange: handleFieldChange("pregnancy"),
     },
+    {
+      type: "check",
+      label: lang.t("fever"),
+      property: "fever",
+      onChange: handleFieldChange("fever"),
+    },
+    {
+      type: "check",
+      label: lang.t("cough"),
+      property: "cough",
+      onChange: handleFieldChange("cough"),
+    },
+    {
+      type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
+    },
+    {
+      type: "check",
+      label: lang.t("shortnessOfBreath"),
+      property: "shortnessOfBreath",
+      onChange: handleFieldChange("shortnessOfBreath"),
+    },
+    {
+      type: "check",
+      label: lang.t("headache"),
+      property: "headache",
+      onChange: handleFieldChange("headache"),
+    },
 
     {
-      type: "switch",
-      label: lang.t("travelHistory"),
-      property: "travelHx",
-      onChange: handleFieldChange("travelHx"),
-      onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
+      type: "check",
+      label: lang.t("runnyNose"),
+      property: "runnyNose",
+      onChange: handleFieldChange("runnyNose"),
+    },
+    {
+      type: "check",
+      label: lang.t("feelingUnwell"),
+      property: "feelingUnwell",
+      onChange: handleFieldChange("feelingUnwell"),
     },
     {
       type: "switch",
@@ -252,14 +223,6 @@ const COMMON_FIELDS = (lang, handleFieldChange) => {
       label: lang.t("contactWithConfirmed"),
       property: "contactWithConfirmed",
       onChange: handleFieldChange("contactWithConfirmed"),
-      onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
-    },
-    {
-      type: "switch",
-      label: lang.t("healthFacility"),
-      property: "healthFacility",
-      onChange: handleFieldChange("healthFacility"),
       onLabel: lang.t("yes"),
       offLabel: lang.t("no"),
     },

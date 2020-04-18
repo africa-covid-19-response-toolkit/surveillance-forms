@@ -1,9 +1,26 @@
 import { NATIONALITY_KEYS, CALLERTYPE_KEYS } from "./common";
 import { COMMON_FIELDS } from "./common-fields";
+import { OCCUPATION_KEYS } from "./common";
 import { emailValidator } from "../validation/form/medical";
 
 const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
   const uniqueFields = [
+    {
+      type: "select",
+      label: lang.t("occupation.label"),
+      property: "occupation",
+      onChange: handleFieldChange("occupation"),
+      choices: OCCUPATION_KEYS.map((r) => ({
+        label: lang.t(`occupation.${r}`),
+        value: r,
+      })),
+    },
+    {
+      type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
+    },
     {
       type: "text",
       label: lang.t("email"),
@@ -44,6 +61,23 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
         label: lang.t(`nationality.${r}`),
         value: r,
       })),
+    },
+    {
+      type: "switch",
+      label: lang.t("travelHistory"),
+      property: "travelHx",
+      onChange: handleFieldChange("travelHx"),
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
+    },
+
+    {
+      type: "switch",
+      label: lang.t("healthFacility"),
+      property: "healthFacility",
+      onChange: handleFieldChange("healthFacility"),
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
     },
   ];
   var Fields = COMMON_FIELDS(lang, handleFieldChange);

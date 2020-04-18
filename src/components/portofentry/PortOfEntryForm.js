@@ -162,10 +162,10 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("sex")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("nationality")}
+            {renderFormField("language")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("passportNo")}
+            {renderFormField("nationality")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("phoneNumber")}
@@ -174,16 +174,11 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("age")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("email")}
+            {renderFormField("passportNo")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("occupation")}
+            {renderFormField("email")}
           </Grid>
-          {formValues.occupation === "other" && (
-            <Grid item xs={12} md={4}>
-              {renderFormField("occupationOther")}
-            </Grid>
-          )}
         </Grid>
 
         {renderSubsectionheader(lang.t("travelInfo"))}
@@ -213,14 +208,17 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
         </Grid>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
             {renderFormField("fatigue")}
+            {renderFormField("headache")}
+            {renderFormField("runnyNose")}
+            {renderFormField("feelingUnwell")}
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("underlyingConditions"))}
             {renderFormField("chronicLungDisease")}
             {renderFormField("heartDisease")}
@@ -231,6 +229,12 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("diabetes")}
             {renderFormField("hiv")}
             {renderFormField("pregnancy")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader(lang.t("generalInformation"))}
+
+            {renderFormField("contactWithSuspected")}
+            {renderFormField("contactWithConfirmed")}
           </Grid>
         </Grid>
         <Box mt={4} textAlign="left">
