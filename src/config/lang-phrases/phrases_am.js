@@ -316,6 +316,7 @@ export default {
     callerType1: "callerType1",
     callerType2: "callerType2",
   },
+  caller: "የደዋይ",
   fever: "ትኩሳት",
   form: {
     label: "ቅጾች",

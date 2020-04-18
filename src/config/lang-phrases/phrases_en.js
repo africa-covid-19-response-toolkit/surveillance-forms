@@ -318,6 +318,8 @@ export default {
     callerType1: "callerType1",
     callerType2: "callerType2",
   },
+  caller: "Caller",
+  receiverName: "Receiver Name",
   hotel: {
     label: "Hotel",
     skylight: "Skylight Hotel",
