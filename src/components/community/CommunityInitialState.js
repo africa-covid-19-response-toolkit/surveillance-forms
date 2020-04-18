@@ -1,8 +1,7 @@
 const CommunityInitialState = {
-
   firstName: "",
   lastName: "",
-  age:  "",
+  age: "",
   sex: "",
   language: "",
   region: "",
@@ -36,8 +35,6 @@ const CommunityInitialState = {
     hiv: false,
     pregnancy: false,
   },
-}
+};
 
 export default CommunityInitialState;
-    
-

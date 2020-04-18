@@ -1,20 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Provider } from 'mobx-react';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "mobx-react";
 
-import asyncComponent from '../util/asyncComponent';
+import asyncComponent from "../util/asyncComponent";
 
 // == Stores
 // common
-import languageStore from '../modules/lang/LanguageStore';
-import notificationStore from '../modules/notification/NotificationStore';
+import languageStore from "../modules/lang/LanguageStore";
+import notificationStore from "../modules/notification/NotificationStore";
 
 // == Theme
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { theme } from '../styles/style-constants.js';
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { theme } from "../styles/style-constants.js";
 
 // Top Level Controllers (one for auth areas, may have multiple non-auth)
-const App = asyncComponent(() => import(/* webpackChunkName: "app" */ './App'));
+const App = asyncComponent(() => import(/* webpackChunkName: "app" */ "./App"));
 
 const Root = () => {
   return (
@@ -25,15 +25,12 @@ const Root = () => {
       >
         <Router basename="/">
           <Switch>
-            <Route
-              path=""
-              component={App}
-            />
+            <Route path="" component={App} />
           </Switch>
         </Router>
       </Provider>
     </MuiThemeProvider>
   );
-}
+};
 
 export default Root;

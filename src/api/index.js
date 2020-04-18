@@ -1,9 +1,9 @@
-import axios from 'axios';
-import config from '../config';
+import axios from "axios";
+import config from "../config";
 
-const POST = 'post';
+const POST = "post";
 // const PUT = 'put';
-const DELETE = 'delete';
+const DELETE = "delete";
 
 const initApi = (baseURL) => {
   const api = axios.create();
@@ -37,7 +37,7 @@ const execute = async (verb, url, body) => {
 
     return {
       status,
-      data
+      data,
     };
   } catch (error) {
     // const { status, data } = error.response;
@@ -55,36 +55,33 @@ const execute = async (verb, url, body) => {
 
 class Api {
   async submitCommunity(formValues) {
-
     //clean up formValues
     if (formValues.occupation === "other") {
-      formValues.occupation = formValues.occupationOther
-      delete formValues.occupationOther
+      formValues.occupation = formValues.occupationOther;
+      delete formValues.occupationOther;
     }
 
-    return execute(POST, '/public/communities', formValues);
+    return execute(POST, "/public/communities", formValues);
   }
 
   async submitMedical(formValues) {
-
     //clean up formValues
     if (formValues.occupation === "other") {
-      formValues.occupation = formValues.occupationOther
-      delete formValues.occupationOther
+      formValues.occupation = formValues.occupationOther;
+      delete formValues.occupationOther;
     }
 
-    return execute(POST, '/public/medical-facilities', formValues);
+    return execute(POST, "/public/medical-facilities", formValues);
   }
 
   async submitPortOfEntry(formValues) {
-
     //clean up formValues
     if (formValues.occupation === "other") {
-      formValues.occupation = formValues.occupationOther
-      delete formValues.occupationOther
+      formValues.occupation = formValues.occupationOther;
+      delete formValues.occupationOther;
     }
 
-    return execute(POST, '/public/passengers', formValues);
+    return execute(POST, "/public/passengers", formValues);
   }
 }
 

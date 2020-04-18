@@ -37,7 +37,7 @@ class App extends Component {
           durationMs={durationMs}
         />
       );
-    }
+    };
 
     return (
       <Box>
@@ -50,24 +50,27 @@ class App extends Component {
         <Box mx="auto" pb={5}>
           <Container>
             <Box my={3}>
-            <Typography style={{display: 'inline'}} variant="body2">{lang.t('form.label')}:</Typography>&nbsp;&nbsp;
-            <Link to={"/community-form"}>
-              <Typography variant="body2" style={{display: 'inline'}} >
-                {lang.t("form.community")}
+              <Typography style={{ display: "inline" }} variant="body2">
+                {lang.t("form.label")}:
               </Typography>
-            </Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <Link to={"/medical-form"}>
-              <Typography variant="body2" style={{display: 'inline'}} >
-                {lang.t("form.medicalCenters")}
-              </Typography>
-            </Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <Link to={"/port-of-entry-form"}>
-              <Typography variant="body2" style={{display: 'inline'}} >
-                {lang.t("form.portOfEntry")}
-              </Typography>
-            </Link>
+              &nbsp;&nbsp;
+              <Link to={"/community-form"}>
+                <Typography variant="body2" style={{ display: "inline" }}>
+                  {lang.t("form.community")}
+                </Typography>
+              </Link>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <Link to={"/medical-form"}>
+                <Typography variant="body2" style={{ display: "inline" }}>
+                  {lang.t("form.medicalCenters")}
+                </Typography>
+              </Link>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <Link to={"/port-of-entry-form"}>
+                <Typography variant="body2" style={{ display: "inline" }}>
+                  {lang.t("form.portOfEntry")}
+                </Typography>
+              </Link>
             </Box>
           </Container>
           <Container>

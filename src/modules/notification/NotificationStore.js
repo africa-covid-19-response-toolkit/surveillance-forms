@@ -1,4 +1,4 @@
-import { decorate, observable, action } from 'mobx';
+import { decorate, observable, action } from "mobx";
 
 class NotificationStore {
   open: boolean = false;
@@ -6,7 +6,7 @@ class NotificationStore {
   durationMs: number;
   onClose: Function = () => {
     this.open = false;
-  }
+  };
 
   showMessage(message, durationMs) {
     this.message = message;
@@ -20,7 +20,7 @@ decorate(NotificationStore, {
   message: observable,
   durationMs: observable,
   onClose: observable,
-  showMessage: action
+  showMessage: action,
 });
 
 export default new NotificationStore();

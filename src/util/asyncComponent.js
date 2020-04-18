@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import type { ComponentType } from 'react';
+import React, { Component } from "react";
+import type { ComponentType } from "react";
 
 type State = {
-  component: ?ComponentType<any>
+  component: ?ComponentType<any>,
 };
 
 type ImportedComponent = {
-  default: ComponentType<any>
-}
+  default: ComponentType<any>,
+};
 
-export default function asyncComponent<Props: {}>(loadComponent: () => Promise<ImportedComponent>): ComponentType<Props> {
+export default function asyncComponent<Props: {}>(
+  loadComponent: () => Promise<ImportedComponent>
+): ComponentType<Props> {
   class AsyncComponent extends Component<Props, State> {
     constructor(props: Props) {
       super(props);
 
       this.state = {
-        component: null
+        component: null,
       };
     }
 
