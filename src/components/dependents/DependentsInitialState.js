@@ -1,15 +1,4 @@
-const MedicalInitialState = {
-  firstName: "",
-  middleName: "",
-  lastName: "",
-  age: 0,
-  sex: "",
-  phoneNumber: "",
-  occupation: "",
-  email: "",
-  receiverName: "",
-  callDate: "",
-  callerType: "",
+const DependetsInitialState = {
   address: {
     country: "",
     region: "",
@@ -18,8 +7,24 @@ const MedicalInitialState = {
     street: "",
     building: "",
   },
-  latitude: 0,
-  longitude: 0,
+  age: 0,
+  contactWithSuspected: false,
+  contactWithConfirmed: false,
+  dateOfBirth: "",
+  dependents: [],
+  email: "",
+  firstName: "",
+  flightNumber: "",
+  hotelName: "",
+  language: "",
+  lastName: "",
+  middleName: "",
+  nationality: "",
+  otherHotelName: "",
+  passportNo: "",
+  phoneNumber: "",
+  seatNumber: "",
+  sex: "",
   symptom: {
     fever: false,
     cough: false,
@@ -29,12 +34,8 @@ const MedicalInitialState = {
     runnyNose: false,
     feelingUnwell: false,
   },
-  formStatus: "",
-  travelHx: false,
-  contactWithSuspected: false,
-  contactWithConfirmed: false,
-  healthFacility: false,
-  dataSource: "",
+  transitFrom: "",
+  travelFrom: "",
   underlyingConditions: {
     chronicLungDisease: false,
     heartDisease: false,
@@ -48,4 +49,4 @@ const MedicalInitialState = {
   },
 };
 
-export default MedicalInitialState;
+export default DependetsInitialState;

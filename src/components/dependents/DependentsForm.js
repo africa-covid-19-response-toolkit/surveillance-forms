@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import { isEmpty } from "lodash";
+
+import DEPENDENTS_ENTRY_FIELDS from "../../constants/dependents";
 
 const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
   console.log(langCode);
@@ -16,127 +17,7 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
     });
   };
 
-  const fields = [
-    {
-      type: "text",
-      label: lang.t("firstName"),
-      property: "firstName",
-      focus: true,
-      onChange: handleFieldChange("firstName"),
-      onValidate: (val) => {
-        return !isEmpty(val) && val.length >= 3;
-      },
-      validationErrorMsg: "Enter name (min 3 chars)",
-    },
-    {
-      type: "text",
-      label: lang.t("middleName"),
-      property: "middleName",
-      onChange: handleFieldChange("middleName"),
-    },
-    {
-      type: "text",
-      label: lang.t("lastName"),
-      property: "lastName",
-      onChange: handleFieldChange("lastName"),
-    },
-    {
-      type: "text",
-      label: lang.t("age"),
-      property: "age",
-      onChange: handleFieldChange("age"),
-    },
-    {
-      type: "select",
-      label: lang.t("sex.label"),
-      property: "sex",
-      onChange: handleFieldChange("sex"),
-      choices: [
-        { label: lang.t("sex.female"), value: "F" },
-        { label: lang.t("sex.male"), value: "M" },
-      ],
-    },
-    {
-      type: "date",
-      label: lang.t("dateOfBirth"),
-      property: "dateOfBirth",
-      langCode: langCode,
-      focus: true,
-      onChange: handleFieldChange("dateOfBirth"),
-    },
-    {
-      type: "select",
-      label: lang.t("nationality.label"),
-      property: "nationality",
-      onChange: handleFieldChange("nationality"),
-      choices: [
-        { label: lang.t("nationality.ethiopian"), value: "ET" }, //placeholder
-        { label: lang.t("nationality.other"), value: "other" },
-      ],
-    },
-    {
-      type: "text",
-      label: lang.t("passportNumber"),
-      property: "passportNo",
-      onChange: handleFieldChange("passportNo"),
-    },
-    {
-      type: "text",
-      label: lang.t("phoneNumber"),
-      property: "phoneNo",
-      onChange: handleFieldChange("phoneNo"),
-    },
-    {
-      type: "select",
-      label: lang.t("travelFrom"),
-      property: "travelFrom",
-      onChange: handleFieldChange("travelFrom"),
-      choices: [
-        { label: "country 1", value: "1" }, //placeholder
-        { label: "country 2", value: "2" },
-      ],
-    },
-    {
-      type: "select",
-      label: lang.t("transitFrom"),
-      property: "transitFrom",
-      onChange: handleFieldChange("transitFrom"),
-      choices: [
-        { label: "country 1", value: "1" }, //placeholder
-        { label: "country 2", value: "2" },
-      ],
-    },
-    {
-      type: "text",
-      label: lang.t("seatNumber"),
-      property: "seatNumber",
-      onChange: handleFieldChange("phoseatNumberneNo"),
-    },
-    {
-      type: "text",
-      label: lang.t("flightNumber"),
-      property: "flightNumber",
-      onChange: handleFieldChange("flightNumber"),
-    },
-    {
-      type: "check",
-      label: lang.t("fever"),
-      property: "fever",
-      onChange: handleFieldChange("fever"),
-    },
-    {
-      type: "check",
-      label: lang.t("cough"),
-      property: "cough",
-      onChange: handleFieldChange("cough"),
-    },
-    {
-      type: "check",
-      label: lang.t("shortnessOfBreath"),
-      property: "shortnessOfBreath",
-      onChange: handleFieldChange("shortnessOfBreath"),
-    },
-  ];
+  const fields = DEPENDENTS_ENTRY_FIELDS(lang, handleFieldChange, langCode);
 
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
@@ -145,11 +26,19 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
     }
     return renderField(field);
   };
-
+  const renderSectionHeader = (label) => {
+    return (
+      <Typography className="sectionheader" variant="h2">
+        {label}
+      </Typography>
+    );
+  };
   const renderSubsectionheader = (label) => {
     return (
       <Box mt={3} mb={1}>
-        <Typography variant="h5">{label}</Typography>
+        <Typography className="subsectionheader" variant="h5">
+          {label}
+        </Typography>
       </Box>
     );
   };
@@ -172,6 +61,7 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
+        {renderSectionHeader(lang.t("passengerDependentsRegistrationForm"))}
         {renderSubsectionheader(lang.t("dependentsBasicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
@@ -225,18 +115,39 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
           </Grid>
         </Grid>
 
-        {renderSubsectionheader(lang.t("symptoms"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("cough")}
-          </Grid>
-          <Grid item xs={12} md={3}>
             {renderFormField("shortnessOfBreath")}
+            {renderFormField("fatigue")}
+            {renderFormField("headache")}
+            {renderFormField("runnyNose")}
+            {renderFormField("feelingUnwell")}
+          </Grid>
+
+          <Grid item xs={12} sm={4}>
+            {renderSubsectionheader(lang.t("underlyingConditions"))}
+            {renderFormField("chronicLungDisease")}
+            {renderFormField("heartDisease")}
+            {renderFormField("liverDisease")}
+            {renderFormField("renalDisease")}
+            {renderFormField("autoimmuneDisease")}
+            {renderFormField("cancer")}
+            {renderFormField("diabetes")}
+            {renderFormField("hiv")}
+            {renderFormField("pregnancy")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader(lang.t("generalInformation"))}
+            {renderFormField("travelHx")}
+            {renderFormField("contactWithSuspected")}
+            {renderFormField("contactWithConfirmed")}
+            {renderFormField("healthFacility")}
           </Grid>
         </Grid>
+
         <Box mt={4} textAlign="right">
           <Button
             onClick={handleSubmit}

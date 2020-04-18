@@ -18,7 +18,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { renderField } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState";
 import { isEmpty } from "lodash";
-import { UNDERLYING } from "../../constants/common";
+import { UNDERLYING, ADDRESS, SYMPTOMS } from "../../constants/common";
 import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
@@ -66,6 +66,22 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
         ...formValues,
         underlyingConditions: {
           ...formValues.underlyingConditions,
+          [field]: value,
+        },
+      });
+    } else if (ADDRESS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        address: {
+          ...formValues.address,
+          [field]: value,
+        },
+      });
+    } else if (SYMPTOMS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        address: {
+          ...formValues.symptom,
           [field]: value,
         },
       });
@@ -146,7 +162,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader(lang.t("passengerRegistrationForm"))}
+        {renderSectionHeader(lang.t("passengerDependentsRegistrationForm"))}
         {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
@@ -178,6 +194,27 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
+          </Grid>
+        </Grid>
+        {renderSubsectionheader(lang.t("address"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3}>
+            {renderFormField("country")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("region")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("postalCode")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("street")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("building")}
           </Grid>
         </Grid>
 
