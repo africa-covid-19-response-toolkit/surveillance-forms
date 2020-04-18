@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
       "browser": true,
-      "es6": true
+      "es6": true,
+      "jest": true
     },
     "parserOptions": {
       "ecmaVersion": 8
@@ -32,6 +33,9 @@ module.exports = {
       "node_modules/"
     ],
     "rules": {
-      "react/prop-types": "off"
+      "react/prop-types": "off",
+      "no-eval": "error",
+      "import/first": "error",
+      "no-console": "warn",
     }
 };

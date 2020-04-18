@@ -54,7 +54,7 @@
     "babel-node": "^0.0.1-security",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.15.1",
-    "eslint": "6.7.2",
+    "eslint": "^6.7.2",
     "react-test-renderer": "16.12.0",
     "require-context.macro": "1.2.2",
     "storybook": "5.1.11"

@@ -1,4 +1,3 @@
-import React from "react";
 import { decorate, observable, action } from "mobx";
 import Ployglot from "node-polyglot";
 import langUtil from "./lang-util";
