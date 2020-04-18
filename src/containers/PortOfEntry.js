@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import { Box, Typography, Loading } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import PortOfEntryForm from "../components/portofentry/PortOfEntryForm";
 import api from "../api";
-import DependentsForm from "../components/dependents/DependentsForm";
 
 class PortOfEntry extends Component {
   render() {
-    const { languageStore } = this.props;
+    const { languageStore, notificationStore } = this.props;
     const { lang, langCode } = languageStore;
 
-    const onSubmit = async formValues => {
-      return api.submitPortOfEntry(formValues);
+    const onSubmit = async (formValues) => {
+      return api
+        .submitPortOfEntry(formValues)
+        .then(() => {
+          notificationStore.showMessage(lang.t("formSubmittedSuccess"), 3000);
+        })
+        .catch(() => {
+          notificationStore.showMessage(lang.t("formSubmittedError"), 5000);
+        });
     };
 
     return (
@@ -22,4 +28,7 @@ class PortOfEntry extends Component {
   }
 }
 
-export default inject("languageStore")(observer(PortOfEntry));
+export default inject(
+  "languageStore",
+  "notificationStore"
+)(observer(PortOfEntry));

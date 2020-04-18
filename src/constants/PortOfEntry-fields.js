@@ -140,6 +140,12 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
     },
     {
       type: "text",
+      label: lang.t("hotelOther"),
+      property: "hotelOther",
+      onChange: handleFieldChange("hotelOther"),
+    },
+    {
+      type: "text",
       label: lang.t("seatNumber"),
       property: "seatNumber",
       onChange: handleFieldChange("seatNumber"),
@@ -234,10 +240,6 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
       label: lang.t("pregnancy"),
       property: "pregnancy",
       onChange: handleFieldChange("pregnancy"),
-      type: "check",
-      label: lang.t("cough"),
-      property: "cough",
-      onChange: handleFieldChange("cough"),
     },
     {
       type: "check",

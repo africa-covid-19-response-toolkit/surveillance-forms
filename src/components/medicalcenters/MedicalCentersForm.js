@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 
@@ -18,7 +18,6 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     ...MedicalInitialState
   });
 
-  const [open, setOpen] = useState(false);
   const [clear, setClear] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [captchaText, setCaptchaText] = useState("");
@@ -52,7 +51,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         }
       });
     } else {
-      if (field == "region") {
+      if (field === "region") {
         setFormValues({
           ...formValues,
           subcity: null,
@@ -119,7 +118,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     return (
       <form autoComplete="off">
         {renderSectionHeader(lang.t("healthFacilitiesApplicationForm"))}
-        {renderSubsectionheader(lang.t("healthFacilitiesApplicationForm"))}
+        {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             {renderFormField("firstName")}

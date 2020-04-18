@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import { Switch, Route } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import Notification from "../components/layout/Notification";
 import Community from "../containers/Community";
 import MedicalCenters from "../containers/MedicalCenters";
-import { Box, Container, Loading, Typography, Grid } from "@material-ui/core";
+import { Box, Container, Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PortOfEntry from "../containers/PortOfEntry";
 import SideBarCard from "../components/layout/SideBar";
@@ -14,35 +14,34 @@ import SideBarCard from "../components/layout/SideBar";
 // import Api from '../api';
 
 class App extends Component {
-  // unsubscribeFromHistory;
-  //
-  // componentWillMount() {
-  //   const { userStore } = this.props;
-  //
-  //   // userStore.fetchUser();
-  //
-  //   this.unsubscribeFromHistory = this.props.history.listen(() => {
-  //     // Keep alive on any further route changes
-  //     Api.keepAlive(userStore.user.eid);
-  //   });
-  // }
-  //
-  // componentWillUnmount() {
-  //   if (this.unsubscribeFromHistory) {
-  //     this.unsubscribeFromHistory();
-  //   }
-  // }
-
   render() {
-    const { languageStore } = this.props;
+    const { languageStore, notificationStore } = this.props;
     const { lang, langCode } = languageStore;
 
     const onLanguageSelect = (code) => {
       languageStore.setLanguage(code);
     };
 
+    const renderNotificationContainer = () => {
+      const { open, message, onClose, durationMs } = notificationStore;
+
+      if (!open) {
+        return null;
+      }
+
+      return (
+        <Notification
+          open={open}
+          message={message}
+          onClose={onClose}
+          durationMs={durationMs}
+        />
+      );
+    }
+
     return (
       <Box>
+        {renderNotificationContainer()}
         <Header
           lang={lang}
           langCode={langCode}
@@ -51,19 +50,19 @@ class App extends Component {
         <Box mx="auto" pb={5}>
           <Container>
             <Box my={3}>
-            <Typography style={{display: 'inline'}} variant="body2">Forms:</Typography>&nbsp;&nbsp;
+            <Typography style={{display: 'inline'}} variant="body2">{lang.t('form.label')}:</Typography>&nbsp;&nbsp;
             <Link to={"/community-form"}>
               <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.community")}
               </Typography>
             </Link>
-            &nbsp;&nbsp;
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <Link to={"/medical-form"}>
               <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.medicalCenters")}
               </Typography>
             </Link>
-            &nbsp;&nbsp;
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <Link to={"/port-of-entry-form"}>
               <Typography variant="body2" style={{display: 'inline'}} >
                 {lang.t("form.portOfEntry")}
@@ -119,4 +118,4 @@ class App extends Component {
   }
 }
 
-export default inject("languageStore")(observer(App));
+export default inject("languageStore", "notificationStore")(observer(App));
