@@ -1,17 +1,17 @@
 export default {
+  language: {
+    label: "ቋንቋ",
+    english: "እንግሊዘኛ",
+    amharic: "አማርኛ",
+    oromo: "ኦሮምኛ",
+  },
   firstName: "ስም",
   middleName: "የአባት ስም",
   lastName: "የአያት ስም",
   nationality: {
     label: "ዜግነት",
     ethiopian: "ኢትዮጵያዊ",
-    other: "ሌላ"
-  },
-  language: {
-    label: "ቋንቋ",
-    english: "እንግሊዘኛ",
-    amharic: "አማርኛ",
-    oromo: "ኦሮምኛ"
+    other: "ሌላ",
   },
   passportNumber: "የፓስፖርት ቁጥር",
   email: "ኢሜል",
@@ -19,7 +19,7 @@ export default {
   sex: {
     label: "ጾታ",
     male: "ወንድ",
-    female: "ሴት"
+    female: "ሴት",
   },
   age: "እድሜ",
   region: {
@@ -34,7 +34,7 @@ export default {
     oromia: "ኦሮሚያ",
     somali: "ሶማሌ",
     southern: "የደቡብ ብሔር ብሔረሰቦችና ህዝቦች ክልል",
-    tigray: "ትግራይ"
+    tigray: "ትግራይ",
   },
   subcity: {
     label: "ክፍለ ከተማ",
@@ -47,7 +47,7 @@ export default {
     kolfe: "ኮልፌ",
     lideta: "ልደታ",
     nifasSilkLafto: "ንፋስ ስልክ ላፍቶ",
-    yeka: "የካ"
+    yeka: "የካ",
   },
   sefer: "ሰፈር",
   zone: "ዞን",
@@ -69,14 +69,14 @@ export default {
   callerType: {
     label: "የደዋይ ዓይነት",
     callerType1: "callerType1",
-    callerType2: "callerType2"
+    callerType2: "callerType2",
   },
   fever: "ትኩሳት",
   form: {
     label: "ቅጾች",
     community: "የማህበረሰብ",
     medicalCenters: "ጤና ተቋማት",
-    portOfEntry: "ተጓዥ"
+    portOfEntry: "ተጓዥ",
   },
   cough: "ሳል",
   fatigue: "የድካም ስሜት",
@@ -110,15 +110,16 @@ export default {
     ghion: "ጊዮን ሆቴል",
     azzeman: "አዜማን ሆቴል",
     sapphire: "ሳፋየር ሆቴል",
-    other: "ሌላ"
+    other: "ሌላ",
   },
+
   addDependent: "ጥገኛ (ኦች) ያክሉ",
   hotelOther: "ሆቴል ሌላ ከተመረጠ",
   formErrors: {
     empty: "ይህ ቦታ ባዶ መሆን አይችልም",
     numberOnly: "እባክዎ ቁጥር ብቻ ያስገቡ",
     email: "እባክዎ ትክክል ኢሜይል ያስገቡ",
-    lengthAtMost100: "እባክዎ 100 ቃላት ብቻ ያስገቡ"
+    lengthAtMost100: "እባክዎ 100 ቃላት ብቻ ያስገቡ",
   },
   note: {
     lable: "ማስታወሻ",
@@ -126,7 +127,7 @@ export default {
     note2:
       "ከላይ ከተዘረዘሩት ምልክቶች መካከል ከአንድ ወይም ከዚያ በላይ ከሆኑ ካጋጠሙዎት እራስዎን ችላ ብለው ለ 8335 ይደውሉ",
     note3: "እነዚህ ምልክቶች ያሉት ሰው ከተጠራጠሩ ወደ 8335 ለመደወል አያመንቱ",
-    note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ"
+    note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ",
   },
   travelFrom: "መነሻ",
   flightNumber: "የበረራ ቁጥር",
@@ -150,5 +151,5 @@ export default {
   submitDependent: "ጥገኛ ይመዝግቡ",
   submit: "ያስገቡ",
   formSubmittedSuccess: "ቅጽ ገብቷል",
-  formSubmittedError: "ስህተት: ቅጽ ማስገባት አልተቻለም"
+  formSubmittedError: "ስህተት: ቅጽ ማስገባት አልተቻለም",
 };

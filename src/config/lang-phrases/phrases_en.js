@@ -1,16 +1,16 @@
 export default {
+  language: {
+    label: "Language",
+    english: "English",
+    amharic: "Amharic",
+    oromo: "Afan Oromo",
+  },
   firstName: "First Name",
   middleName: "Middle Name",
   lastName: "Last Name",
   age: "Age",
   email: "Email",
   dateOfBirth: "Date of Birth",
-  language: {
-    label: "Language",
-    english: "English",
-    amharic: "Amharic",
-    oromo: "Afan Oromo"
-  },
   region: {
     label: "Region",
     addisAbaba: "Addis Ababa",
@@ -23,7 +23,7 @@ export default {
     oromia: "Oromia",
     somali: "Somali",
     southern: "Southern Nations, Nationalities, and Peoples",
-    tigray: "Tigray"
+    tigray: "Tigray",
   },
   subcity: {
     label: "Sub City",
@@ -36,7 +36,7 @@ export default {
     kolfe: "Kolfe",
     lideta: "Lideta",
     nifasSilkLafto: "Nifas Silk Lafto",
-    yeka: "Yeka"
+    yeka: "Yeka",
   },
   sefer: "Sefer",
   woreda: "woreda",
@@ -46,7 +46,7 @@ export default {
   nationality: {
     label: "Nationality",
     ethiopian: "Ethiopian",
-    other: "Other"
+    other: "Other",
   },
   passportNumber: "Passport Number",
   phoneNumber: "Phone Number",
@@ -61,12 +61,12 @@ export default {
   sex: {
     label: "Sex",
     male: "Male",
-    female: "Female"
+    female: "Female",
   },
   callerType: {
     label: "Caller Type",
     callerType1: "callerType1",
-    callerType2: "callerType2"
+    callerType2: "callerType2",
   },
   hotel: {
     label: "Hotel",
@@ -74,7 +74,7 @@ export default {
     ghion: "Ghion Hotel",
     azzeman: "Azzeman Hotel",
     sapphire: "Sapphire Hotel",
-    other: "Other"
+    other: "Other",
   },
   hotelOther: "Hotel if other was choosen",
   callDate: "Call Date",
@@ -99,7 +99,7 @@ export default {
     label: "Forms",
     community: "Community",
     medicalCenters: "Medical Centers",
-    portOfEntry: "Passengers"
+    portOfEntry: "Passengers",
   },
   fever: "Fever",
   cough: "Cough",
@@ -127,13 +127,13 @@ export default {
       "If you experience one or more of the above symptoms, isolate yourself and call 8335.",
     note3:
       "If you suspect someone else has these symptoms, don't hesitate to call to 8335.",
-    note4: "Keep your distance (minimum 1 Meter) from anyone who has symptoms."
+    note4: "Keep your distance (minimum 1 Meter) from anyone who has symptoms.",
   },
   formErrors: {
     empty: "This field can not be empty",
     numberOnly: "This field is for number only",
     email: "Email address must be valid",
-    lengthAtMost100: "100 or few characters please"
+    lengthAtMost100: "100 or few characters please",
   },
   healthFacilitiesApplicationForm: "Health Facilities Application Form",
   healthFacilitiesReportingFormForCOVID19:
@@ -148,5 +148,5 @@ export default {
   dependentBasicInformation: "Dependent's Basic Information",
   passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
   dependents: "Dependents",
-  dependentsBasicInformation: "Dependent's Basic Information"
+  dependentsBasicInformation: "Dependent's Basic Information",
 };

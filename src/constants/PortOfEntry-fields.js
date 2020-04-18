@@ -1,17 +1,14 @@
 import {
-    nameValidator,
-    ageValidator,
-    emailValidator,
-    nameMaxLengthValidator,
-  } from "../validation/form/portOfEntry";
+  nameValidator,
+  ageValidator,
+  emailValidator,
+  nameMaxLengthValidator,
+} from "../validation/form/portOfEntry";
 
-import {
-    SEX_VALUE,
-    HOTEL_KEYS,
-    OCCUPATION_KEYS
-} from "./common"
+import { SEX_VALUE, HOTEL_KEYS, OCCUPATION_KEYS } from "./common";
 
-  const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange) => { return [
+const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
+  return [
     {
       type: "text",
       label: lang.t("firstName"),
@@ -38,15 +35,15 @@ import {
       validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {
-        type: "select",
-        label: lang.t("sex.label"),
-        property: SEX_VALUE.property,
-        onChange: handleFieldChange(SEX_VALUE.property),
-        choices: [
-          { label: lang.t("sex.female"), value: SEX_VALUE.female },
-          { label: lang.t("sex.male"), value: SEX_VALUE.male },
-        ],
-     },
+      type: "select",
+      label: lang.t("sex.label"),
+      property: SEX_VALUE.property,
+      onChange: handleFieldChange(SEX_VALUE.property),
+      choices: [
+        { label: lang.t("sex.female"), value: SEX_VALUE.female },
+        { label: lang.t("sex.male"), value: SEX_VALUE.male },
+      ],
+    },
     {
       type: "text",
       label: lang.t("email"),
@@ -173,23 +170,22 @@ import {
       onChange: handleFieldChange("fever"),
     },
     {
-
-      type: 'check',
-      label: lang.t('fatigue'),
-      property: 'fatigue',
-      onChange: handleFieldChange('fatigue')
+      type: "check",
+      label: lang.t("fatigue"),
+      property: "fatigue",
+      onChange: handleFieldChange("fatigue"),
     },
     {
-      type: 'check',
-      label: lang.t('cough'),
-      property: 'cough',
-      onChange: handleFieldChange('cough')
+      type: "check",
+      label: lang.t("cough"),
+      property: "cough",
+      onChange: handleFieldChange("cough"),
     },
     {
-      type: 'check',
-      label: lang.t('shortnessOfBreath'),
-      property: 'shortnessOfBreath',
-      onChange: handleFieldChange('shortnessOfBreath')
+      type: "check",
+      label: lang.t("shortnessOfBreath"),
+      property: "shortnessOfBreath",
+      onChange: handleFieldChange("shortnessOfBreath"),
     },
     {
       type: "check",
@@ -232,7 +228,6 @@ import {
       onChange: handleFieldChange("diabetes"),
     },
 
-
     {
       type: "check",
       label: lang.t("hiv"),
@@ -252,7 +247,7 @@ import {
       property: "shortnessOfBreath",
       onChange: handleFieldChange("shortnessOfBreath"),
     },
-  ]};
+  ];
+};
 
-
-  export default PORT_OF_ENTRY_FIELDS;
+export default PORT_OF_ENTRY_FIELDS;

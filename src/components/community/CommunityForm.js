@@ -1,18 +1,12 @@
-import React, { useState, useEffect} from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Button,
-
-} from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-import  COMMUNITY_FIELDS from "../../constants/community-fields"
-import { UNDERLYING} from "../../constants/common"
-import CommunityInitialState from "./CommunityInitialState"
+import COMMUNITY_FIELDS from "../../constants/community-fields";
+import { UNDERLYING } from "../../constants/common";
+import CommunityInitialState from "./CommunityInitialState";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
-import config from '../../config';
+import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
@@ -31,7 +25,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     }, DELAY);
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     setCaptchaText(value);
     if (value === null) {
       setIsCaptchaExpired(true);
@@ -43,27 +37,23 @@ const CommunityForm = ({ onSubmit, lang }) => {
   };
   const [clear, setClear] = useState(0);
 
-
   const handleFieldChange = (field) => (value) => {
-
     console.log(field, ": ", value);
 
     if (UNDERLYING.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
-           ...formValues.underlyingConditions,
-           [field] : value
+          ...formValues.underlyingConditions,
+          [field]: value,
         },
       });
-
     } else {
       setFormValues({
         ...formValues,
-       [field]: value,
+        [field]: value,
       });
     }
-
   };
 
   const fields = COMMUNITY_FIELDS(lang, handleFieldChange);
@@ -78,29 +68,37 @@ const CommunityForm = ({ onSubmit, lang }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Typography className="sectionheader" variant="h2">{label}</Typography>
+      <Typography className="sectionheader" variant="h2">
+        {label}
+      </Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-        <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">
+        {label}
+      </Typography>
     );
   };
 
   const hadleSubmit = () => {
-    onSubmit(formValues)
-      .then(() => {
-        // clear form values
-        setFormValues({})
-        setClear(clear + 1);
-      })
+    onSubmit(formValues).then(() => {
+      // clear form values
+      setFormValues({});
+      setClear(clear + 1);
+    });
   };
 
   const isFormValid = () => {
     let isValid = true;
-    console.log("captchaText", captchaText, isEmpty(captchaText), isCaptchaExpired);
-    if(!isEmpty(captchaText) && !isCaptchaExpired) {
+    console.log(
+      "captchaText",
+      captchaText,
+      isEmpty(captchaText),
+      isCaptchaExpired
+    );
+    if (!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
@@ -221,10 +219,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     );
   };
 
-  console.log(formValues)
-
   return <Box>{renderForm()}</Box>;
-
 };
 
 export default CommunityForm;

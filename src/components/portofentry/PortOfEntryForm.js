@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -15,17 +15,15 @@ import {
   ListItemSecondaryAction,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import {
-  renderField
-} from "../form/form-util";
-import PortOfEntryInitialState from "./PortOfEntryInitialState"
-import { isEmpty} from "lodash";
-import {UNDERLYING} from "../../constants/common";
-import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields"
+import { renderField } from "../form/form-util";
+import PortOfEntryInitialState from "./PortOfEntryInitialState";
+import { isEmpty } from "lodash";
+import { UNDERLYING } from "../../constants/common";
+import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
 
-import config from '../../config';
+import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
@@ -34,9 +32,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PortOfEntryForm = ({ onSubmit, lang }) => {
+const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-    ...PortOfEntryInitialState
+    ...PortOfEntryInitialState,
   });
 
   const [open, setOpen] = useState(false);
@@ -51,7 +49,7 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     }, DELAY);
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     setCaptchaText(value);
     if (value === null) {
       setIsCaptchaExpired(true);
@@ -68,10 +66,9 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
         ...formValues,
         underlyingConditions: {
           ...formValues.underlyingConditions,
-          [field]: value
+          [field]: value,
         },
       });
-
     } else {
       setFormValues({
         ...formValues,
@@ -81,7 +78,6 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
   };
 
   const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
-
 
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
@@ -93,23 +89,26 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
 
   const renderSectionHeader = (label) => {
     return (
-      <Typography className="sectionheader" variant="h2">{label}</Typography>
+      <Typography className="sectionheader" variant="h2">
+        {label}
+      </Typography>
     );
   };
 
   const renderSubsectionheader = (label) => {
     return (
-      <Typography className="subsectionheader" variant="h5">{label}</Typography>
+      <Typography className="subsectionheader" variant="h5">
+        {label}
+      </Typography>
     );
   };
 
   const handleSubmit = () => {
-    onSubmit(formValues)
-      .then(() => {
-        // clear form values
-        setFormValues({})
-        setClear(clear + 1);
-      })
+    onSubmit(formValues).then(() => {
+      // clear form values
+      setFormValues({});
+      setClear(clear + 1);
+    });
   };
 
   const handleModal = () => {
@@ -140,9 +139,9 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
     dependents.push(dependent);
     setFormValues({
       ...formValues,
-      dependents
-    })
-  }
+      dependents,
+    });
+  };
 
   const renderForm = () => {
     return (
@@ -180,11 +179,11 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation === "other" &&
+          {formValues.occupation === "other" && (
             <Grid item xs={12} md={4}>
-             {renderFormField("occupationOther")}
+              {renderFormField("occupationOther")}
             </Grid>
-          }
+          )}
         </Grid>
 
         {renderSubsectionheader(lang.t("travelInfo"))}
@@ -204,12 +203,13 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
           <Grid item xs={12} md={3}>
             {renderFormField("hotelName")}
           </Grid>
-          {formValues.hotelName === "other" ?
+          {formValues.hotelName === "other" ? (
             <Grid item xs={12} md={4}>
               {renderFormField("hotelOther")}
-            </Grid> : ""
-
-          }
+            </Grid>
+          ) : (
+            ""
+          )}
         </Grid>
 
         <Grid container spacing={4}>
@@ -235,36 +235,52 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
         </Grid>
         <Box mt={4} textAlign="left">
           {renderSubsectionheader(lang.t("dependents"))}
-          <Button onClick={handleModal} variant="outlined" size="large">{lang.t('addDependent')}</Button>
+          <Button onClick={handleModal} variant="outlined" size="large">
+            {lang.t("addDependent")}
+          </Button>
           {!isEmpty(formValues.dependents) && (
             <Grid container item xs={12} md={4}>
-              <List style={{ width: '100%' }}>
+              <List style={{ width: "100%" }}>
                 {formValues.dependents.map((d, index) => {
                   const onRemoveDependent = () => {
-                    const dependents = formValues.dependents.filter((d, i) => i !== index);
+                    const dependents = formValues.dependents.filter(
+                      (d, i) => i !== index
+                    );
                     setFormValues({
                       ...formValues,
-                      dependents
-                    })
-                  }
+                      dependents,
+                    });
+                  };
 
                   return (
                     <ListItem>
-                      <Typography>{`${index + 1}. ${d.firstName} ${d.lastName}`}</Typography>
+                      <Typography>{`${index + 1}. ${d.firstName} ${
+                        d.lastName
+                      }`}</Typography>
                       <ListItemSecondaryAction>
                         <Button onClick={onRemoveDependent}>Remove</Button>
                       </ListItemSecondaryAction>
                     </ListItem>
-                  )
+                  );
                 })}
               </List>
             </Grid>
           )}
 
-          <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-            <AppBar style={{ background: 'blue' }}>
+          <Dialog
+            fullScreen
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={Transition}
+          >
+            <AppBar style={{ background: "blue" }}>
               <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  onClick={handleClose}
+                  aria-label="close"
+                >
                   <CloseIcon />
                 </IconButton>
                 <Typography>
@@ -273,7 +289,11 @@ const PortOfEntryForm = ({ onSubmit, lang }) => {
               </Toolbar>
             </AppBar>
             <Paper style={{ margin: 30, padding: 30 }}>
-              <DependantsForm onSubmit={handleDependentsAdd} lang={lang} />
+              <DependantsForm
+                onSubmit={handleDependentsAdd}
+                lang={lang}
+                langCode={langCode}
+              />
             </Paper>
           </Dialog>
         </Box>
