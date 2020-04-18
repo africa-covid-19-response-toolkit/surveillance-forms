@@ -19,7 +19,7 @@ import { renderField } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState";
 import { isEmpty } from "lodash";
 import { UNDERLYING, ADDRESS, SYMPTOMS } from "../../constants/common";
-import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields";
+import PORT_OF_ENTRY_FIELDS from "../../constants/portOfEntry-fields";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
 

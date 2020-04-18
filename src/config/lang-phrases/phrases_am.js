@@ -508,4 +508,6 @@ export default {
   submit: "ያስገቡ",
   formSubmittedSuccess: "ቅጽ ገብቷል",
   formSubmittedError: "ስህተት: ቅጽ ማስገባት አልተቻለም",
+  contactWithSuspected: "ከተጠራጠረ ጋር ንክኪ",
+  contactWithConfirmed: "ከተረጋገጠ ጋር ንክኪ",
 };
