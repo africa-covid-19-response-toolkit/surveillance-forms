@@ -135,7 +135,6 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("middleName")}
           </Grid>
-
           <Grid item xs={12} md={4}>
             {renderFormField("lastName")}
           </Grid>
@@ -143,16 +142,13 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("age")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("sex")}
+            {renderFormField("dateOfBirth")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNumber")}
+            {renderFormField("gender")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("email")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("nationality")}
+            {renderFormField("preferredLanguage")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
@@ -162,40 +158,42 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
               {renderFormField("occupationOther")}
             </Grid>
           )}
+          <Grid item xs={12} md={4}>
+            {renderFormField("nationality")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("passportNumber")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("governmentIssuedId")}
+          </Grid>
         </Grid>
 
-        {renderSubsectionheader(lang.t("address"))}
+        {renderSubsectionheader(lang.t("contactInformation"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("country")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("region")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("city")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("postalCode")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("street")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("building")}
           </Grid>
-        </Grid>
-        {renderSubsectionheader(lang.t("caller"))}
-        <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            {renderFormField("callerType")}
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            {renderFormField("callDate")}
+            {renderFormField("email")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("receiverName")}
+            {renderFormField("phoneNumber")}
           </Grid>
         </Grid>
 
@@ -223,11 +221,21 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader(lang.t("generalInformation"))}
-            {renderFormField("travelHx")}
+            {renderSubsectionheader(lang.t("riskFromContact"))}
+            {renderFormField("hasRecentlyTraveled")}
             {renderFormField("contactWithSuspected")}
             {renderFormField("contactWithConfirmed")}
-            {renderFormField("healthFacility")}
+            {renderFormField("worksAtOrVisitedHealthFacility")}
+          </Grid>
+        </Grid>
+        {renderSubsectionheader(lang.t("caller"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("callerType")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            {renderFormField("callDate")}
           </Grid>
         </Grid>
         {isLoaded && (

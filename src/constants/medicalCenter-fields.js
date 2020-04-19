@@ -1,33 +1,8 @@
 import { CALLERTYPE_KEYS } from "./common";
 import { COMMON_FIELDS } from "./common-fields";
-import { OCCUPATION_KEYS } from "./common";
-import { emailValidator } from "../validation/form/medical";
 
 const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
   const uniqueFields = [
-    {
-      type: "select",
-      label: lang.t("occupation.label"),
-      property: "occupation",
-      onChange: handleFieldChange("occupation"),
-      choices: OCCUPATION_KEYS.map((r) => ({
-        label: lang.t(`occupation.${r}`),
-        value: r,
-      })),
-    },
-    {
-      type: "text",
-      label: lang.t("occupationOther"),
-      property: "occupationOther",
-      onChange: handleFieldChange("occupationOther"),
-    },
-
-    {
-      type: "text",
-      label: lang.t("receiverName"),
-      property: "receiverName",
-      onChange: handleFieldChange("receiverName"),
-    },
     {
       type: "select",
       label: lang.t("callerType.label"),
