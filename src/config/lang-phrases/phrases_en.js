@@ -445,7 +445,9 @@ export default {
   submitDependent: "Submit Dependent",
   formSubmittedSuccess: "Form Submitted",
   formSubmittedError: "ERROR: Unable to Submit Form",
-  travelFrom: "Travel From",
+  travelFromCountry: "Travel From",
+  finalTransitCountry: "Final Transit Country",
+  source: "Source",
   hasRecentlyTraveled: "Has a Recent Travel History",
   contactWithSuspected: "Contact With Suspected",
   contactWithConfirmed: "Contact With Confirmed",
@@ -513,4 +515,5 @@ export default {
   dependents: "Dependents",
   dependentsBasicInformation: "Dependent's Basic Information",
   governmentIssuedId: "Government Issued ID",
+  relationshipToPassenger: "Relationship To Passenger",
 };

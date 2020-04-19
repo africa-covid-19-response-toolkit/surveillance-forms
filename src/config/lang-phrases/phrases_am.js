@@ -485,7 +485,9 @@ export default {
     note3: "እነዚህ ምልክቶች ያሉት ሰው ከተጠራጠሩ ወደ 8335 ለመደወል አያመንቱ",
     note4: "የበሽታው ምልክቶች ካለው ማንኛውም ሰው ርቀትዎን (ቢያንስ 1 ሜትር) ያርቁ",
   },
-  travelFrom: "መነሻ",
+  travelFromCountry: "ጉዞ መነሻ ሀገር",
+  source: "ምንጭ",
+  finalTransitCountry: "የመጨረሻ የትራንስፖርት ሀገር",
   flightNumber: "የበረራ ቁጥር",
   seatNumber: "መቀመጫ ቁጥር",
   headerTitle: "የ COVID-19 ቅጾች",
@@ -514,4 +516,5 @@ export default {
   contactWithSuspected: "ከተጠራጠረ ጋር ንክኪ",
   contactWithConfirmed: "ከተረጋገጠ ጋር ንክኪ",
   governmentIssuedId: "የመንግስት የተሰጠ መታወቂያ",
+  relationshipToPassenger: "ከተሳፋሪ ጋር ያለዉ ግንኙነት",
 };

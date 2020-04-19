@@ -74,49 +74,66 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
             {renderFormField("lastName")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("sex")}
-          </Grid>
-          <Grid item xs={12} md={4}>
             {renderFormField("age")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("dateOfBirth")}
           </Grid>
           <Grid item xs={12} md={4}>
+            {renderFormField("gender")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("preferredLanguage")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
+          <Grid item xs={12} md={4}>
             {renderFormField("nationality")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("passportNo")}
+            {renderFormField("passportNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNo")}
+            {renderFormField("governmentIssuedId")}
+          </Grid>
+        </Grid>
+
+        {renderSubsectionheader(lang.t("contactInformation"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("country")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("region")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("postalCode")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("street")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("building")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
-        </Grid>
-
-        {renderSubsectionheader(lang.t("travelInfo"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
-            {renderFormField("travelFrom")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("transitFrom")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("flightNumber")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("seatNumber")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("hotel")}
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
+            {renderFormField("phoneNumber")}
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
@@ -126,7 +143,6 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
             {renderFormField("runnyNose")}
             {renderFormField("feelingUnwell")}
           </Grid>
-
           <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("underlyingConditions"))}
             {renderFormField("chronicLungDisease")}
@@ -140,11 +156,20 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader(lang.t("generalInformation"))}
-            {renderFormField("travelHx")}
+            {renderSubsectionheader(lang.t("riskFromContact"))}
+            {renderFormField("hasRecentlyTraveled")}
             {renderFormField("contactWithSuspected")}
             {renderFormField("contactWithConfirmed")}
-            {renderFormField("healthFacility")}
+            {renderFormField("worksAtOrVisitedHealthFacility")}
+          </Grid>
+        </Grid>
+        {renderSubsectionheader(lang.t("travelInfo"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("seatNumber")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("relationshipToPassenger")}
           </Grid>
         </Grid>
 

@@ -10,16 +10,10 @@ import { COMMON_FIELDS } from "./common-fields";
 const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
   const uniqueFields = [
     {
-      type: "text",
-      label: lang.t("flightNumber"),
-      property: "flightNumber",
-      onChange: handleFieldChange("flightNumber"),
-    },
-    {
       type: "select",
       label: lang.t("hotel.label"),
-      property: "hotelName",
-      onChange: handleFieldChange("hotelName"),
+      property: "stayingAtHotel",
+      onChange: handleFieldChange("stayingAtHotel"),
       choices: HOTEL_KEYS.map((r) => ({
         label: lang.t(`hotel.${r}`),
         value: r,
@@ -31,33 +25,13 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "hotelOther",
       onChange: handleFieldChange("hotelOther"),
     },
-    {
-      type: "select",
-      label: lang.t("language.label"),
-      property: "language",
-      onChange: handleFieldChange("language"),
-      choices: LANGUAGES_KEYS.map((l) => ({
-        label: lang.t(`language.${l}`),
-        value: l,
-      })),
-    },
-    {
-      type: "select",
-      label: lang.t("nationality.label"),
-      property: "nationality",
-      onChange: handleFieldChange("nationality"),
-      choices: NATIONALITY_KEYS.map((n) => ({
-        label: lang.t(`nationality.${n}`),
-        value: n,
-      })),
-    },
+
     {
       type: "text",
-      label: lang.t("passportNumber"),
-      property: "passportNo",
-      onChange: handleFieldChange("passportNo"),
+      label: lang.t("flightNumber"),
+      property: "flightNumber",
+      onChange: handleFieldChange("flightNumber"),
     },
-
     {
       type: "text",
       label: lang.t("seatNumber"),
@@ -66,9 +40,9 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
     },
     {
       type: "select",
-      label: lang.t("travelFrom"),
-      property: "travelFrom",
-      onChange: handleFieldChange("travelFrom"),
+      label: lang.t("travelFromCountry"),
+      property: "travelFromCountry",
+      onChange: handleFieldChange("travelFromCountry"),
       choices: COUNTRY_KEYS.map((r) => ({
         label: lang.t(`country.${r}`),
         value: r,
@@ -76,9 +50,9 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
     },
     {
       type: "select",
-      label: lang.t("transitFrom"),
-      property: "transitFrom",
-      onChange: handleFieldChange("transitFrom"),
+      label: lang.t("finalTransitCountry"),
+      property: "finalTransitCountry",
+      onChange: handleFieldChange("finalTransitCountry"),
       choices: COUNTRY_KEYS.map((r) => ({
         label: lang.t(`country.${r}`),
         value: r,
@@ -86,14 +60,12 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
     },
     {
       type: "text",
-      label: lang.t("email"),
-      property: "email",
-      onChange: handleFieldChange("email"),
-      onValidate: emailValidator.validate,
-      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
+      label: lang.t("source"),
+      property: "source",
+      onChange: handleFieldChange("source"),
     },
   ];
-  var Fields = COMMON_FIELDS(lang, handleFieldChange);
+  var Fields = COMMON_FIELDS(lang, handleFieldChange, langCode);
   uniqueFields.map((field) => Fields.push(field));
 
   return Fields;

@@ -93,7 +93,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     }
   };
 
-  const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
+  const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange, langCode);
 
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
@@ -175,73 +175,62 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("lastName")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("sex")}
+            {renderFormField("age")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("language")}
+            {renderFormField("dateOfBirth")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("gender")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("preferredLanguage")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
           <Grid item xs={12} md={4}>
             {renderFormField("nationality")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNumber")}
+            {renderFormField("passportNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("age")}
+            {renderFormField("governmentIssuedId")}
+          </Grid>
+        </Grid>
+
+        {renderSubsectionheader(lang.t("contactInformation"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("country")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("passportNo")}
+            {renderFormField("region")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("postalCode")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("street")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("building")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
-        </Grid>
-        {renderSubsectionheader(lang.t("address"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
-            {renderFormField("country")}
+          <Grid item xs={12} md={4}>
+            {renderFormField("phoneNumber")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("region")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("city")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("postalCode")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("street")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("building")}
-          </Grid>
-        </Grid>
-
-        {renderSubsectionheader(lang.t("travelInfo"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
-            {renderFormField("travelFrom")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("transitFrom")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("flightNumber")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("seatNumber")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("hotelName")}
-          </Grid>
-          {formValues.hotelName === "other" ? (
-            <Grid item xs={12} md={4}>
-              {renderFormField("hotelOther")}
-            </Grid>
-          ) : (
-            ""
-          )}
         </Grid>
 
         <Grid container spacing={4}>
@@ -268,11 +257,37 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader(lang.t("generalInformation"))}
-
+            {renderSubsectionheader(lang.t("riskFromContact"))}
+            {renderFormField("hasRecentlyTraveled")}
             {renderFormField("contactWithSuspected")}
             {renderFormField("contactWithConfirmed")}
+            {renderFormField("worksAtOrVisitedHealthFacility")}
           </Grid>
+        </Grid>
+        {renderSubsectionheader(lang.t("travelInfo"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3}>
+            {renderFormField("travelFromCountry")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("finalTransitCountry")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("flightNumber")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("seatNumber")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("stayingAtHotel")}
+          </Grid>
+          {formValues.stayingAtHotel === "other" ? (
+            <Grid item xs={12} md={4}>
+              {renderFormField("hotelOther")}
+            </Grid>
+          ) : (
+            ""
+          )}
         </Grid>
         <Box mt={4} textAlign="left">
           {renderSubsectionheader(lang.t("dependents"))}
