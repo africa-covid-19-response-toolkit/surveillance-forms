@@ -1,6 +1,6 @@
 export default {
-  language: {
-    label: "ቋንቋ",
+  preferredLanguage: {
+    label: "ተመራጭ ቋንቋ",
     english: "እንግሊዘኛ",
     amharic: "አማርኛ",
     oromo: "ኦሮምኛ",
@@ -126,7 +126,7 @@ export default {
   passportNumber: "የፓስፖርት ቁጥር",
   email: "ኢሜል",
   dateOfBirth: "የትውልድ ቀን",
-  sex: {
+  gender: {
     label: "ጾታ",
     male: "ወንድ",
     female: "ሴት",
@@ -451,10 +451,10 @@ export default {
   pregnancy: "እርግዝና",
   shortnessOfBreath: "የመተንፈስ ችግር",
   bodyPain: "የሰውነት ህመም",
-  travelHistory: "የጉዞ ታሪክ",
+  hasRecentlyTraveled: "የጉዞ ታሪክ",
   haveSex: "የወሲባዊ ግንኙነት",
   animalMarket: "የእንስሳት ገበያ ይሰራሉ/ጎብኝተዋል",
-  healthFacility: "የጤና ተቋም ይሰራሉ/ጎብኝተዋል",
+  worksAtOrVisitedHealthFacility: "የጤና ተቋም ይሰራሉ/ጎብኝተዋል",
   receiverName: "የተሞላው በ...",
   source: "ምንጭ",
   yes: "አዎ",
@@ -494,10 +494,13 @@ export default {
   healthFacilitiesApplicationForm: "የጤና ተቋማት ማመልከቻ ቅጽ",
   healthFacilitiesReportingFormForCOVID19: "የ COVID-19 ን ቅጽ የሚገልጽ የጤና አቅርቦቶች",
   generalInformation: "አጠቃላይ መረጃ",
+  riskFromContact: "ከንክኪ የሚመጣ/የሚመነጭ ተጋላጭነት/አደጋ",
   symptoms: "ምልክቶች",
   onlineSuspectForm: "የማህበረሰብ ምዝገባ ቅጽ",
   basicInformation: "መሰረታዊ መረጃ",
   address: "አድራሻ",
+
+  contactInformation: "የመገኛ አድራሻ",
   passengerRegistrationForm: "የተጓዥ ምዝገባ ቅጽ",
   travelInfo: "የጉዞ መረጃ",
   dependentBasicInformation: "ጥገኛ መሠረታዊ መረጃ",
@@ -510,4 +513,5 @@ export default {
   formSubmittedError: "ስህተት: ቅጽ ማስገባት አልተቻለም",
   contactWithSuspected: "ከተጠራጠረ ጋር ንክኪ",
   contactWithConfirmed: "ከተረጋገጠ ጋር ንክኪ",
+  governmentIssuedId: "የመንግስት የተሰጠ መታወቂያ",
 };

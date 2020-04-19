@@ -251,8 +251,8 @@ const UNDERLYING = [
   "pregnancy",
 ];
 
-const SEX_VALUE = {
-  property: "sex",
+const GENDER_VALUE = {
+  property: "gender",
   female: "F",
   male: "M",
 };
@@ -414,7 +414,7 @@ export {
   ADDRESS,
   SYMPTOMS,
   LANGUAGES_KEYS,
-  SEX_VALUE,
+  GENDER_VALUE,
   REGION_KEYS,
   NATIONALITY_KEYS,
   CALLERTYPE_KEYS,

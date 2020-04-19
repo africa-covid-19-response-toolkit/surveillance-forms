@@ -11,7 +11,7 @@ import config from "../../config";
 const TEST_SITE_KEY = config.captchaKey;
 const DELAY = 1500;
 
-const CommunityForm = ({ onSubmit, lang }) => {
+const CommunityForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
     ...CommunityInitialState,
   });
@@ -72,7 +72,7 @@ const CommunityForm = ({ onSubmit, lang }) => {
     }
   };
 
-  const fields = COMMUNITY_FIELDS(lang, handleFieldChange);
+  const fields = COMMUNITY_FIELDS(lang, handleFieldChange, langCode);
 
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
@@ -133,26 +133,26 @@ const CommunityForm = ({ onSubmit, lang }) => {
         {renderSectionHeader(lang.t("onlineSuspectForm"))}
         {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("firstName")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("middleName")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("lastName")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("age")}
           </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("sex")}
+          <Grid item xs={12} md={4}>
+            {renderFormField("dateOfBirth")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("language")}
+            {renderFormField("gender")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNumber")}
+            {renderFormField("preferredLanguage")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
@@ -162,27 +162,42 @@ const CommunityForm = ({ onSubmit, lang }) => {
               {renderFormField("occupationOther")}
             </Grid>
           )}
+          <Grid item xs={12} md={4}>
+            {renderFormField("nationality")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("passportNumber")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("governmentIssuedId")}
+          </Grid>
         </Grid>
 
-        {renderSubsectionheader(lang.t("address"))}
+        {renderSubsectionheader(lang.t("contactInformation"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("country")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("region")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("city")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("postalCode")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("street")}
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={4}>
             {renderFormField("building")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("email")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("phoneNumber")}
           </Grid>
         </Grid>
 
@@ -210,11 +225,11 @@ const CommunityForm = ({ onSubmit, lang }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader(lang.t("generalInformation"))}
-            {renderFormField("travelHx")}
+            {renderSubsectionheader(lang.t("riskFromContact"))}
+            {renderFormField("hasRecentlyTraveled")}
             {renderFormField("contactWithSuspected")}
             {renderFormField("contactWithConfirmed")}
-            {renderFormField("healthFacility")}
+            {renderFormField("worksAtOrVisitedHealthFacility")}
           </Grid>
         </Grid>
 

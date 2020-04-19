@@ -1,6 +1,6 @@
 export default {
-  language: {
-    label: "Language",
+  preferredLanguage: {
+    label: "Preferred Language",
     english: "English",
     amharic: "Amharic",
     oromo: "Afan Oromo",
@@ -12,8 +12,7 @@ export default {
   email: "Email",
   dateOfBirth: "Date of Birth",
   country: {
-    // todo: add a list
-    label: "country",
+    label: "Country",
     Afghanistan: "Afghanistan",
     ÅlandIslands: "Åland Islands",
     Albania: "Albania",
@@ -260,7 +259,7 @@ export default {
     Zambia: "Zambia",
     Zimbabwe: "Zimbabwe",
   },
-  city: "city",
+  city: "City",
   region: {
     label: "Region",
     addisAbaba: "Addis Ababa",
@@ -418,8 +417,8 @@ export default {
     other: "Other",
   },
   occupationOther: "Occupation if other was choosen",
-  sex: {
-    label: "Sex",
+  gender: {
+    label: "Gender",
     male: "Male",
     female: "Female",
   },
@@ -447,10 +446,10 @@ export default {
   formSubmittedSuccess: "Form Submitted",
   formSubmittedError: "ERROR: Unable to Submit Form",
   travelFrom: "Travel From",
-  travelHistory: "Has a Recent Travel History",
+  hasRecentlyTraveled: "Has a Recent Travel History",
   contactWithSuspected: "Contact With Suspected",
   contactWithConfirmed: "Contact With Confirmed",
-  healthFacility: "Had Visited a Health Facility",
+  worksAtOrVisitedHealthFacility: "Had Visited a Health Facility",
   transitFrom: "Transit (if any)",
   flightNumber: "Flight Number",
   seatNumber: "Seat Number",
@@ -501,14 +500,17 @@ export default {
   healthFacilitiesReportingFormForCOVID19:
     "Health Facilities Reporting Form For COVID-19",
   generalInformation: "GENERAL INFORMATION",
+  riskFromContact: "Risk From Contact",
   symptoms: "SYMPTOMS",
   onlineSuspectForm: "Community Reporting Form",
   basicInformation: "Basic Information",
   address: "Address",
+  contactInformation: "Contact Information",
   passengerRegistrationForm: "Passenger Registration Form",
   travelInfo: "Travel Info",
   dependentBasicInformation: "Dependent's Basic Information",
   passengerDependentsRegistrationForm: "Passenger Dependents Registration Form",
   dependents: "Dependents",
   dependentsBasicInformation: "Dependent's Basic Information",
+  governmentIssuedId: "Government Issued ID",
 };

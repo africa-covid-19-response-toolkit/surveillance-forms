@@ -1,4 +1,4 @@
-import { NATIONALITY_KEYS, CALLERTYPE_KEYS } from "./common";
+import { CALLERTYPE_KEYS } from "./common";
 import { COMMON_FIELDS } from "./common-fields";
 import { OCCUPATION_KEYS } from "./common";
 import { emailValidator } from "../validation/form/medical";
@@ -21,14 +21,7 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
       property: "occupationOther",
       onChange: handleFieldChange("occupationOther"),
     },
-    {
-      type: "text",
-      label: lang.t("email"),
-      property: "email",
-      onChange: handleFieldChange("email"),
-      onValidate: emailValidator.validate,
-      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
-    },
+
     {
       type: "text",
       label: lang.t("receiverName"),
@@ -51,33 +44,6 @@ const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {
       property: "callDate",
       langCode: langCode,
       onChange: handleFieldChange("callDate"),
-    },
-    {
-      type: "select",
-      label: lang.t("nationality.label"),
-      property: "nationality",
-      onChange: handleFieldChange("nationality"),
-      choices: NATIONALITY_KEYS.map((r) => ({
-        label: lang.t(`nationality.${r}`),
-        value: r,
-      })),
-    },
-    {
-      type: "switch",
-      label: lang.t("travelHistory"),
-      property: "travelHx",
-      onChange: handleFieldChange("travelHx"),
-      onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
-    },
-
-    {
-      type: "switch",
-      label: lang.t("healthFacility"),
-      property: "healthFacility",
-      onChange: handleFieldChange("healthFacility"),
-      onLabel: lang.t("yes"),
-      offLabel: lang.t("no"),
     },
   ];
   var Fields = COMMON_FIELDS(lang, handleFieldChange);

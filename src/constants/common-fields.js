@@ -1,7 +1,14 @@
 import { nameValidator, ageValidator } from "../validation/form/community";
-import { SEX_VALUE, COUNTRY_KEYS, REGION_KEYS } from "./common";
-
-const COMMON_FIELDS = (lang, handleFieldChange) => {
+import {
+  GENDER_VALUE,
+  COUNTRY_KEYS,
+  REGION_KEYS,
+  OCCUPATION_KEYS,
+  NATIONALITY_KEYS,
+  LANGUAGES_KEYS,
+} from "./common";
+import { emailValidator } from "../validation/form/medical";
+const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
   return [
     {
       type: "text",
@@ -38,15 +45,72 @@ const COMMON_FIELDS = (lang, handleFieldChange) => {
       validationErrorMsg: lang.t(ageValidator.validationErrorMsg),
     },
     {
+      type: "date",
+      label: lang.t("dateOfBirth"),
+      property: "dateOfBirth",
+      langCode: langCode,
+      onChange: handleFieldChange("dateOfBirth"),
+    },
+
+    {
       type: "select",
-      label: lang.t("sex.label"),
-      property: SEX_VALUE.property,
-      onChange: handleFieldChange(SEX_VALUE.property),
+      label: lang.t("gender.label"),
+      property: GENDER_VALUE.property,
+      onChange: handleFieldChange(GENDER_VALUE.property),
       choices: [
-        { label: lang.t("sex.female"), value: SEX_VALUE.female },
-        { label: lang.t("sex.male"), value: SEX_VALUE.male },
+        { label: lang.t("gender.female"), value: GENDER_VALUE.female },
+        { label: lang.t("gender.male"), value: GENDER_VALUE.male },
       ],
     },
+    {
+      type: "select",
+      label: lang.t("preferredLanguage.label"),
+      property: "preferredLanguage",
+      onChange: handleFieldChange("preferredLanguage"),
+      choices: LANGUAGES_KEYS.map((l) => ({
+        label: lang.t(`preferredLanguage.${l}`),
+        value: l,
+      })),
+    },
+    {
+      type: "select",
+      label: lang.t("occupation.label"),
+      property: "occupation",
+      onChange: handleFieldChange("occupation"),
+      choices: OCCUPATION_KEYS.map((r) => ({
+        label: lang.t(`occupation.${r}`),
+        value: r,
+      })),
+    },
+    {
+      type: "select",
+      label: lang.t("nationality.label"),
+      property: "nationality",
+      onChange: handleFieldChange("nationality"),
+      choices: NATIONALITY_KEYS.map((r) => ({
+        label: lang.t(`nationality.${r}`),
+        value: r,
+      })),
+    },
+    {
+      type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
+    },
+    {
+      type: "text",
+      label: lang.t("passportNumber"),
+      property: "passportNumber",
+      onChange: handleFieldChange("passportNumber"),
+    },
+    {
+      type: "text",
+      label: lang.t("governmentIssuedId"),
+      property: "governmentIssuedId",
+      onChange: handleFieldChange("governmentIssuedId"),
+    },
+
     {
       type: "text",
       label: lang.t("phoneNumber"),
@@ -98,7 +162,30 @@ const COMMON_FIELDS = (lang, handleFieldChange) => {
       property: "building",
       onChange: handleFieldChange("building"),
     },
-
+    {
+      type: "text",
+      label: lang.t("email"),
+      property: "email",
+      onChange: handleFieldChange("email"),
+      onValidate: emailValidator.validate,
+      validationErrorMsg: lang.t(emailValidator.validationErrorMsg),
+    },
+    {
+      type: "switch",
+      label: lang.t("hasRecentlyTraveled"),
+      property: "hasRecentlyTraveled",
+      onChange: handleFieldChange("hasRecentlyTraveled"),
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
+    },
+    {
+      type: "switch",
+      label: lang.t("worksAtOrVisitedHealthFacility"),
+      property: "worksAtOrVisitedHealthFacility",
+      onChange: handleFieldChange("worksAtOrVisitedHealthFacility"),
+      onLabel: lang.t("yes"),
+      offLabel: lang.t("no"),
+    },
     {
       type: "check",
       label: lang.t("chronicLungDisease"),

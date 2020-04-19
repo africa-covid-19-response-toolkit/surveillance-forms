@@ -10,16 +10,7 @@ const DEPENDENTS_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "flightNumber",
       onChange: handleFieldChange("flightNumber"),
     },
-    {
-      type: "select",
-      label: lang.t("language.label"),
-      property: "language",
-      onChange: handleFieldChange("language"),
-      choices: LANGUAGES_KEYS.map((l) => ({
-        label: lang.t(`language.${l}`),
-        value: l,
-      })),
-    },
+
     {
       type: "select",
       label: lang.t("nationality.label"),
@@ -30,12 +21,7 @@ const DEPENDENTS_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
         value: n,
       })),
     },
-    {
-      type: "text",
-      label: lang.t("passportNumber"),
-      property: "passportNo",
-      onChange: handleFieldChange("passportNo"),
-    },
+
     {
       type: "text",
       label: lang.t("seatNumber"),
@@ -61,13 +47,6 @@ const DEPENDENTS_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
         label: lang.t(`country.${r}`),
         value: r,
       })),
-    },
-    {
-      type: "date",
-      label: lang.t("dateOfBirth"),
-      property: "dateOfBirth",
-      langCode: langCode,
-      onChange: handleFieldChange("dateOfBirth"),
     },
   ];
   var Fields = COMMON_FIELDS(lang, handleFieldChange);
