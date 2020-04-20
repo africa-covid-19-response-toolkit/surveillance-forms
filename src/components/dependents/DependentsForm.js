@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
-
+import {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
+  UNDERLYING,
+  ADDRESS,
+  SYMPTOMS,
+  RISKS,
+} from "../../constants/common";
 import DEPENDENTS_ENTRY_FIELDS from "../../constants/dependents";
 
 const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
@@ -11,10 +18,69 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
 
   const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
-    setFormValues({
-      ...formValues,
-      [field]: value,
-    });
+    if (UNDERLYING.includes(field)) {
+      setFormValues({
+        ...formValues,
+        underlyingConditions: {
+          ...formValues.underlyingConditions,
+          [field]: value,
+        },
+      });
+    } else if (BIOGRAPHICALDATA.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          [field]: value,
+        },
+      });
+    } else if (CONTACTINFO.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            [field]: value,
+          },
+        },
+      });
+    } else if (ADDRESS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            address: {
+              ...formValues.biographicalData.contactInformation.address,
+              [field]: value,
+            },
+          },
+        },
+      });
+    } else if (SYMPTOMS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        symptoms: {
+          ...formValues.symptoms,
+          [field]: value,
+        },
+      });
+    } else if (RISKS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        riskFromContact: {
+          ...formValues.riskFromContact,
+          [field]: value,
+        },
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        [field]: value,
+      });
+    }
   };
 
   const fields = DEPENDENTS_ENTRY_FIELDS(lang, handleFieldChange, langCode);

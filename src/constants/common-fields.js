@@ -25,7 +25,6 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "middleName",
       focus: false,
       onChange: handleFieldChange("middleName"),
-      onValidate: nameValidator.validate,
       validationErrorMsg: lang.t(nameValidator.validationErrorMsg),
     },
     {

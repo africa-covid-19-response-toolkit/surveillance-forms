@@ -270,6 +270,13 @@ const REGION_KEYS = [
   "southern",
   "tigray",
 ];
+const CONTACTINFO = ["email", "phoneNumber"];
+const RISKS = [
+  "hasRecentlyTraveled",
+  "contactWithSuspected",
+  "contactWithConfirmed",
+  "worksAtOrVisitedHealthFacility",
+];
 const ADDRESS = [
   "country",
   "region",
@@ -278,7 +285,19 @@ const ADDRESS = [
   "street",
   "building",
 ];
-
+const BIOGRAPHICALDATA = [
+  "firstName",
+  "middleName",
+  "lastName",
+  "age",
+  "dateOfBirth",
+  "gender",
+  "preferredLanguage",
+  "occupation",
+  "nationality",
+  "passportNumber",
+  "governmentIssuedId",
+];
 const SYMPTOMS = [
   "fever",
   "cough",
@@ -410,8 +429,11 @@ const CALLERTYPE_KEYS = ["callerType1", "callerType2"];
 const HOTEL_KEYS = ["skylight", "ghion", "azzeman", "sapphire", "other"];
 
 export {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
   OCCUPATION_KEYS,
   UNDERLYING,
+  RISKS,
   ADDRESS,
   SYMPTOMS,
   LANGUAGES_KEYS,

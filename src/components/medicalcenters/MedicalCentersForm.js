@@ -3,7 +3,14 @@ import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 
 import MEDICAL_FIELDS from "../../constants/medicalCenter-fields";
-import { UNDERLYING, ADDRESS, SYMPTOMS } from "../../constants/common";
+import {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
+  UNDERLYING,
+  ADDRESS,
+  SYMPTOMS,
+  RISKS,
+} from "../../constants/common";
 import MedicalInitialState from "./MedicalCentersInitialState";
 
 import ReCAPTCHA from "react-google-recaptcha";
@@ -50,19 +57,52 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           [field]: value,
         },
       });
+    } else if (BIOGRAPHICALDATA.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          [field]: value,
+        },
+      });
+    } else if (CONTACTINFO.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            [field]: value,
+          },
+        },
+      });
     } else if (ADDRESS.includes(field)) {
       setFormValues({
         ...formValues,
-        address: {
-          ...formValues.address,
-          [field]: value,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            address: {
+              ...formValues.biographicalData.contactInformation.address,
+              [field]: value,
+            },
+          },
         },
       });
     } else if (SYMPTOMS.includes(field)) {
       setFormValues({
         ...formValues,
-        address: {
-          ...formValues.symptom,
+        symptoms: {
+          ...formValues.symptoms,
+          [field]: value,
+        },
+      });
+    } else if (RISKS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        riskFromContact: {
+          ...formValues.riskFromContact,
           [field]: value,
         },
       });

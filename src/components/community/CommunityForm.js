@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 import COMMUNITY_FIELDS from "../../constants/community-fields";
-import { UNDERLYING, ADDRESS, SYMPTOMS } from "../../constants/common";
+import {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
+  UNDERLYING,
+  ADDRESS,
+  SYMPTOMS,
+  RISKS,
+} from "../../constants/common";
 import CommunityInitialState from "./CommunityInitialState";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
@@ -48,19 +55,52 @@ const CommunityForm = ({ onSubmit, lang, langCode }) => {
           [field]: value,
         },
       });
+    } else if (BIOGRAPHICALDATA.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          [field]: value,
+        },
+      });
+    } else if (CONTACTINFO.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            [field]: value,
+          },
+        },
+      });
     } else if (ADDRESS.includes(field)) {
       setFormValues({
         ...formValues,
-        address: {
-          ...formValues.address,
-          [field]: value,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            address: {
+              ...formValues.biographicalData.contactInformation.address,
+              [field]: value,
+            },
+          },
         },
       });
     } else if (SYMPTOMS.includes(field)) {
       setFormValues({
         ...formValues,
-        address: {
-          ...formValues.symptom,
+        symptoms: {
+          ...formValues.symptoms,
+          [field]: value,
+        },
+      });
+    } else if (RISKS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        riskFromContact: {
+          ...formValues.riskFromContact,
           [field]: value,
         },
       });
@@ -99,7 +139,6 @@ const CommunityForm = ({ onSubmit, lang, langCode }) => {
   };
 
   const hadleSubmit = () => {
-    console.log(formValues);
     onSubmit(formValues).then(() => {
       // clear form values
       setFormValues({});
@@ -115,6 +154,7 @@ const CommunityForm = ({ onSubmit, lang, langCode }) => {
       isEmpty(captchaText),
       isCaptchaExpired
     );
+
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {

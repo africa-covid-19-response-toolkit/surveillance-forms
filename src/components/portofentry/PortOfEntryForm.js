@@ -18,7 +18,14 @@ import CloseIcon from "@material-ui/icons/Close";
 import { renderField } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState";
 import { isEmpty } from "lodash";
-import { UNDERLYING, ADDRESS, SYMPTOMS } from "../../constants/common";
+import {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
+  UNDERLYING,
+  ADDRESS,
+  SYMPTOMS,
+  RISKS,
+} from "../../constants/common";
 import PORT_OF_ENTRY_FIELDS from "../../constants/portOfEntry-fields";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
@@ -69,19 +76,52 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
           [field]: value,
         },
       });
+    } else if (BIOGRAPHICALDATA.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          [field]: value,
+        },
+      });
+    } else if (CONTACTINFO.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            [field]: value,
+          },
+        },
+      });
     } else if (ADDRESS.includes(field)) {
       setFormValues({
         ...formValues,
-        address: {
-          ...formValues.address,
-          [field]: value,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            address: {
+              ...formValues.biographicalData.contactInformation.address,
+              [field]: value,
+            },
+          },
         },
       });
     } else if (SYMPTOMS.includes(field)) {
       setFormValues({
         ...formValues,
-        address: {
-          ...formValues.symptom,
+        symptoms: {
+          ...formValues.symptoms,
+          [field]: value,
+        },
+      });
+    } else if (RISKS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        riskFromContact: {
+          ...formValues.riskFromContact,
           [field]: value,
         },
       });
