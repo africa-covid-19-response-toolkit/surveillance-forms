@@ -1,6 +1,6 @@
 # COVID19 - Surveillance Forms
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Available Forms:
@@ -103,6 +103,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/antxaddis"><img src="https://avatars1.githubusercontent.com/u/4411786?v=4" width="100px;" alt=""/><br /><sub><b>antxaddis</b></sub></a><br /><a href="https://github.com/Ethiopia-COVID19/Project-Surveillance-Forms/commits?author=antxaddis" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/sole6"><img src="https://avatars3.githubusercontent.com/u/9457841?v=4" width="100px;" alt=""/><br /><sub><b>Sole</b></sub></a><br /><a href="https://github.com/Ethiopia-COVID19/Project-Surveillance-Forms/commits?author=sole6" title="Code">💻</a></td>
+    <td align="center"><a href="https://bkdaemon.club"><img src="https://avatars3.githubusercontent.com/u/19363570?v=4" width="100px;" alt=""/><br /><sub><b>Beakal Teshome</b></sub></a><br /><a href="https://github.com/Ethiopia-COVID19/Project-Surveillance-Forms/commits?author=btree1970" title="Code">💻</a></td>
   </tr>
 </table>
 
