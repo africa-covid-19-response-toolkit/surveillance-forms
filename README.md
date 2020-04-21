@@ -8,20 +8,22 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Available Forms:
-* Community Reporting Form
-* Medical Centers Form
-* Passengers / Port-of-Entry Form
 
-Community Form            |  Community i18n
-:-------------------------:|:-------------------------:
-![Community Form](docs/form-community.png)  |  ![Community Form - i18n](docs/form-community-i18n.png)
-![Community Form](docs/form-community-mobile.png) | ![Community Form - i18n](docs/form-community-i18n-mobile.png)
+- Community Reporting Form
+- Medical Centers Form
+- Passengers / Port-of-Entry Form
+
+|                  Community Form                   |                        Community i18n                         |
+| :-----------------------------------------------: | :-----------------------------------------------------------: |
+|    ![Community Form](docs/form-community.png)     |    ![Community Form - i18n](docs/form-community-i18n.png)     |
+| ![Community Form](docs/form-community-mobile.png) | ![Community Form - i18n](docs/form-community-i18n-mobile.png) |
 
 Overview:
-* Mobile first
-* Internationalization Support
-* Common Form Utilities
-* Environment Configuration
+
+- Mobile first
+- Internationalization Support
+- Common Form Utilities
+- Environment Configuration
 
 ## Development
 
@@ -55,6 +57,7 @@ $ yarn storybook
 - See `src/controllers/Community.js` for usage.
 
 ### Containers (Pages)
+
 - Represents a page in the application
 - Mapped to a route - see `App.js`
 - Have access to `react-router-dom` properties `match`, `history` and `location`
@@ -68,6 +71,7 @@ $ yarn storybook
 - Map your page to a route in `src/core/App.js`
 
 ### How to add a new language
+
 - Add a new language pack by duplicating `src/modules/lang/phrases_en.js`
 - Import and map new language in `src/modules/lang/lang-util.js`
 

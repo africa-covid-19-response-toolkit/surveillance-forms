@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 
@@ -15,7 +15,7 @@ const DELAY = 1500;
 
 const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-    ...MedicalInitialState
+    ...MedicalInitialState,
   });
 
   const [clear, setClear] = useState(0);
@@ -29,7 +29,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     }, DELAY);
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     setCaptchaText(value);
     if (value === null) {
       setIsCaptchaExpired(true);
@@ -40,27 +40,27 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
 
-  const handleFieldChange = field => value => {
+  const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
     if (UNDERLYING.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
           ...formValues.underlyingConditions,
-          [field]: value
-        }
+          [field]: value,
+        },
       });
     } else {
       if (field === "region") {
         setFormValues({
           ...formValues,
           subcity: null,
-          [field]: value
+          [field]: value,
         });
       } else {
         setFormValues({
           ...formValues,
-          [field]: value
+          [field]: value,
         });
       }
     }
@@ -68,15 +68,15 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const fields = MEDICAL_FIELDS(lang, handleFieldChange, langCode, formValues);
 
-  const renderFormField = property => {
-    const field = fields.find(f => f.property === property);
+  const renderFormField = (property) => {
+    const field = fields.find((f) => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = label => {
+  const renderSectionHeader = (label) => {
     return (
       <Typography className="sectionheader" variant="h2">
         {label}
@@ -84,7 +84,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-  const renderSubsectionheader = label => {
+  const renderSubsectionheader = (label) => {
     return (
       <Typography className="subsectionheader" variant="h5">
         {label}
@@ -103,7 +103,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const isFormValid = () => {
     let isValid = true;
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach(f => {
+      fields.forEach((f) => {
         if (f.onValidate) {
           isValid = isValid && f.onValidate(formValues[f.property]);
         }
@@ -167,11 +167,11 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation === "other" &&
-              <Grid item xs={12} md={4}>
-                        {renderFormField("occupationOther")}
-              </Grid>
-          }
+          {formValues.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
           <Grid item xs={12} md={4}>
             {renderFormField("callerType")}
           </Grid>

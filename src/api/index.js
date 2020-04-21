@@ -1,9 +1,9 @@
-import axios from 'axios';
-import config from '../config';
+import axios from "axios";
+import config from "../config";
 
-const POST = 'post';
+const POST = "post";
 // const PUT = 'put';
-const DELETE = 'delete';
+const DELETE = "delete";
 
 const initApi = (baseURL) => {
   const api = axios.create();
@@ -24,67 +24,63 @@ const getBody = (verb, body) => {
 };
 
 const execute = async (verb, url, body) => {
-  try {
-    const config = {
-      url,
-      method: verb,
-      data: getBody(verb, body),
-      // withCredentials: true // include existing cookies as part of request header
-    };
+  const config = {
+    url,
+    method: verb,
+    data: getBody(verb, body),
+    // withCredentials: true // include existing cookies as part of request header
+  };
 
-    const response = await axiosApi.request(config);
-    const { status, data } = response;
+  const response = await axiosApi.request(config);
+  const { status, data } = response;
 
-    return {
-      status,
-      data
-    };
-  } catch (error) {
-    // const { status, data } = error.response;
-    // const { status } = error.response;
+  return { status, data };
 
-    // handle 401s in the store, payload may contain relevant redirect info
-    // if (status === 401) {
-    // }
+  // This is unncessary and I have removed it
+  // } catch (error) {
+  //   // const { status, data } = error.response;
+  //   // const { status } = error.response;
 
-    // throw error;
-    // return { status, data: null };
-    throw error;
-  }
+  //   // handle 401s in the store, payload may contain relevant redirect info
+  //   // if (status === 401) {
+  //   // }
+
+  //   // throw error;
+  //   // return { status, data: null };
+  //   console.error(error);
+  //   throw error;
+  // }
 };
 
 class Api {
   async submitCommunity(formValues) {
-
     //clean up formValues
     if (formValues.occupation === "other") {
-      formValues.occupation = formValues.occupationOther
-      delete formValues.occupationOther
+      formValues.occupation = formValues.occupationOther;
+      delete formValues.occupationOther;
     }
 
-    return execute(POST, '/public/communities', formValues);
+    return execute(POST, "/public/communities", formValues);
   }
 
   async submitMedical(formValues) {
-
     //clean up formValues
     if (formValues.occupation === "other") {
-      formValues.occupation = formValues.occupationOther
-      delete formValues.occupationOther
+      formValues.occupation = formValues.occupationOther;
+      delete formValues.occupationOther;
     }
 
-    return execute(POST, '/public/medical-facilities', formValues);
+    return execute(POST, "/public/medical-facilities", formValues);
   }
 
   async submitPortOfEntry(formValues) {
-
     //clean up formValues
     if (formValues.occupation === "other") {
-      formValues.occupation = formValues.occupationOther
-      delete formValues.occupationOther
+      formValues.occupation = formValues.occupationOther;
+      delete formValues.occupationOther;
     }
 
-    return execute(POST, '/public/passengers', formValues);
+    return execute(POST, "/public/passengers", formValues);
   }
 }
 

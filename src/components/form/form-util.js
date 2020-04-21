@@ -8,9 +8,9 @@ import {
   Select,
   MenuItem,
   Switch,
-  Checkbox
+  Checkbox,
 } from "@material-ui/core";
-import { isEmpty} from "lodash";
+import { isEmpty } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from "../../modules/lang/moment-lang";
 
@@ -25,7 +25,7 @@ const StatefulTextField = ({ field, clear }) => {
     disabled,
     onValidate,
     validationErrorMsg,
-    focus
+    focus,
   } = field;
 
   const [value, setValue] = useState(field.value || "");
@@ -53,7 +53,7 @@ const StatefulTextField = ({ field, clear }) => {
     setValue(field.value || "");
   }, [field.value, clear]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
 
@@ -111,7 +111,7 @@ const StatefulDateField = ({ field }) => {
     disabled,
     onValidate,
     validationErrorMsg,
-    focus
+    focus,
   } = field;
 
   var locale = field.langCode;
@@ -144,7 +144,7 @@ const StatefulDateField = ({ field }) => {
     }
   }, [value, onValidate]);
 
-  const handleDateChange = date => {
+  const handleDateChange = (date) => {
     const newValue = date.format();
     setValue(newValue);
 
@@ -176,7 +176,7 @@ const StatefulDateField = ({ field }) => {
           id={`${property}-outlined`}
           inputVariant="outlined"
           value={value}
-          onChange={date => handleDateChange(date)}
+          onChange={(date) => handleDateChange(date)}
           disabled={!!disabled}
           format="LL"
           fullWidth={true}
@@ -192,7 +192,7 @@ export const renderTextField = (field, clear) => {
   return <StatefulTextField field={field} clear={clear} />;
 };
 
-export const renderDateField = field => {
+export const renderDateField = (field) => {
   moment.locale(field.langCode);
   return <StatefulDateField field={field} />;
 };
@@ -202,7 +202,7 @@ const StatefulSelectField = ({ field }) => {
 
   const [value, setValue] = useState("");
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
 
@@ -216,7 +216,7 @@ const StatefulSelectField = ({ field }) => {
       <InputLabel shrink>{label}</InputLabel>
       <FormControl
         style={{
-          width: "100%"
+          width: "100%",
         }}
         variant="outlined"
         size="small"
@@ -239,7 +239,7 @@ const StatefulSelectField = ({ field }) => {
   );
 };
 
-export const renderSelectField = field => {
+export const renderSelectField = (field) => {
   return <StatefulSelectField field={field} />;
 };
 
@@ -264,7 +264,7 @@ const StatefulSwitch = ({ field }) => {
         style={{
           borderRadius: "50px",
           border: "1px solid #ccc",
-          margin: "5px 10px 5px 0"
+          margin: "5px 10px 5px 0",
         }}
       >
         <Switch
@@ -282,7 +282,7 @@ const StatefulSwitch = ({ field }) => {
   );
 };
 
-export const renderSwitch = field => {
+export const renderSwitch = (field) => {
   return <StatefulSwitch field={field} />;
 };
 
@@ -317,7 +317,7 @@ const StatefulCheckbox = ({ field }) => {
   );
 };
 
-export const renderCheckbox = field => {
+export const renderCheckbox = (field) => {
   return <StatefulCheckbox field={field} />;
 };
 

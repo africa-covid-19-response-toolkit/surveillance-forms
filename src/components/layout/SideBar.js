@@ -4,20 +4,26 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar} from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: '100%',
-    backgroundColor: '#f0f0f0',
-    boxShadow: 'none',
-    border: '1px solid #ccc',
+    width: "100%",
+    backgroundColor: "#f0f0f0",
+    boxShadow: "none",
+    border: "1px solid #ccc",
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
     verticalAlign: "top",
-    fontSize: "10px"
+    fontSize: "10px",
   },
 }));
 const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
@@ -44,8 +50,8 @@ const SideBarCard = ({ user, onLanguageSelect, lang, langCode }) => {
             return (
               <ListItem key={index} disableGutters>
                 <ListItemAvatar style={{ flexShrink: 1 }}>
-                  <Avatar style={{ background: '#fff', margin: 0 }}>
-                    <CheckIcon style={{ fill: 'green', width: 20 }}/>
+                  <Avatar style={{ background: "#fff", margin: 0 }}>
+                    <CheckIcon style={{ fill: "green", width: 20 }} />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText className="sidebarText">{el}</ListItemText>

@@ -1,7 +1,8 @@
 import { nameValidator, ageValidator } from "../validation/form/community";
-import {OCCUPATION_KEYS, SEX_VALUE, REGION_KEYS} from "./common"
+import { OCCUPATION_KEYS, SEX_VALUE, REGION_KEYS } from "./common";
 
-const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
+const COMMUNITY_FIELDS = (lang, handleFieldChange) => {
+  return [
     {
       type: "text",
       label: lang.t("firstName"),
@@ -134,14 +135,12 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       onChange: handleFieldChange("fatigue"),
     },
 
-
     {
       type: "check",
       label: lang.t("chronicLungDisease"),
       property: "chronicLungDisease",
       onChange: handleFieldChange("chronicLungDisease"),
     },
-
 
     {
       type: "check",
@@ -191,7 +190,6 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       onChange: handleFieldChange("diabetes"),
     },
 
-
     {
       type: "check",
       label: lang.t("hiv"),
@@ -238,6 +236,7 @@ const COMMUNITY_FIELDS = (lang, handleFieldChange) => { return  [
       onLabel: lang.t("yes"),
       offLabel: lang.t("no"),
     },
-  ]};
+  ];
+};
 
-  export default COMMUNITY_FIELDS;
+export default COMMUNITY_FIELDS;

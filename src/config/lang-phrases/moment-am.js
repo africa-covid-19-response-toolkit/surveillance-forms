@@ -13,7 +13,7 @@ export default {
     nextWeek: "dddd [በ] LT",
     lastDay: "[ትናንት ከሰዓት] LT",
     lastWeek: "[ያለፈው ሳምንት] dddd LT",
-    sameElse: "L"
+    sameElse: "L",
   },
   relativeTime: {
     future: "%s",
@@ -29,10 +29,10 @@ export default {
     M: "ወር",
     MM: "%d ወራት",
     y: "ዓመት",
-    yy: "%d ዓመታት"
+    yy: "%d ዓመታት",
   },
   week: {
-    dow: 1
+    dow: 1,
   },
   dayOfMonthOrdinalParse: /\d{1,2}(ኛ)/,
   longDateFormat: {
@@ -41,6 +41,6 @@ export default {
     L: "YYYY-MM-DD",
     LL: "MMMM D, YYYY",
     LLL: "MMMM D, YYYY h:mm A",
-    LLLL: "dddd, MMMM D, YYYY h:mm A"
-  }
+    LLLL: "dddd, MMMM D, YYYY h:mm A",
+  },
 };
