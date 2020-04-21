@@ -1,3 +1,7 @@
+<div align="center">
+  <img alt="ACRT Surveillance Forms" src="acrt_19_surveillance_forms.png" width="650px">
+</div>
+
 # COVID19 - Surveillance Forms
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
