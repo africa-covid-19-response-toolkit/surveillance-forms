@@ -1,4 +1,4 @@
-import { CALLERTYPE_KEYS } from "./common";
+import { CALLERTYPE_KEYS } from "./common-keys";
 import { COMMON_FIELDS } from "./common-fields";
 
 const MEDICAL_FIELDS = (lang, handleFieldChange, langCode, formValues) => {

@@ -25,7 +25,7 @@ import {
   ADDRESS,
   SYMPTOMS,
   RISKS,
-} from "../../constants/common";
+} from "../../constants/common-keys";
 import PORT_OF_ENTRY_FIELDS from "../../constants/portOfEntry-fields";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
@@ -255,6 +255,12 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField1")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField2")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("postalCode")}

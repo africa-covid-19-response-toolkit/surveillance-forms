@@ -6,8 +6,13 @@ import {
   OCCUPATION_KEYS,
   NATIONALITY_KEYS,
   LANGUAGES_KEYS,
-} from "./common";
+  CITY_KEYS,
+  CUSTOMFIELD1_KEYS,
+} from "./common-keys";
 import { emailValidator } from "../validation/form/medical";
+
+import AddressLocal from "../config/address_schema_locale";
+
 const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
   return [
     {
@@ -87,7 +92,7 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "nationality",
       onChange: handleFieldChange("nationality"),
       choices: NATIONALITY_KEYS.map((r) => ({
-        label: lang.t(`nationality.${r}`),
+        label: lang.t(`nationality.value.${r}`),
         value: r,
       })),
     },
@@ -116,50 +121,70 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "phoneNumber",
       onChange: handleFieldChange("phoneNumber"),
     },
-
+    //Address
     {
       type: "select",
-      label: lang.t("country.label"),
+      label: lang.t(`${AddressLocal.country}.label`),
       property: "country",
       choices: COUNTRY_KEYS.map((c) => ({
-        label: lang.t(`country.${c}`),
+        label: lang.t(`country.value.${c}`),
         value: c,
       })),
       onChange: handleFieldChange("country"),
     },
     {
       type: "select",
-      label: lang.t("region.label"),
+      label: lang.t(`${AddressLocal.region}.label`),
       property: "region",
       choices: REGION_KEYS.map((r) => ({
-        label: lang.t(`region.${r}`),
+        label: lang.t(`region.value.${r}`),
         value: r,
       })),
       onChange: handleFieldChange("region"),
     },
     {
-      type: "text",
-      label: lang.t("city"),
+      type: "select",
+      label: lang.t(`${AddressLocal.city}.label`),
       property: "city",
+      choices: CITY_KEYS.map((r) => ({
+        label: lang.t(`city.value.${r}`),
+        value: r,
+      })),
       onChange: handleFieldChange("city"),
     },
     {
       type: "text",
-      label: lang.t("postalCode"),
+      label: lang.t(`${AddressLocal.postalCode}`),
       property: "postalCode",
       onChange: handleFieldChange("postalCode"),
     },
     {
       type: "text",
-      label: lang.t("street"),
+      label: lang.t(`${AddressLocal.street}`),
       property: "street",
       onChange: handleFieldChange("street"),
     },
     {
       type: "text",
-      label: lang.t("building"),
+      label: lang.t(`${AddressLocal.building}`),
       property: "building",
       onChange: handleFieldChange("building"),
+    },
+    {
+      type: "select",
+      label: lang.t(`${AddressLocal.customField1}.label`),
+      property: "customField1",
+      choices: CUSTOMFIELD1_KEYS.map((r) => ({
+        label: lang.t(`${AddressLocal.customField1}.value.${r}`),
+        value: r,
+      })),
+      onChange: handleFieldChange("customField1"),
+    },
+    {
+      type: "text",
+      label: lang.t(`${AddressLocal.customField2}`),
+      property: "customField2",
+      onChange: handleFieldChange("customField2"),
     },
     {
       type: "text",

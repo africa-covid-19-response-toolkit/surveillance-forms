@@ -8,8 +8,8 @@ import {
   ADDRESS,
   SYMPTOMS,
   RISKS,
-} from "../../constants/common";
-import DEPENDENTS_ENTRY_FIELDS from "../../constants/dependents";
+} from "../../constants/common-keys";
+import DEPENDENTS_ENTRY_FIELDS from "../../constants/dependents-fiels";
 
 const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
   console.log(langCode);
@@ -180,6 +180,12 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField1")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField2")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("postalCode")}

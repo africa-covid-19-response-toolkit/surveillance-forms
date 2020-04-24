@@ -9,7 +9,7 @@ import {
   ADDRESS,
   SYMPTOMS,
   RISKS,
-} from "../../constants/common";
+} from "../../constants/common-keys";
 import CommunityInitialState from "./CommunityInitialState";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash";
@@ -223,6 +223,12 @@ const CommunityForm = ({ onSubmit, lang, langCode }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField1")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField2")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("postalCode")}

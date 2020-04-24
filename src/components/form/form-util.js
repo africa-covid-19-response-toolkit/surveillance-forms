@@ -10,7 +10,7 @@ import {
   Switch,
   Checkbox,
 } from "@material-ui/core";
-import { isEmpty} from "lodash";
+import { isEmpty } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from "../../modules/lang/moment-lang";
 

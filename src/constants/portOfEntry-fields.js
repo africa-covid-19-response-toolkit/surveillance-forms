@@ -1,11 +1,4 @@
-import { emailValidator } from "../validation/form/portOfEntry";
-
-import {
-  HOTEL_KEYS,
-  COUNTRY_KEYS,
-  NATIONALITY_KEYS,
-  LANGUAGES_KEYS,
-} from "./common";
+import { HOTEL_KEYS, COUNTRY_KEYS } from "./common-keys";
 import { COMMON_FIELDS } from "./common-fields";
 const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
   const uniqueFields = [
@@ -44,7 +37,7 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "travelFromCountry",
       onChange: handleFieldChange("travelFromCountry"),
       choices: COUNTRY_KEYS.map((r) => ({
-        label: lang.t(`country.${r}`),
+        label: lang.t(`country.value.${r}`),
         value: r,
       })),
     },
@@ -54,7 +47,7 @@ const PORT_OF_ENTRY_FIELDS = (lang, handleFieldChange, langCode) => {
       property: "finalTransitCountry",
       onChange: handleFieldChange("finalTransitCountry"),
       choices: COUNTRY_KEYS.map((r) => ({
-        label: lang.t(`country.${r}`),
+        label: lang.t(`country.value.${r}`),
         value: r,
       })),
     },
