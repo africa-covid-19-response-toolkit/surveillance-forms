@@ -17,9 +17,16 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import { renderField } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState";
-import { isEmpty } from "lodash";
-import { UNDERLYING } from "../../constants/common";
-import PORT_OF_ENTRY_FIELDS from "../../constants/PortOfEntry-fields";
+import { isEmpty, get } from "lodash";
+import {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
+  UNDERLYING,
+  ADDRESS,
+  SYMPTOMS,
+  RISKS,
+} from "../../constants/common-keys";
+import PORT_OF_ENTRY_FIELDS from "../../constants/portOfEntry-fields";
 import ReCAPTCHA from "react-google-recaptcha";
 import DependantsForm from "../dependents/DependentsForm";
 
@@ -69,6 +76,55 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
           [field]: value,
         },
       });
+    } else if (BIOGRAPHICALDATA.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          [field]: value,
+        },
+      });
+    } else if (CONTACTINFO.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            [field]: value,
+          },
+        },
+      });
+    } else if (ADDRESS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            address: {
+              ...formValues.biographicalData.contactInformation.address,
+              [field]: value,
+            },
+          },
+        },
+      });
+    } else if (SYMPTOMS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        symptoms: {
+          ...formValues.symptoms,
+          [field]: value,
+        },
+      });
+    } else if (RISKS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        riskFromContact: {
+          ...formValues.riskFromContact,
+          [field]: value,
+        },
+      });
     } else {
       setFormValues({
         ...formValues,
@@ -77,7 +133,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     }
   };
 
-  const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange);
+  const fields = PORT_OF_ENTRY_FIELDS(lang, handleFieldChange, langCode);
 
   const renderFormField = (property) => {
     const field = fields.find((f) => f.property === property);
@@ -124,7 +180,20 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {
-          isValid = isValid && f.onValidate(formValues[f.property]);
+          if (f.property === "email") {
+            isValid =
+              isValid &&
+              f.onValidate(
+                get(
+                  formValues,
+                  `biographicalData.contactInformation.${f.property}`
+                )
+              );
+          } else {
+            isValid =
+              isValid &&
+              f.onValidate(get(formValues, `biographicalData.${f.property}`));
+          }
         }
       });
     } else {
@@ -146,7 +215,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
   const renderForm = () => {
     return (
       <form autoComplete="off">
-        {renderSectionHeader(lang.t("passengerRegistrationForm"))}
+        {renderSectionHeader(lang.t("passengerDependentsRegistrationForm"))}
         {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
@@ -159,68 +228,82 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("lastName")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("sex")}
+            {renderFormField("age")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("dateOfBirth")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("gender")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("preferredLanguage")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.biographicalData.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
           <Grid item xs={12} md={4}>
             {renderFormField("nationality")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("passportNo")}
+            {renderFormField("passportNumber")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNumber")}
+            {renderFormField("governmentIssuedId")}
+          </Grid>
+        </Grid>
+
+        {renderSubsectionheader(lang.t("contactInformation"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("country")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("age")}
+            {renderFormField("region")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("city")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField1")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("customField2")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("postalCode")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("street")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("building")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("email")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("occupation")}
+            {renderFormField("phoneNumber")}
           </Grid>
-          {formValues.occupation === "other" && (
-            <Grid item xs={12} md={4}>
-              {renderFormField("occupationOther")}
-            </Grid>
-          )}
-        </Grid>
-
-        {renderSubsectionheader(lang.t("travelInfo"))}
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
-            {renderFormField("travelFrom")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("transitFrom")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("flightNumber")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("seatNumber")}
-          </Grid>
-          <Grid item xs={12} md={3}>
-            {renderFormField("hotelName")}
-          </Grid>
-          {formValues.hotelName === "other" ? (
-            <Grid item xs={12} md={4}>
-              {renderFormField("hotelOther")}
-            </Grid>
-          ) : (
-            ""
-          )}
         </Grid>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("symptoms"))}
             {renderFormField("fever")}
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
             {renderFormField("fatigue")}
+            {renderFormField("headache")}
+            {renderFormField("runnyNose")}
+            {renderFormField("feelingUnwell")}
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("underlyingConditions"))}
             {renderFormField("chronicLungDisease")}
             {renderFormField("heartDisease")}
@@ -232,6 +315,38 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("hiv")}
             {renderFormField("pregnancy")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderSubsectionheader(lang.t("riskFromContact"))}
+            {renderFormField("hasRecentlyTraveled")}
+            {renderFormField("contactWithSuspected")}
+            {renderFormField("contactWithConfirmed")}
+            {renderFormField("worksAtOrVisitedHealthFacility")}
+          </Grid>
+        </Grid>
+        {renderSubsectionheader(lang.t("travelInfo"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3}>
+            {renderFormField("travelFromCountry")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("finalTransitCountry")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("flightNumber")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("seatNumber")}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            {renderFormField("stayingAtHotel")}
+          </Grid>
+          {formValues.stayingAtHotel === "other" ? (
+            <Grid item xs={12} md={4}>
+              {renderFormField("hotelOther")}
+            </Grid>
+          ) : (
+            ""
+          )}
         </Grid>
         <Box mt={4} textAlign="left">
           {renderSubsectionheader(lang.t("dependents"))}

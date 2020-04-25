@@ -1,13 +1,20 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import { renderField } from "../form/form-util";
 
 import MEDICAL_FIELDS from "../../constants/medicalCenter-fields";
-import { UNDERLYING } from "../../constants/common";
+import {
+  BIOGRAPHICALDATA,
+  CONTACTINFO,
+  UNDERLYING,
+  ADDRESS,
+  SYMPTOMS,
+  RISKS,
+} from "../../constants/common-keys";
 import MedicalInitialState from "./MedicalCentersInitialState";
 
 import ReCAPTCHA from "react-google-recaptcha";
-import { isEmpty } from "lodash";
+import { isEmpty, get } from "lodash";
 import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
@@ -15,7 +22,7 @@ const DELAY = 1500;
 
 const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const [formValues, setFormValues] = useState({
-    ...MedicalInitialState
+    ...MedicalInitialState,
   });
 
   const [clear, setClear] = useState(0);
@@ -29,7 +36,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     }, DELAY);
   });
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     setCaptchaText(value);
     if (value === null) {
       setIsCaptchaExpired(true);
@@ -40,43 +47,84 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     console.log("scriptLoad - reCaptcha Ref-", React.createRef());
   };
 
-  const handleFieldChange = field => value => {
+  const handleFieldChange = (field) => (value) => {
     console.log(field, ": ", value);
     if (UNDERLYING.includes(field)) {
       setFormValues({
         ...formValues,
         underlyingConditions: {
           ...formValues.underlyingConditions,
-          [field]: value
-        }
+          [field]: value,
+        },
+      });
+    } else if (BIOGRAPHICALDATA.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          [field]: value,
+        },
+      });
+    } else if (CONTACTINFO.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            [field]: value,
+          },
+        },
+      });
+    } else if (ADDRESS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        biographicalData: {
+          ...formValues.biographicalData,
+          contactInformation: {
+            ...formValues.biographicalData.contactInformation,
+            address: {
+              ...formValues.biographicalData.contactInformation.address,
+              [field]: value,
+            },
+          },
+        },
+      });
+    } else if (SYMPTOMS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        symptoms: {
+          ...formValues.symptoms,
+          [field]: value,
+        },
+      });
+    } else if (RISKS.includes(field)) {
+      setFormValues({
+        ...formValues,
+        riskFromContact: {
+          ...formValues.riskFromContact,
+          [field]: value,
+        },
       });
     } else {
-      if (field === "region") {
-        setFormValues({
-          ...formValues,
-          subcity: null,
-          [field]: value
-        });
-      } else {
-        setFormValues({
-          ...formValues,
-          [field]: value
-        });
-      }
+      setFormValues({
+        ...formValues,
+        [field]: value,
+      });
     }
   };
 
   const fields = MEDICAL_FIELDS(lang, handleFieldChange, langCode, formValues);
 
-  const renderFormField = property => {
-    const field = fields.find(f => f.property === property);
+  const renderFormField = (property) => {
+    const field = fields.find((f) => f.property === property);
     if (!field) {
       return null;
     }
     return renderField(field, clear);
   };
 
-  const renderSectionHeader = label => {
+  const renderSectionHeader = (label) => {
     return (
       <Typography className="sectionheader" variant="h2">
         {label}
@@ -84,7 +132,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
     );
   };
 
-  const renderSubsectionheader = label => {
+  const renderSubsectionheader = (label) => {
     return (
       <Typography className="subsectionheader" variant="h5">
         {label}
@@ -94,6 +142,7 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
 
   const handleSubmit = () => {
     onSubmit(formValues).then(() => {
+      console.log(formValues);
       // clear form values
       setFormValues({});
       setClear(clear + 1);
@@ -103,9 +152,22 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
   const isFormValid = () => {
     let isValid = true;
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
-      fields.forEach(f => {
+      fields.forEach((f) => {
         if (f.onValidate) {
-          isValid = isValid && f.onValidate(formValues[f.property]);
+          if (f.property === "email") {
+            isValid =
+              isValid &&
+              f.onValidate(
+                get(
+                  formValues,
+                  `biographicalData.contactInformation.${f.property}`
+                )
+              );
+          } else {
+            isValid =
+              isValid &&
+              f.onValidate(get(formValues, `biographicalData.${f.property}`));
+          }
         }
       });
     } else {
@@ -126,7 +188,6 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("middleName")}
           </Grid>
-
           <Grid item xs={12} md={4}>
             {renderFormField("lastName")}
           </Grid>
@@ -134,52 +195,67 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("age")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("sex")}
+            {renderFormField("dateOfBirth")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("phoneNumber")}
+            {renderFormField("gender")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("email")}
+            {renderFormField("preferredLanguage")}
           </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("occupation")}
+          </Grid>
+          {formValues.biographicalData.occupation === "other" && (
+            <Grid item xs={12} md={4}>
+              {renderFormField("occupationOther")}
+            </Grid>
+          )}
           <Grid item xs={12} md={4}>
             {renderFormField("nationality")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("passportNumber")}
+          </Grid>
+          <Grid item xs={12} md={4}>
+            {renderFormField("governmentIssuedId")}
+          </Grid>
+        </Grid>
+
+        {renderSubsectionheader(lang.t("contactInformation"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("country")}
           </Grid>
           <Grid item xs={12} md={4}>
             {renderFormField("region")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("zone")}
+            {renderFormField("city")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("subcity")}
+            {renderFormField("customField1")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("kebele")}
+            {renderFormField("customField2")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("woreda")}
+            {renderFormField("postalCode")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderFormField("houseNumber")}
+            {renderFormField("street")}
           </Grid>
-
           <Grid item xs={12} md={4}>
-            {renderFormField("occupation")}
+            {renderFormField("building")}
           </Grid>
-          {formValues.occupation === "other" &&
-              <Grid item xs={12} md={4}>
-                        {renderFormField("occupationOther")}
-              </Grid>
-          }
           <Grid item xs={12} md={4}>
-            {renderFormField("callerType")}
+            {renderFormField("email")}
           </Grid>
-
           <Grid item xs={12} md={4}>
-            {renderFormField("callDate")}
+            {renderFormField("phoneNumber")}
           </Grid>
         </Grid>
+
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("symptoms"))}
@@ -187,6 +263,9 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("cough")}
             {renderFormField("shortnessOfBreath")}
             {renderFormField("fatigue")}
+            {renderFormField("headache")}
+            {renderFormField("runnyNose")}
+            {renderFormField("feelingUnwell")}
           </Grid>
           <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("underlyingConditions"))}
@@ -201,11 +280,21 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
             {renderFormField("pregnancy")}
           </Grid>
           <Grid item xs={12} md={4}>
-            {renderSubsectionheader(lang.t("generalInformation"))}
-            {renderFormField("travelHx")}
-            {renderFormField("animalMarket")}
-            {renderFormField("haveSex")}
-            {renderFormField("healthFacility")}
+            {renderSubsectionheader(lang.t("riskFromContact"))}
+            {renderFormField("hasRecentlyTraveled")}
+            {renderFormField("contactWithSuspected")}
+            {renderFormField("contactWithConfirmed")}
+            {renderFormField("worksAtOrVisitedHealthFacility")}
+          </Grid>
+        </Grid>
+        {renderSubsectionheader(lang.t("caller"))}
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            {renderFormField("callerType")}
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            {renderFormField("callDate")}
           </Grid>
         </Grid>
         {isLoaded && (

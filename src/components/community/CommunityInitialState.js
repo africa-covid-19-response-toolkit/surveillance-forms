@@ -1,30 +1,37 @@
 const CommunityInitialState = {
-
-  firstName: "",
-  lastName: "",
-  age:  "",
-  sex: "",
-  language: "",
-  region: "",
-  subcityOrZone: "",
-  sefer: "",
-  woreda: "",
-  kebele: "",
-  houseNumber: "",
-  phoneNumber: "",
-  latitude: 0,
-  longitude: 0,
-  fever: false,
-  cough: false,
-  shortnessOfBreath: false,
-  formStatus: "",
-  travelHx: false,
-  haveSex: false,
-  animalMarket: false,
-  healthFacility: false,
-  occupation: "",
-  dataSource: "",
-  fatigue: false,
+  biographicalData: {
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    age: 0,
+    dateOfBirth: "",
+    gender: "",
+    preferredLanguage: "",
+    occupation: "",
+    nationality: "",
+    passportNumber: "",
+    governmentIssuedId: "",
+    contactInformation: {
+      address: {
+        country: "",
+        region: "",
+        city: "",
+        postalCode: "",
+        street: "",
+        building: "",
+        customField1: "",
+        customField2: "",
+      },
+      email: "",
+      phoneNumber: "",
+    },
+  },
+  riskFromContact: {
+    hasRecentlyTraveled: false,
+    contactWithSuspected: false,
+    contactWithConfirmed: false,
+    worksAtOrVisitedHealthFacility: false,
+  },
   underlyingConditions: {
     chronicLungDisease: false,
     heartDisease: false,
@@ -36,8 +43,19 @@ const CommunityInitialState = {
     hiv: false,
     pregnancy: false,
   },
-}
+  symptoms: {
+    fever: false,
+    cough: false,
+    shortnessOfBreath: false,
+    fatigue: false,
+    headache: false,
+    runnyNose: false,
+    feelingUnwell: false,
+  },
+  // unique
+  latitude: "",
+  longitude: "",
+  source: "",
+};
 
 export default CommunityInitialState;
-    
-

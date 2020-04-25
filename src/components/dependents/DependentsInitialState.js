@@ -1,4 +1,4 @@
-const PortOfEntryInitialState = {
+const DependetsInitialState = {
   biographicalData: {
     firstName: "",
     middleName: "",
@@ -52,13 +52,8 @@ const PortOfEntryInitialState = {
     runnyNose: false,
     feelingUnwell: false,
   },
-  travelFromCountry: "",
-  finalTransitCountry: "",
-  flightNumber: "",
   seatNumber: "",
-  stayingAtHotel: "",
-  dependents: [],
-  source: "",
+  relationshipToPassenger: "",
 };
 
-export default PortOfEntryInitialState;
+export default DependetsInitialState;

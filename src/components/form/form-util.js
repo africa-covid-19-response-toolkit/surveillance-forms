@@ -8,9 +8,9 @@ import {
   Select,
   MenuItem,
   Switch,
-  Checkbox
+  Checkbox,
 } from "@material-ui/core";
-import { isEmpty} from "lodash";
+import { isEmpty } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from "../../modules/lang/moment-lang";
 
@@ -25,9 +25,8 @@ const StatefulTextField = ({ field, clear }) => {
     disabled,
     onValidate,
     validationErrorMsg,
-    focus
+    focus,
   } = field;
-
   const [value, setValue] = useState(field.value || "");
   const [isValid, setIsValid] = useState(true);
 
@@ -38,12 +37,8 @@ const StatefulTextField = ({ field, clear }) => {
       firstUpdate.current = false;
       return;
     }
-
-    if (onValidate) {
-      const result = onValidate(value);
-      setIsValid(result);
-    }
-  }, [value, onValidate]);
+    handleValidation();
+  }, [value]);
 
   useEffect(() => {
     if (clear === 0) {
@@ -51,9 +46,9 @@ const StatefulTextField = ({ field, clear }) => {
     }
     firstUpdate.current = true;
     setValue(field.value || "");
-  }, [field.value, clear]);
+  }, [clear]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
 
@@ -103,6 +98,94 @@ const StatefulTextField = ({ field, clear }) => {
     </Box>
   );
 };
+const StatefulNumberField = ({ field, clear }) => {
+  // fullWidth
+  const {
+    label,
+    property,
+    onChange,
+    disabled,
+    onValidate,
+    validationErrorMsg,
+    focus,
+  } = field;
+
+  const [value, setValue] = useState(field.value || "");
+  const [isValid, setIsValid] = useState(true);
+
+  const firstUpdate = useRef(true); // dont run on mount
+
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  }, [value, onValidate]);
+
+  useEffect(() => {
+    if (clear === 0) {
+      return;
+    }
+    firstUpdate.current = true;
+    setValue(field.value || "");
+  }, [field.value, clear]);
+
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    setValue(newValue);
+
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
+
+  const handleValidation = () => {
+    if (onValidate) {
+      const result = onValidate(value);
+      setIsValid(result);
+    }
+  };
+
+  const props = {};
+  if (!isValid) {
+    props["error"] = true;
+    props["helperText"] = !isEmpty(validationErrorMsg)
+      ? validationErrorMsg
+      : "Incorrect Input";
+  } else {
+    props["error"] = undefined;
+    props["helperText"] = undefined;
+  }
+
+  if (focus) {
+    props["autoFocus"] = true;
+  }
+
+  return (
+    <Box>
+      <InputLabel shrink>{label}</InputLabel>
+      <TextField
+        color="#ffffff"
+        type="number"
+        id={`${property}-outlined`}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleValidation}
+        disabled={!!disabled}
+        fullWidth={true}
+        autoComplete="false"
+        size="small"
+        variant="outlined"
+        {...props}
+      />
+    </Box>
+  );
+};
 const StatefulDateField = ({ field }) => {
   const {
     label,
@@ -111,7 +194,7 @@ const StatefulDateField = ({ field }) => {
     disabled,
     onValidate,
     validationErrorMsg,
-    focus
+    focus,
   } = field;
 
   var locale = field.langCode;
@@ -144,7 +227,7 @@ const StatefulDateField = ({ field }) => {
     }
   }, [value, onValidate]);
 
-  const handleDateChange = date => {
+  const handleDateChange = (date) => {
     const newValue = date.format();
     setValue(newValue);
 
@@ -176,7 +259,7 @@ const StatefulDateField = ({ field }) => {
           id={`${property}-outlined`}
           inputVariant="outlined"
           value={value}
-          onChange={date => handleDateChange(date)}
+          onChange={(date) => handleDateChange(date)}
           disabled={!!disabled}
           format="LL"
           fullWidth={true}
@@ -191,8 +274,10 @@ const StatefulDateField = ({ field }) => {
 export const renderTextField = (field, clear) => {
   return <StatefulTextField field={field} clear={clear} />;
 };
-
-export const renderDateField = field => {
+export const renderNumberField = (field, clear) => {
+  return <StatefulNumberField field={field} clear={clear} />;
+};
+export const renderDateField = (field) => {
   moment.locale(field.langCode);
   return <StatefulDateField field={field} />;
 };
@@ -202,7 +287,7 @@ const StatefulSelectField = ({ field }) => {
 
   const [value, setValue] = useState("");
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
 
@@ -216,7 +301,7 @@ const StatefulSelectField = ({ field }) => {
       <InputLabel shrink>{label}</InputLabel>
       <FormControl
         style={{
-          width: "100%"
+          width: "100%",
         }}
         variant="outlined"
         size="small"
@@ -239,7 +324,7 @@ const StatefulSelectField = ({ field }) => {
   );
 };
 
-export const renderSelectField = field => {
+export const renderSelectField = (field) => {
   return <StatefulSelectField field={field} />;
 };
 
@@ -264,7 +349,7 @@ const StatefulSwitch = ({ field }) => {
         style={{
           borderRadius: "50px",
           border: "1px solid #ccc",
-          margin: "5px 10px 5px 0"
+          margin: "5px 10px 5px 0",
         }}
       >
         <Switch
@@ -282,7 +367,7 @@ const StatefulSwitch = ({ field }) => {
   );
 };
 
-export const renderSwitch = field => {
+export const renderSwitch = (field) => {
   return <StatefulSwitch field={field} />;
 };
 
@@ -317,7 +402,7 @@ const StatefulCheckbox = ({ field }) => {
   );
 };
 
-export const renderCheckbox = field => {
+export const renderCheckbox = (field) => {
   return <StatefulCheckbox field={field} />;
 };
 
@@ -325,6 +410,8 @@ export const renderField = (field, clear) => {
   switch (field.type) {
     case "text":
       return renderTextField(field, clear);
+    case "number":
+      return renderNumberField(field, clear);
     case "select":
       return renderSelectField(field);
     case "date":
