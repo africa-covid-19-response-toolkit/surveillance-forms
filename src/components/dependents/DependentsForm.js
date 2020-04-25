@@ -118,7 +118,20 @@ const DependentsForm = ({ onSubmit, lang, langCode, props }) => {
     let isValid = true;
     fields.forEach((f) => {
       if (f.onValidate) {
-        isValid = isValid && f.onValidate(formValues[f.property]);
+        if (f.property === "email") {
+          isValid =
+            isValid &&
+            f.onValidate(
+              get(
+                formValues,
+                `biographicalData.contactInformation.${f.property}`
+              )
+            );
+        } else {
+          isValid =
+            isValid &&
+            f.onValidate(get(formValues, `biographicalData.${f.property}`));
+        }
       }
     });
     return isValid;

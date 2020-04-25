@@ -12,7 +12,7 @@ import {
 } from "../../constants/common-keys";
 import CommunityInitialState from "./CommunityInitialState";
 import ReCAPTCHA from "react-google-recaptcha";
-import { isEmpty } from "lodash";
+import { isEmpty, get } from "lodash";
 import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
@@ -158,7 +158,20 @@ const CommunityForm = ({ onSubmit, lang, langCode }) => {
     if (!isEmpty(captchaText) && !isCaptchaExpired) {
       fields.forEach((f) => {
         if (f.onValidate) {
-          isValid = isValid && f.onValidate(formValues[f.property]);
+          if (f.property === "email") {
+            isValid =
+              isValid &&
+              f.onValidate(
+                get(
+                  formValues,
+                  `biographicalData.contactInformation.${f.property}`
+                )
+              );
+          } else {
+            isValid =
+              isValid &&
+              f.onValidate(get(formValues, `biographicalData.${f.property}`));
+          }
         }
       });
     } else {
