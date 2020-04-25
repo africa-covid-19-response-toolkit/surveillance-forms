@@ -87,6 +87,12 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       })),
     },
     {
+      type: "text",
+      label: lang.t("occupationOther"),
+      property: "occupationOther",
+      onChange: handleFieldChange("occupationOther"),
+    },
+    {
       type: "select",
       label: lang.t("nationality.label"),
       property: "nationality",
@@ -95,12 +101,6 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
         label: lang.t(`nationality.value.${r}`),
         value: r,
       })),
-    },
-    {
-      type: "text",
-      label: lang.t("occupationOther"),
-      property: "occupationOther",
-      onChange: handleFieldChange("occupationOther"),
     },
     {
       type: "text",

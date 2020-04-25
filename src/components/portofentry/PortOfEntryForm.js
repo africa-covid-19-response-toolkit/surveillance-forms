@@ -229,7 +229,7 @@ const PortOfEntryForm = ({ onSubmit, lang, langCode }) => {
           <Grid item xs={12} md={4}>
             {renderFormField("occupation")}
           </Grid>
-          {formValues.occupation === "other" && (
+          {formValues.biographicalData.occupation === "other" && (
             <Grid item xs={12} md={4}>
               {renderFormField("occupationOther")}
             </Grid>
