@@ -9,6 +9,7 @@ import {
   SYMPTOMS,
   RISKS,
 } from "../../constants/common-keys";
+import { get } from "lodash";
 import DEPENDENTS_ENTRY_FIELDS from "../../constants/dependents-fields";
 
 const DependentsForm = ({ onSubmit, lang, langCode, props }) => {

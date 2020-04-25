@@ -17,7 +17,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import { renderField } from "../form/form-util";
 import PortOfEntryInitialState from "./PortOfEntryInitialState";
-import { isEmpty } from "lodash";
+import { isEmpty, get } from "lodash";
 import {
   BIOGRAPHICALDATA,
   CONTACTINFO,

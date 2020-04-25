@@ -14,7 +14,7 @@ import {
 import MedicalInitialState from "./MedicalCentersInitialState";
 
 import ReCAPTCHA from "react-google-recaptcha";
-import { isEmpty } from "lodash";
+import { isEmpty, get } from "lodash";
 import config from "../../config";
 
 const TEST_SITE_KEY = config.captchaKey;
