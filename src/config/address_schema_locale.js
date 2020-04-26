@@ -1,10 +1,10 @@
 export default {
-  country: "country",
-  region: "region",
-  city: "city",
-  postalCode: "postalCode",
-  building: "houseNumber",
-  street: "woreda",
-  customField1: "subcity", //Assumption: this is a list of values (dropdown)
-  customField2: "kebele",
+  country: { name: "country", type: "select", active: true },
+  region: { name: "region", type: "select", active: true },
+  city: { name: "city", type: "select", active: true },
+  postalCode: { name: "postalCode", type: "text", active: true },
+  building: { name: "houseNumber", type: "text", active: true },
+  street: { name: "woreda", type: "text", active: true },
+  customField1: { name: "subcity", type: "select", active: true },
+  customField2: { name: "kebele", type: "text", active: true },
 };

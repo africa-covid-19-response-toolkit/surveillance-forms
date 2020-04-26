@@ -123,9 +123,10 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
     },
     //Address
     {
-      type: "select",
-      label: lang.t(`${AddressLocal.country}.label`),
+      type: AddressLocal.country.type,
+      label: lang.t(`${AddressLocal.country.name}.label`),
       property: "country",
+      active: AddressLocal.country.active,
       choices: COUNTRY_KEYS.map((c) => ({
         label: lang.t(`country.value.${c}`),
         value: c,
@@ -133,9 +134,10 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       onChange: handleFieldChange("country"),
     },
     {
-      type: "select",
-      label: lang.t(`${AddressLocal.region}.label`),
+      type: AddressLocal.region.type,
+      label: lang.t(`${AddressLocal.region.name}.label`),
       property: "region",
+      active: AddressLocal.region.active,
       choices: REGION_KEYS.map((r) => ({
         label: lang.t(`region.value.${r}`),
         value: r,
@@ -143,9 +145,10 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       onChange: handleFieldChange("region"),
     },
     {
-      type: "select",
-      label: lang.t(`${AddressLocal.city}.label`),
+      type: AddressLocal.city.type,
+      label: lang.t(`${AddressLocal.city.name}.label`),
       property: "city",
+      active: AddressLocal.city.active,
       choices: CITY_KEYS.map((r) => ({
         label: lang.t(`city.value.${r}`),
         value: r,
@@ -153,37 +156,42 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       onChange: handleFieldChange("city"),
     },
     {
-      type: "text",
-      label: lang.t(`${AddressLocal.postalCode}`),
+      type: AddressLocal.postalCode.type,
+      label: lang.t(`${AddressLocal.postalCode.name}`),
       property: "postalCode",
+      active: AddressLocal.postalCode.active,
       onChange: handleFieldChange("postalCode"),
     },
     {
-      type: "text",
-      label: lang.t(`${AddressLocal.street}`),
+      type: AddressLocal.street.type,
+      label: lang.t(`${AddressLocal.street.name}`),
       property: "street",
+      active: AddressLocal.street.active,
       onChange: handleFieldChange("street"),
     },
     {
-      type: "text",
-      label: lang.t(`${AddressLocal.building}`),
+      type: AddressLocal.building.type,
+      label: lang.t(`${AddressLocal.building.name}`),
       property: "building",
+      active: AddressLocal.building.active,
       onChange: handleFieldChange("building"),
     },
     {
-      type: "select",
-      label: lang.t(`${AddressLocal.customField1}.label`),
+      type: AddressLocal.customField1.type,
+      label: lang.t(`${AddressLocal.customField1.name}.label`),
       property: "customField1",
+      active: AddressLocal.customField1.active,
       choices: CUSTOMFIELD1_KEYS.map((r) => ({
-        label: lang.t(`${AddressLocal.customField1}.value.${r}`),
+        label: lang.t(`${AddressLocal.customField1.name}.value.${r}`),
         value: r,
       })),
       onChange: handleFieldChange("customField1"),
     },
     {
-      type: "text",
-      label: lang.t(`${AddressLocal.customField2}`),
+      type: AddressLocal.customField2.type,
+      label: lang.t(`${AddressLocal.customField2.name}`),
       property: "customField2",
+      active: AddressLocal.customField2.active,
       onChange: handleFieldChange("customField2"),
     },
     {

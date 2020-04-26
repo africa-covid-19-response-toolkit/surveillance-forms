@@ -9,6 +9,7 @@ import {
   MenuItem,
   Switch,
   Checkbox,
+  Grid,
 } from "@material-ui/core";
 import { isEmpty } from "lodash";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -26,10 +27,11 @@ const StatefulTextField = ({ field, clear }) => {
     onValidate,
     validationErrorMsg,
     focus,
+    active,
   } = field;
   const [value, setValue] = useState(field.value || "");
   const [isValid, setIsValid] = useState(true);
-
+  console.log(active);
   const firstUpdate = useRef(true); // dont run on mount
 
   useEffect(() => {
@@ -80,22 +82,25 @@ const StatefulTextField = ({ field, clear }) => {
   }
 
   return (
-    <Box>
-      <InputLabel shrink>{label}</InputLabel>
-      <TextField
-        color="#ffffff"
-        id={`${property}-outlined`}
-        value={value}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        disabled={!!disabled}
-        fullWidth={true}
-        autoComplete="false"
-        size="small"
-        variant="outlined"
-        {...props}
-      />
-    </Box>
+    <Grid item xs={12} md={4} hidden={!active}>
+      <Box>
+        <InputLabel shrink>{label}</InputLabel>
+        <TextField
+          color="#ffffff"
+          id={`${property}-outlined`}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleValidation}
+          disabled={!!disabled}
+          fullWidth={true}
+          autoComplete="false"
+          size="small"
+          type="text"
+          variant="outlined"
+          {...props}
+        />
+      </Box>
+    </Grid>
   );
 };
 const StatefulNumberField = ({ field, clear }) => {
@@ -167,23 +172,25 @@ const StatefulNumberField = ({ field, clear }) => {
   }
 
   return (
-    <Box>
-      <InputLabel shrink>{label}</InputLabel>
-      <TextField
-        color="#ffffff"
-        type="number"
-        id={`${property}-outlined`}
-        value={value}
-        onChange={handleChange}
-        onBlur={handleValidation}
-        disabled={!!disabled}
-        fullWidth={true}
-        autoComplete="false"
-        size="small"
-        variant="outlined"
-        {...props}
-      />
-    </Box>
+    <Grid item xs={12} md={4}>
+      <Box>
+        <InputLabel shrink>{label}</InputLabel>
+        <TextField
+          color="#ffffff"
+          type="number"
+          id={`${property}-outlined`}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleValidation}
+          disabled={!!disabled}
+          fullWidth={true}
+          autoComplete="false"
+          size="small"
+          variant="outlined"
+          {...props}
+        />
+      </Box>
+    </Grid>
   );
 };
 const StatefulDateField = ({ field }) => {
@@ -252,26 +259,33 @@ const StatefulDateField = ({ field }) => {
   }
 
   return (
-    <Box>
-      <InputLabel shrink>{label}</InputLabel>
-      <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
-        <DatePicker
-          id={`${property}-outlined`}
-          inputVariant="outlined"
-          value={value}
-          onChange={(date) => handleDateChange(date)}
-          disabled={!!disabled}
-          format="LL"
-          fullWidth={true}
-          autoComplete="false"
-          size="small"
-          {...props}
-        />
-      </MuiPickersUtilsProvider>
-    </Box>
+    <Grid item xs={12} md={4}>
+      <Box>
+        <InputLabel shrink>{label}</InputLabel>
+        <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
+          <DatePicker
+            id={`${property}-outlined`}
+            inputVariant="outlined"
+            value={value}
+            onChange={(date) => handleDateChange(date)}
+            disabled={!!disabled}
+            format="LL"
+            fullWidth={true}
+            autoComplete="false"
+            size="small"
+            {...props}
+          />
+        </MuiPickersUtilsProvider>
+      </Box>
+    </Grid>
   );
 };
 export const renderTextField = (field, clear) => {
+  console.log(field);
+  // by default show all fields
+  if (typeof field.active == "undefined") {
+    field.active = true;
+  }
   return <StatefulTextField field={field} clear={clear} />;
 };
 export const renderNumberField = (field, clear) => {
@@ -297,30 +311,32 @@ const StatefulSelectField = ({ field }) => {
   };
 
   return (
-    <Box>
-      <InputLabel shrink>{label}</InputLabel>
-      <FormControl
-        style={{
-          width: "100%",
-        }}
-        variant="outlined"
-        size="small"
-      >
-        <Select
-          labelId={`label-${property}`}
-          id={`select-${property}`}
-          value={value}
-          disabled={!!disabled}
-          onChange={handleChange}
+    <Grid item xs={12} md={4}>
+      <Box>
+        <InputLabel shrink>{label}</InputLabel>
+        <FormControl
+          style={{
+            width: "100%",
+          }}
+          variant="outlined"
+          size="small"
         >
-          {choices.map((c, index) => (
-            <MenuItem key={index} value={c.value}>
-              {c.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+          <Select
+            labelId={`label-${property}`}
+            id={`select-${property}`}
+            value={value}
+            disabled={!!disabled}
+            onChange={handleChange}
+          >
+            {choices.map((c, index) => (
+              <MenuItem key={index} value={c.value}>
+                {c.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    </Grid>
   );
 };
 

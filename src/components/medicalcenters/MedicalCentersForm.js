@@ -182,80 +182,36 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         {renderSectionHeader(lang.t("healthFacilitiesApplicationForm"))}
         {renderSubsectionheader(lang.t("basicInformation"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            {renderFormField("firstName")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("middleName")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("lastName")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("age")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("dateOfBirth")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("gender")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("preferredLanguage")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("occupation")}
-          </Grid>
-          {formValues.biographicalData.occupation === "other" && (
-            <Grid item xs={12} md={4}>
-              {renderFormField("occupationOther")}
-            </Grid>
-          )}
-          <Grid item xs={12} md={4}>
-            {renderFormField("nationality")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("passportNumber")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("governmentIssuedId")}
-          </Grid>
+          {renderFormField("firstName")}
+          {renderFormField("middleName")}
+          {renderFormField("lastName")}
+          {renderFormField("age")}
+          {renderFormField("dateOfBirth")}
+          {renderFormField("gender")}
+          {renderFormField("preferredLanguage")}
+          {renderFormField("occupation")}
+          {formValues.biographicalData.occupation === "other"
+            ? renderFormField("occupationOther")
+            : null}
+          {renderFormField("nationality")}
+          {renderFormField("passportNumber")}
+          {renderFormField("governmentIssuedId")}
         </Grid>
 
         {renderSubsectionheader(lang.t("contactInformation"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            {renderFormField("country")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("region")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("city")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("customField1")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("customField2")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("postalCode")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("street")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("building")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("email")}
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {renderFormField("phoneNumber")}
-          </Grid>
-        </Grid>
+          {renderFormField("country")}
+          {renderFormField("region")}
+          {renderFormField("city")}
+          {renderFormField("customField1")}
+          {renderFormField("customField2")}
+          {renderFormField("postalCode")}
+          {renderFormField("street")}
+          {renderFormField("building")}
 
+          {renderFormField("email")}
+          {renderFormField("phoneNumber")}
+        </Grid>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>
             {renderSubsectionheader(lang.t("symptoms"))}
@@ -289,13 +245,8 @@ const MedicalCentersEntryForm = ({ onSubmit, lang, langCode }) => {
         </Grid>
         {renderSubsectionheader(lang.t("caller"))}
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            {renderFormField("callerType")}
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            {renderFormField("callDate")}
-          </Grid>
+          {renderFormField("callerType")}
+          {renderFormField("callDate")}
         </Grid>
         {isLoaded && (
           <ReCAPTCHA
