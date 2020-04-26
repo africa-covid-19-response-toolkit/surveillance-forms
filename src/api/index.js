@@ -1,9 +1,11 @@
 import axios from 'axios';
 import config from '../config';
 
-const POST = 'post';
-// const PUT = 'put';
-const DELETE = 'delete';
+const HTTP = {
+  POST: 'post',
+  PUT: 'put',
+  DELETE: 'delete'
+}
 
 const initApi = (baseURL) => {
   const api = axios.create();
@@ -16,7 +18,7 @@ const axiosApi = initApi(config.apiUrl);
 
 const getBody = (verb, body) => {
   // https://github.com/axios/axios/issues/897#issuecomment-343715381
-  if (body !== undefined && verb === DELETE) {
+  if (body !== undefined && verb === HTTP.DELETE) {
     return { data: body };
   }
 
@@ -62,7 +64,7 @@ class Api {
       delete formValues.occupationOther
     }
 
-    return execute(POST, '/public/communities', formValues);
+    return execute(HTTP.POST, '/public/communities', formValues);
   }
 
   async submitMedical(formValues) {
@@ -73,7 +75,7 @@ class Api {
       delete formValues.occupationOther
     }
 
-    return execute(POST, '/public/medical-facilities', formValues);
+    return execute(HTTP.POST, '/public/medical-facilities', formValues);
   }
 
   async submitPortOfEntry(formValues) {
@@ -84,7 +86,7 @@ class Api {
       delete formValues.occupationOther
     }
 
-    return execute(POST, '/public/passengers', formValues);
+    return execute(HTTP.POST, '/public/passengers', formValues);
   }
 }
 
