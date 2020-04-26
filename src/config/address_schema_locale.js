@@ -1,10 +1,10 @@
 export default {
-  country: { name: "country", type: "select" },
-  region: { name: "region", type: "select" },
-  city: { name: "city", type: "select" },
-  postalCode: { name: "postalCode", type: "text" },
-  building: { name: "houseNumber", type: "text" },
-  street: { name: "woreda", type: "text" },
-  customField1: { name: "subcity", type: "select" },
-  customField2: { name: "kebele", type: "text" },
+  country: { name: "country", type: "select", active: true },
+  region: { name: "region", type: "select", active: true },
+  city: { name: "city", type: "select", active: true },
+  postalCode: { name: "postalCode", type: "text", active: true },
+  building: { name: "houseNumber", type: "text", active: true },
+  street: { name: "woreda", type: "text", active: true },
+  customField1: { name: "subcity", type: "select", active: true },
+  customField2: { name: "kebele", type: "text", active: true },
 };

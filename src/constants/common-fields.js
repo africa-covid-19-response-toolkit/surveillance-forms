@@ -126,6 +126,7 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       type: AddressLocal.country.type,
       label: lang.t(`${AddressLocal.country.name}.label`),
       property: "country",
+      active: AddressLocal.country.active,
       choices: COUNTRY_KEYS.map((c) => ({
         label: lang.t(`country.value.${c}`),
         value: c,
@@ -136,6 +137,7 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       type: AddressLocal.region.type,
       label: lang.t(`${AddressLocal.region.name}.label`),
       property: "region",
+      active: AddressLocal.region.active,
       choices: REGION_KEYS.map((r) => ({
         label: lang.t(`region.value.${r}`),
         value: r,
@@ -146,6 +148,7 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       type: AddressLocal.city.type,
       label: lang.t(`${AddressLocal.city.name}.label`),
       property: "city",
+      active: AddressLocal.city.active,
       choices: CITY_KEYS.map((r) => ({
         label: lang.t(`city.value.${r}`),
         value: r,
@@ -156,24 +159,28 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       type: AddressLocal.postalCode.type,
       label: lang.t(`${AddressLocal.postalCode.name}`),
       property: "postalCode",
+      active: AddressLocal.postalCode.active,
       onChange: handleFieldChange("postalCode"),
     },
     {
       type: AddressLocal.street.type,
       label: lang.t(`${AddressLocal.street.name}`),
       property: "street",
+      active: AddressLocal.street.active,
       onChange: handleFieldChange("street"),
     },
     {
       type: AddressLocal.building.type,
       label: lang.t(`${AddressLocal.building.name}`),
       property: "building",
+      active: AddressLocal.building.active,
       onChange: handleFieldChange("building"),
     },
     {
       type: AddressLocal.customField1.type,
       label: lang.t(`${AddressLocal.customField1.name}.label`),
       property: "customField1",
+      active: AddressLocal.customField1.active,
       choices: CUSTOMFIELD1_KEYS.map((r) => ({
         label: lang.t(`${AddressLocal.customField1.name}.value.${r}`),
         value: r,
@@ -184,6 +191,7 @@ const COMMON_FIELDS = (lang, handleFieldChange, langCode) => {
       type: AddressLocal.customField2.type,
       label: lang.t(`${AddressLocal.customField2.name}`),
       property: "customField2",
+      active: AddressLocal.customField2.active,
       onChange: handleFieldChange("customField2"),
     },
     {
